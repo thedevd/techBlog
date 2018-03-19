@@ -1,2 +1,5 @@
 # When to use cassandra, RDBMS
 https://stackoverflow.com/questions/2634955/when-not-to-use-cassandra
+
+# Does redis persiste data to memory
+https://stackoverflow.com/questions/25328317/does-redis-persist-data
