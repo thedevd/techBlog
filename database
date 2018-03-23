@@ -1,5 +1,8 @@
 # When to use cassandra, RDBMS
 https://stackoverflow.com/questions/2634955/when-not-to-use-cassandra
 
-# Does redis persiste data to memory
+# Does redis persiste data
 https://stackoverflow.com/questions/25328317/does-redis-persist-data
+
+# Redis monitoring tool with support of windows
+https://github.com/junegunn/redis-stat
