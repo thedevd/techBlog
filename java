@@ -12,3 +12,6 @@ http://www.springboottutorial.com/logging-with-spring-boot-logback-slf4j-and-log
 # Difference between WeakReference vs SoftReference vs PhantomReference vs Strong reference in Java
 https://javarevisited.blogspot.in/2014/03/difference-between-weakreference-vs-softreference-phantom-strong-reference-java.html
 https://stackoverflow.com/questions/299659/whats-the-difference-between-softreference-and-weakreference-in-java
+
+# ExecutorService – Waiting for Threads to Finish
+http://www.baeldung.com/java-executor-wait-for-threads
