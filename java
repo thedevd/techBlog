@@ -18,3 +18,7 @@ https://www.callicoder.com/java-executor-service-and-thread-pool-tutorial/
 
 # ExecutorService – Waiting for Threads to Finish
 http://www.baeldung.com/java-executor-wait-for-threads
+
+# Understanding Thread Interruption in Java
+http://www.informit.com/articles/article.aspx?p=26326&seqNum=3
+https://dzone.com/articles/understanding-thread-interruption-in-java
