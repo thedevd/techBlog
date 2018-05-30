@@ -12,3 +12,6 @@ https://github.com/gamenet/redis-memory-analyzer
 
 # Redis configuration tuning
 http://shokunin.co/blog/2014/11/11/operational_redis.html
+
+# MySQL Examples of Common Queries
+https://dev.mysql.com/doc/mysql-tutorial-excerpt/5.7/en/examples.html
