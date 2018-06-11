@@ -22,3 +22,8 @@ http://www.baeldung.com/java-executor-wait-for-threads
 # Understanding Thread Interruption in Java
 http://www.informit.com/articles/article.aspx?p=26326&seqNum=3
 https://dzone.com/articles/understanding-thread-interruption-in-java
+
+# JAXB (Java Architecture for XML binding) tutorial
+https://www.javacodegeeks.com/2014/12/jaxb-tutorial-xml-binding.html
+https://stackoverflow.com/questions/20586737/javax-xml-bind-unmarshalexception-unexpected-element-expected-elements-are-no
+https://dzone.com/articles/using-jaxb-for-xml-with-java
