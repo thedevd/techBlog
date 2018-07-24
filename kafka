@@ -10,3 +10,6 @@ http://blog.indexnine.com/2015/06/apache-kafka-what-sets-it-apart.html
 
 # Does kafka provide message ordering gaurantee
 https://stackoverflow.com/questions/29820384/apache-kafka-order-of-messages-with-multiple-partitions
+
+# How to implement Custom Value Serializer for Apache Kafka
+https://www.opencodez.com/java/implement-custom-value-serializer-apache-kafka.htm
