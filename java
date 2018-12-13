@@ -28,3 +28,6 @@ https://www.javacodegeeks.com/2014/12/jaxb-tutorial-xml-binding.html
 https://stackoverflow.com/questions/20586737/javax-xml-bind-unmarshalexception-unexpected-element-expected-elements-are-no
 https://dzone.com/articles/using-jaxb-for-xml-with-java
 https://gist.github.com/subchen/c5dcf8dc6293355584af
+
+# All You Need To Know For Migrating To Java 11 (This was done as part of checking openjdk11 compatability with Reno-test)
+https://blog.codefx.org/java/java-11-migration-guide/#Removal-Of-Java-EE-Modules
