@@ -31,3 +31,6 @@ https://gist.github.com/subchen/c5dcf8dc6293355584af
 
 # All You Need To Know For Migrating To Java 11 (This was done as part of checking openjdk11 compatability with Reno-test)
 https://blog.codefx.org/java/java-11-migration-guide/#Removal-Of-Java-EE-Modules
+
+# Java: What is the Limit to the Number of Threads You Can Create?
+https://dzone.com/articles/java-what-limit-number-threads
