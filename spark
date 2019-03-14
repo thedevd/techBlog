@@ -15,4 +15,5 @@ https://spark.apache.org/docs/latest/sql-programming-guide.html
 https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#continuous-processing-experimental
 https://sonra.io/2017/11/27/advanced-spark-structured-streaming-aggregations-joins-checkpointing/
 
-
+# Accessing Cassandra from Spark in Java
+https://www.datastax.com/dev/blog/accessing-cassandra-from-spark-in-java
