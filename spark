@@ -17,3 +17,6 @@ https://sonra.io/2017/11/27/advanced-spark-structured-streaming-aggregations-joi
 
 # Accessing Cassandra from Spark in Java
 https://www.datastax.com/dev/blog/accessing-cassandra-from-spark-in-java
+
+# A very good example for Spark Structured streaming 
+http://vishnuviswanath.com/spark_structured_streaming.html
