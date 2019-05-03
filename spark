@@ -23,3 +23,6 @@ http://vishnuviswanath.com/spark_structured_streaming.html
 
 ###### spark-structured-streaming very nice collecction
 https://github.com/topics/spark-structured-streaming
+
+##  Spark strucutured streaming: Reading data from Kafka in dataframe
+https://github.com/apache/spark/blob/master/docs/structured-streaming-kafka-integration.md
