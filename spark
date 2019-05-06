@@ -26,3 +26,6 @@ https://github.com/topics/spark-structured-streaming
 
 ##  Spark strucutured streaming: Reading data from Kafka in dataframe
 https://github.com/apache/spark/blob/master/docs/structured-streaming-kafka-integration.md
+
+## A good small problems in spark coding
+http://sqlandhadoop.com/spark-dataframe-concatenate-strings/
