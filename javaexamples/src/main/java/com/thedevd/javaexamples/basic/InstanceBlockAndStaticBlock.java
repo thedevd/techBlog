@@ -1,4 +1,4 @@
-package basic;
+package com.thedevd.javaexamples.basic;
 
 class A
 {
@@ -31,7 +31,7 @@ class B extends A
 	}
 }
 
-public class IntanceBlockAndStaticBlock {
+public class InstanceBlockAndStaticBlock {
 
 	public static void main( String[] args )
 	{

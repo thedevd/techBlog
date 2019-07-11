@@ -1,3 +1,5 @@
+package com.thedevd.javaexamples.multithreading;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -12,11 +14,11 @@ class MyThread extends Thread {
 	}
 }
 
+// Callable has to implement call method with return type that you want
 class MyCallableThread implements Callable<Boolean> {
 
 	boolean isDone = false;
 
-	@Override
 	public Boolean call() throws Exception
 	{
 		System.out.println("MyCallableThread task done......by: " + Thread.currentThread().getName());
@@ -52,10 +54,13 @@ public class ExecutorServiceAndCallableExample {
 		executorService.submit(task9);
 		executorService.submit(task10);
 
+		// Callable has to be sumbite using submit method
+		// and This is how to grab Future Object and get its value
 		MyCallableThread mct = new MyCallableThread();
 		Future<Boolean> futureFromCallable = executorService.submit(mct);
 		System.out.println("Return value from callable: " + futureFromCallable.get());
-		
+
+		// @formatter:off
 		/*output
 		MyThread task done...... by: pool-1-thread-1
 		MyThread task done...... by: pool-1-thread-2
@@ -68,8 +73,9 @@ public class ExecutorServiceAndCallableExample {
 		MyThread task done...... by: pool-1-thread-4
 		MyThread task done...... by: pool-1-thread-5
 		MyCallableThread task done......by: pool-1-thread-3
-		Return value from callable: true*/
+		Return value from callable: true */
 
+		// @formatter:on
 
 		executorService.shutdown();
 	}

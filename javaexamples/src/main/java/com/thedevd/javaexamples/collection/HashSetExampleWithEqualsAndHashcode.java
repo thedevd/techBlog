@@ -1,3 +1,5 @@
+package com.thedevd.javaexamples.collection;
+
 import java.util.*;
 
 class Employee {
@@ -44,9 +46,11 @@ public class HashSetExampleWithEqualsAndHashcode {
 		Set<Employee> empSet = new HashSet<Employee>();
 		empSet.add(new Employee(10, "Dev"));
 		empSet.add(new Employee(10, "DEv"));
-		System.out.println(empSet); // it outpurts only [10:Dev]. This is because we overriden hashcode and equals() method.
+		System.out.println(empSet); // it outpurts only [10:Dev]. This is because we overriden hashcode and equals()
+									// method.
 
 		Employee search = new Employee(10, "Dev");
-		System.out.println(empSet.contains(search)); //true. You wont be able to achieve this until you override hashcode() and equals()
+		System.out.println(empSet.contains(search)); // true. You wont be able to achieve this until you override
+													// hashcode() and equals()
 	}
 }
