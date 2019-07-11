@@ -21,7 +21,7 @@ public class ShallowAndDeepCloning {
 		System.out.println("e2----------------");
 		System.out.println(e2);
 
-		System.out.println("\nthis is deep copy, means changing the address using e3 will not reflect in e4");
+		System.out.println("\nthis is deep copy, means changing the address using e4 will not reflect in e3");
 		Address addOfE3 = new Address(803, "Antariksh", "Noida", "U.P.", 123456);
 		Employee2 e3 = new Employee2(1, "thedevd", addOfE3);
 		Employee2 e4 = e3.clone();
@@ -66,7 +66,7 @@ class Employee2 implements Cloneable {
 		this.address = address;
 	}
 
-	// shalow copy
+	// deep copy
 	public Employee2 clone() throws CloneNotSupportedException
 	{
 		Employee2 clonedEmp = (Employee2) super.clone();
