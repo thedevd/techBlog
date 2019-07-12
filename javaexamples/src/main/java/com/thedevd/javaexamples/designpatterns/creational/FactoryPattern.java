@@ -1,4 +1,4 @@
-package com.thedevd.javaexamples.designpatterns;
+package com.thedevd.javaexamples.designpatterns.creational;
 
 public class FactoryPattern {
 
