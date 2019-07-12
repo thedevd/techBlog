@@ -22,12 +22,14 @@ public class BuilderPattern {
 		// Using Burger builder here to create burger
 
 		// Dev says I like extra-cheese burger specially onion with tamoto
-		Burger burger1 = new Burger(new BurgerBuilder(7).addExtraCheese().addOnion().addTamoto());
+		Burger burger1 = new BurgerBuilder(7).addExtraCheese().addOnion().addTamoto().build();
 		System.out.println("Dev's order: " + burger1);
+		// Dev's order: Burger [size=7, extraCheese=true, pepperoni=false, lettuce=false, tamoto=true, onion=true]
 
 		// Ravi says I dont want extracheese and same as Dev wants
-		Burger burger2 = new Burger(new BurgerBuilder(7).addOnion().addTamoto());
+		Burger burger2 = new BurgerBuilder(7).addOnion().addTamoto().build();
 		System.out.println("Ravi's order: " + burger2);
+		// Ravi's order: Burger [size=7, extraCheese=false, pepperoni=false, lettuce=false, tamoto=true, onion=true]
 	}
 }
 
@@ -102,6 +104,11 @@ class BurgerBuilder {
 	{
 		this.onion = true;
 		return this;
+	}
+	
+	public Burger build()
+	{
+		return new Burger(this);
 	}
 
 }
