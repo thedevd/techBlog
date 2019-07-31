@@ -14,3 +14,6 @@ https://stackoverflow.com/questions/29820384/apache-kafka-order-of-messages-with
 # How to implement Custom Value Serializer for Apache Kafka
 https://www.opencodez.com/java/implement-custom-value-serializer-apache-kafka.htm
 https://github.com/thedevd/opencodez-samples/tree/master/kafka-demo/src/main/java/com/opencodez/serializer
+
+# KStream Exactly Once semantics
+https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/
