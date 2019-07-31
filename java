@@ -34,3 +34,6 @@ https://blog.codefx.org/java/java-11-migration-guide/#Removal-Of-Java-EE-Modules
 
 # Java: What is the Limit to the Number of Threads You Can Create?
 https://dzone.com/articles/java-what-limit-number-threads
+
+# Inheritance versus composition: Which one should you choose?
+https://www.javaworld.com/article/2076814/inheritance-versus-composition--which-one-should-you-choose-.html
