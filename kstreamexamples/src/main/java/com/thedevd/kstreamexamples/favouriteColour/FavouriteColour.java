@@ -1,4 +1,4 @@
-package com.thedevd.kstreamexamples;
+package com.thedevd.kstreamexamples.favouriteColour;
 
 import java.util.Arrays;
 import java.util.Properties;
