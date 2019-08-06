@@ -17,7 +17,7 @@ import org.apache.kafka.streams.kstream.Serialized;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-public class BankBalanceExacltyOnceWithCustomSerde {
+public class BankBalanceExactlyOnceWithCustomSerde {
 
 	public static void main( String[] args ) throws JsonProcessingException
 	{
@@ -49,12 +49,16 @@ public class BankBalanceExacltyOnceWithCustomSerde {
 
 		// Updated bankBalance table
 		KTable<String, BankBalanceDto> updatedBankBalance = txnDetails
-				.groupByKey(Serialized.with(Serdes.String(), txnSerde)).aggregate(() -> initialBankBalance,
+				.groupByKey(Serialized.with(Serdes.String(), txnSerde))
+				.aggregate(
+						() -> initialBankBalance,
 						( k, newV, aggV ) -> updateBalance(newV, aggV),
-						Materialized.with(Serdes.String(), bankBalanceSerde));
+						Materialized.with(Serdes.String(), bankBalanceSerde)
+						);
 
 		// Write to output topic
-		updatedBankBalance.toStream().to("bank-balance-data", Produced.with(Serdes.String(), bankBalanceSerde));
+		updatedBankBalance.toStream()
+		.to("bank-balance-data", Produced.with(Serdes.String(), bankBalanceSerde));
 
 		KafkaStreams streams = new KafkaStreams(builder.build(), config);
 		streams.cleanUp(); // dont do this on prod
