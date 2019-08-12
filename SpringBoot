@@ -21,3 +21,6 @@ https://www.baeldung.com/spring-security-registration-i-forgot-my-password
 
 # Login and Registration Example Project with Spring Security
 https://github.com/Baeldung/spring-security-registration
+
+# Crudrepository vs JpaRepository interface in Spring data JPA
+https://stackoverflow.com/questions/14014086/what-is-difference-between-crudrepository-and-jparepository-interfaces-in-spring
