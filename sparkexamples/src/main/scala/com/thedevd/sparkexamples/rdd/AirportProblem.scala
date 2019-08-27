@@ -26,7 +26,7 @@ object AirportProblem {
       .getOrCreate()
 
     val airportRdd = spark.sparkContext.textFile(getClass.getResource("/rdd/airports.txt").getPath)
-    val airportInUsaWithRequiredLatitude = airportRdd
+   /* val airportInUsaWithRequiredLatitude = airportRdd
       .filter(airport => {
         val split = airport.split(",")
         split(3) == "\"United States\"" && split(6).toFloat > 50 // state data is in double quotes so make sure compare it with quote
@@ -34,7 +34,15 @@ object AirportProblem {
       .map(airport => {
         val split = airport.split(",")
         split(1) + "," + split(3) + "," + split(2) + "," + split(6)
+      })*/
+    
+    val airportInUsaWithRequiredLatitude = airportRdd
+      .map(airport => {
+        val split = airport.split(",")
+        (split(1),split(3),split(2),split(6)) // as RDD ofTuple4
       })
+      .filter(t => t._2 == "\"United States\"" && t._4.toFloat > 50) //state data is in double quotes so make sure compare it with quote
+      .map(t => t._1 + "," + t._2 + "," + t._3 + "," + t._4)
       
     // this is hack how to add header in a rdd by using union
     // This will work if having only one partition at the time of writing to output dir, 
