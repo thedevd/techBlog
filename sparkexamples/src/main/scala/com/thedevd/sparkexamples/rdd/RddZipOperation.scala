@@ -1,9 +1,10 @@
-package com.thedevd.sparkexamples
+package com.thedevd.sparkexamples.rdd
 
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j.Logger
-import org.apache.log4j.lf5.LogLevel
 import org.apache.log4j.Level
+import org.apache.spark.annotation.InterfaceStability
+import scala.collection.Seq
 
 /*
  * Problem is you have two rdds having numbers
