@@ -11,7 +11,7 @@ import java.io.File
    "/rdd/samehostproblem/nasa_19950801.tsv" file contains 10000 log lines for August 1st, 1995
 
    Create a Spark program to generate a new RDD which contains the log lines from both July 1st and August 1st,
-   take a 0.1 sample of those log lines and save it to "sample_nasa_logs.tsv" file.
+   take a 0.1 sample of those log lines and save it to "sample_nasa_access_logs.tsv" file.
 
    Keep in mind, that the original log files contains the following header lines.
    host	logname	time	method	url	response	bytes
@@ -35,7 +35,7 @@ object RddSampleOperation {
     val aggegatedAccessLogs = julyAccessLogs.union(augAccessLogs)
 
     // filter out the header after union
-    val cleanedAggregatedAccessLogs = aggegatedAccessLogs.filter(isHeader(_))
+    val cleanedAggregatedAccessLogs = aggegatedAccessLogs.filter(isNotHeader(_))
 
     /*
      * About Spark RDD sample operation
@@ -73,7 +73,7 @@ object RddSampleOperation {
 
   }
 
-  def isHeader(x: String) = !x.startsWith("host") && !x.endsWith("bytes")
+  def isNotHeader(x: String) = !x.startsWith("host") && !x.endsWith("bytes")
   
   def cleanupOutputDir(dir: String) = FileUtils.deleteDirectory(new File(dir))
 }
