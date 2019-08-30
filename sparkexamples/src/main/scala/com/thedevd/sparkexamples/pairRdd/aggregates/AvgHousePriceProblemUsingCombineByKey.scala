@@ -60,6 +60,7 @@ object AvgHousePriceProblemUsingCombineByKey {
 
     val housePriceAvg = housePriceTotal
       .mapValues(avgCount => math.round(avgCount._2 / avgCount._1))
+      .sortBy(_._2, ascending = false) // sortBy avgHousePrice in descending order.
 
     for ((bedrooms, avgPrice) <- housePriceAvg.collect()) println(bedrooms + " : " + avgPrice)
   }
