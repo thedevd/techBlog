@@ -6,12 +6,16 @@ import org.apache.spark.sql.SparkSession
 
 /*
  * Avoid using GroupByKey always, because groupByKey directly goes for shuffling the keys across partitions
- * means each single key-value is shuffled. This increase lot of network IO. So perform gets decreased.\
+ * means each single key-value is shuffled. This increase lot of network IO. So performance gets decreased.\
  * In groupByKey there is no combining at mapped side.
  *
  * But on other hand in reduceByKey, Data is combined at each partition and
- * only one output for one key at each partition is sent over network.
+ * only one output for one key at each partition is sent over network. 
  * Then the function is called again to reduce all the values from each partition to produce one final result.
+ * So performance is more better in reduceByKey as compared to groupByKey
+ * 
+ * Follow this url for detailed difference
+ * https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/best_practices/prefer_reducebykey_over_groupbykey.html
  */
 object GroupByKeyVsReduceByKey {
 
