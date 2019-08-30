@@ -1,0 +1,7 @@
+dept_id,dept_name
+100,Big data
+200,Data Engineer
+300,Java Angular
+400,QA testing
+500,Machine learning
+600,HR

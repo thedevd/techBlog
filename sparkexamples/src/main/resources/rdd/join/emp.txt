@@ -1,0 +1,7 @@
+emp_id,emp_name,dept_id
+1,Dev,100
+2,Ravi,100
+3,Atul,300
+4,Ankit,200
+5,Prashant,400
+6,Nobita,400
