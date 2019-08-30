@@ -1,4 +1,4 @@
-package com.thedevd.sparkexamples.aggregates
+package com.thedevd.sparkexamples.pairRdd.aggregates
 
 import org.apache.log4j.Logger
 import org.apache.log4j.Level

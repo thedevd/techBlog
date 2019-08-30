@@ -1,9 +1,10 @@
-package com.thedevd.sparkexamples.aggregates
+package com.thedevd.sparkexamples.pairRdd.aggregates
 
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.rdd.RDD
+import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 
 /*
  * finding maximum marks in a single subject of a student using
