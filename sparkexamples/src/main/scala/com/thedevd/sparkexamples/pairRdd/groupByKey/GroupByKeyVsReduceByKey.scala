@@ -32,12 +32,11 @@ object GroupByKeyVsReduceByKey {
       .flatMap(line => line.split("\\s+"))
       .map(word => (word, 1))
 
-    import spark.implicits;
     val wordCountUsingReduceByKey = words.reduceByKey(_+_)
     val wordCountUsingGroupByKey = words.groupByKey().map(t => (t._1, t._2.sum))
 
-    println("WordCount using reduceByKey => " + wordCountUsingReduceByKey.collect().toMap)
-    println("WordCount using groupByKey => " + wordCountUsingGroupByKey.collect().toMap)
+    println("WordCount using reduceByKey => " + wordCountUsingReduceByKey.collect().toList)
+    println("WordCount using groupByKey => " + wordCountUsingGroupByKey.collect().toList)
 
   }
 }
