@@ -78,6 +78,12 @@ object HouseAvgPriceProblem {
     val trimmedHouseDF = houseDF.withColumn("location", trim(houseDF("location"))) // remove white-spaces from location
 
     // --------- Using sparksession.sql(SqlText) way
+    /*  Drawback of using this way----
+     *  In Spark SQL string queries, you won’t know a syntax error until runtime (which could be costly), 
+     *  whereas in DataFrames and Datasets you can catch errors at compile time (which saves developer-time and costs).
+     *  That is, if you invoke a function in DataFrame that is not part of the API, the compiler will catch it. 
+     *  However, it won’t detect a syntax or non-existing column name until runtime.
+     */
     trimmedHouseDF.createOrReplaceTempView("houseprice")
     spark.sql("""SELECT location, AVG(`Price SQ Ft`) as avg_Price_SQ_FT FROM houseprice GROUP BY location order by avg_Price_SQ_FT""")
       .show()
