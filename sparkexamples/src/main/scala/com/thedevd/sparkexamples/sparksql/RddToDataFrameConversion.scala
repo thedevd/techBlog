@@ -93,6 +93,10 @@ object RddToDataFrameConversion {
     
     println("---------------------------------------")
     // This way requires the input rdd should be of type RDD[Row].
+    /*
+     * Conceptually, DataFrame is a collection of generic objects Dataset[Row], 
+     * where a Row is a generic untyped JVM object.
+     */
     val empRddOfRowType: RDD[Row] = empRdd.map(t => Row(t._1.toInt, t._2, t._3,t._4.toDouble))
     
     val schema = new StructType()
