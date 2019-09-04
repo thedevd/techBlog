@@ -34,7 +34,8 @@ object SequenceNumberInDataFrameUsingZipWithIndex {
       .getOrCreate()
 
     // read the file first in RDD form so that we can apply zipWithIndex
-    val studentReportCard_row_rdd = spark.sparkContext.textFile(getClass.getResource("/sparksql/student_marks.txt").getPath, 4)
+    val studentReportCard_row_rdd = spark.sparkContext
+      .textFile(getClass.getResource("/sparksql/student_marks.txt").getPath, 4)
       .zipWithIndex() // RDD[(String, Long)]
       .map(t => (t._1.split(","), t._2)) // RDD[(Array[String], Long)]
       .map(t => Row(t._1(0).toInt, t._1(1), t._1(2), t._1(3).toDouble, t._2)) // RDD[Row] -- Rdd must be of Row type to create DataFrame from Rdd.
@@ -50,8 +51,18 @@ object SequenceNumberInDataFrameUsingZipWithIndex {
     // lets create DataFrame using row type rdd with schema
     val studentReportCard_df = spark.createDataFrame(studentReportCard_row_rdd, schema)
     studentReportCard_df.show(10)
+    /*
+		+---+------+---------+-----+-------+
+		| id|  name|  subject|score|row_num|
+		+---+------+---------+-----+-------+
+		|  1|Joseph|    Maths| 83.0|      0|
+		|  1|Joseph|  Physics| 74.0|      1|
+
+		*/
 
     /*
+      * Addition-
+      * #############
       * if we want to assign the unique numbers starting from 1000,
       * then we simply add it to the zipWithIndex value
       *
