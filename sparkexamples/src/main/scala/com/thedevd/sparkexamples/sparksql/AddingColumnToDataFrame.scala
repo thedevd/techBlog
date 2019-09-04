@@ -22,7 +22,7 @@ import org.apache.spark.sql.types.DoubleType
  * |  1|   Joseph|    Maths| 83.0|pass  |
  * |  1|   Joseph|  Physics| 74.0|pass  |
  *   ..    .....    ......   ...   ...
- *   
+ *
  * Solution- use withColumn on DataFrame to add new column
  */
 object AddingColumnToDataFrame {
@@ -48,12 +48,12 @@ object AddingColumnToDataFrame {
       .schema(schema)
       .load(getClass.getResource("/sparksql/student_marks.txt").getPath)
 
-      import org.apache.spark.sql.functions._ // for when and otherwise
-      val student_result = student_report_card_df
-        .withColumn("result", when(col("score") >= 70, "pass").otherwise("fail")) // withColumn is used to add column
-      
-       student_result.show(10)
-       /*	+---+------+---------+-----+------+
+    import org.apache.spark.sql.functions._ // for when and otherwise
+    val student_result = student_report_card_df
+      .withColumn("result", when(col("score") >= 70, "pass").otherwise("fail")) // withColumn is used to add column
+
+    student_result.show(10)
+    /*	+---+------+---------+-----+------+
         * | id|  name|  subject|score|result|
         * +---+------+---------+-----+------+
         * |  1|Joseph|    Maths| 83.0|  pass|
@@ -61,18 +61,33 @@ object AddingColumnToDataFrame {
         * |  1|Joseph|Chemistry| 91.0|  pass|
         * |  1|Joseph|  Biology| 82.0|  pass|
         * |  2| Jimmy|    Maths| 69.0|  fail|
-        
+
         */
-       
-       // withColumnRenamed(existingName: String, newName: String) is used to rename column 
-       val student_result1 = student_result.withColumnRenamed("result", "pass/fail")
-       student_result1.show(1)
-       /*	+---+------+-------+-----+---------+
+
+    // withColumnRenamed(existingName: String, newName: String) is used to rename column
+    val student_result1 = student_result.withColumnRenamed("result", "pass/fail")
+    student_result1.show(1)
+    /*	+---+------+-------+-----+---------+
         * | id|  name|subject|score|pass/fail|
         * +---+------+-------+-----+---------+
         * |  1|Joseph|  Maths| 83.0|     pass|
         * +---+------+-------+-----+---------+
         * */
+
+    // Even reordering of columns is possible in DataFrame. for this you need to get columns, reorder then and use it
+    val columns = student_result1.columns;
+    val reorderedColumns = Array(columns(4), columns(0), columns(1), columns(2), columns(3))
+    // reorderedColumns.head = pass/fail
+    // reorderedColumns.tail - Array[(String)] = ("id","name","subject", "score") 
+    val student_result_df_with_reorderedCol = student_result1.select(reorderedColumns.head, reorderedColumns.tail: _*)
+    println("DataFrames with reordered columns ---------------")
+    student_result_df_with_reorderedCol.show(1)
+    /* +---------+---+------+-------+-----+
+     * |pass/fail| id|  name|subject|score|
+     * +---------+---+------+-------+-----+
+     * |     pass|  1|Joseph|  Maths| 83.0|
+     * +---------+---+------+-------+-----+
+     * */
   }
 
 }
