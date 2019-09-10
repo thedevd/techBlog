@@ -1,0 +1,10 @@
+Hello I   am Devendra Big Data Developer
+
+Hello I am Ravi Big Data and Java Developer
+
+Another
+
+Spark is good
+Kafka stream is more good.
+
+four lines are blank
