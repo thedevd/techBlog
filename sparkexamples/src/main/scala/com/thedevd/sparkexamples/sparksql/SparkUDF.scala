@@ -16,6 +16,16 @@ import org.apache.spark.sql.SparkSession
  * performance as they are treated as black box where spark can not apply optimization.
  * So UDFs have to be designed only when needed.
  *
+ * Steps to create UDF in spark =>
+ * 1. UDFs are just a regular scala function. So first step is create a function having your custom logic.
+ * 2. To convert the regular function to spark UDF, pass the function as parameter to
+ * 			org.apache.spark.sql.functions.udf() function, this will return you spark UDF.
+ *
+ * 		Thats all. Now use it with any column in the data frame.
+ *
+ * 3. In order to use Spark UDF in sql expression, you need to register it with spark.udf i.e
+ * 			spark.udf.register("anyname", function_name_as_parameter)
+ *
  */
 object SparkUDF {
 
@@ -84,15 +94,14 @@ object SparkUDF {
         None
       else
         Some(input.toUpperCase().replaceAll("\\s", "_"))
-        /* without using Some, the return type of would be java.io.Serializable
-         * And this gives error=> 
+      /* without using Some, the return type of would be java.io.Serializable
+         * And this gives error=>
          * 				java.lang.UnsupportedOperationException: Schema for type java.io.Serializable is not supported
-         * 
+         *
          * That is why returning Some type along with None. this would make return type as Option[String]
          * and this will work
     		*/
     }
-    
 
     val optimizedUDF = udf(optimizedUpperReplaceSpaceWithUnderscore)
 
