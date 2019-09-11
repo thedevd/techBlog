@@ -9,11 +9,12 @@ import org.apache.spark.util.AccumulatorV2
  * 1. Accumulators are another type of shared variables in spark that are used to
  *    perform write operations like counters and sum operations across workers nodes.
  *
- * 		One of the most common use of Accumulator is count particular events that may help in debugging process.
+ *    One of the most common use of Accumulator is count particular events that may help in debugging process.
  * 2. Accumulator are write-only variables for executors. 
  *    They can be added to by executors and read by the driver only.
  * 
- * 3. Accumulator is creates using sparkContext.longAccumulator() 
+ * 3. Accumulator is created using 
+ *    sparkContext.longAccumulator() or sparkContext.doubleAccumulator() or sparkContext.collectionAccumulator()
  * 4. Accumulator is updated using add() method
  * 5. At drive, value() is used to read the final value.
  *
