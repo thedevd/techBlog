@@ -30,7 +30,20 @@ object Accumulator {
       .appName("Accumulator")
       .master("local[*]")
       .getOrCreate()
-      
+    /*
+     * Using the normal variable wont work.
+     * var counter = 0  
+     * 
+     * val blank_lines = spark.sparkContext.textFile(getClass.getResource("/sparksql/accumulator.txt").getPath, 4)
+     *    .filter(_.trim().length() == 0)
+     *    .foreach(line => counter = counter + 1)
+     *    
+     * println(counter) // still 0
+     * 
+     * Why this did not work, because driver sends copy of counter variable to each worker node.
+     * And each worker node updates thier local copy of it. And updated value of variable never
+     * sends back to driver, that is the reason counter value becomes still 0 at driver side.
+     */
     val counter = spark.sparkContext.longAccumulator("blanklines")
     
     val blank_lines = spark.sparkContext.textFile(getClass.getResource("/sparksql/accumulator.txt").getPath, 4)
