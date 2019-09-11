@@ -1,0 +1,14 @@
+This is usecase of custom accumulator
+where we will counting the events of some blacklist words
+these blacklist words are
+gay
+shit
+moron
+liquor
+naked
+nude
+so the task here is to have a count of these words using accumulator
+and output it.
+are you gay.
+what the shit is this.
+you are moron taking liquor every hour.
