@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.util.AccumulatorV2
 
 /*
- * See /accumulator/accumulator.txt file in resource to know about black list word count
+ * See /accumulator/blacklistusecase.txt file in resource to know about black list word count
  * problem which we are going to solve here using custom accumulator.
  */
 object BlacklistWordCount {
