@@ -10,10 +10,12 @@ import org.apache.spark.util.AccumulatorV2
  *    perform write operations like counters and sum operations across workers nodes.
  *
  * 		One of the most common use of Accumulator is count particular events that may help in debugging process.
+ * 2. Accumulator are write-only variables for executors. 
+ *    They can be added to by executors and read by the driver only.
  * 
- * 2. Accumulator is creates using sparkContext.longAccumulator() 
- * 3. Accumulator is updated using add() method
- * 4. At drive value() is used to read the final value.
+ * 3. Accumulator is creates using sparkContext.longAccumulator() 
+ * 4. Accumulator is updated using add() method
+ * 5. At drive, value() is used to read the final value.
  *
  * For ex: we have input file /sparksql/accumulator.txt consisting blank lines which we want to count.
  *
