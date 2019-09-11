@@ -34,7 +34,7 @@ object Accumulator {
      * Using the normal variable wont work.
      * var counter = 0  
      * 
-     * val blank_lines = spark.sparkContext.textFile(getClass.getResource("/sparksql/accumulator.txt").getPath, 4)
+     * val blank_lines = spark.sparkContext.textFile(getClass.getResource("/accumulator/accumulator.txt").getPath, 4)
      *    .filter(_.trim().length() == 0)
      *    .foreach(line => counter = counter + 1)
      *    
@@ -46,7 +46,7 @@ object Accumulator {
      */
     val counter = spark.sparkContext.longAccumulator("blanklines")
     
-    val blank_lines = spark.sparkContext.textFile(getClass.getResource("/sparksql/accumulator.txt").getPath, 4)
+    val blank_lines = spark.sparkContext.textFile(getClass.getResource("/accumulator/accumulator.txt").getPath, 4)
      .filter(_.trim().length() == 0)
      .foreach(line => counter.add(1)) // add() is used to write into accumulator
      
