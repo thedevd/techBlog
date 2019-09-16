@@ -1,0 +1,15 @@
+[
+   {"id" : 1000, "name" : "dev", "age" : 30, "address" : {"city":"noida","state":"UP","pincode":"201201"}},
+   {"id" : 1001, "name" : "ravi", "age" : 36, "address" : {"city":"noida","state":"UP","pincode":"201501"}},
+   {"id" : 1002, "name" : "atul", "age" : 29, "address" : {"city":"indore","state":"MP","pincode":"485201"}},
+   {
+      		"id" : 1003, 
+      		"name" : "ankit", 
+      		"age" : 28, 
+      		"address" : {
+      			"city":"noida",
+      			"state":"UP",
+      			"pincode":"201201"
+      			}
+   }
+]
