@@ -5,6 +5,11 @@ import org.apache.log4j.Level
 import org.apache.spark.sql.SparkSession
 
 /*
+ * SparkSQL uses these three algorithms to join the tables -
+ * 1. BroadcastHashJoin (aka Map-side join) - for smaller tables
+ * 2. ShuffleHashJoin
+ * 3. SortMergeJoin -- for very large tables
+ * 
  * BroadcastHashJoin (or Map-side Join) - An optimization to JOIN queries
  * ######################################################################
  * 1. SparkSql uses broadcastHashJoin to optimize performance of join queries
