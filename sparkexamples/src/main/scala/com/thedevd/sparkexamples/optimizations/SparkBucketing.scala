@@ -67,8 +67,8 @@ object SparkBucketing {
      *  spark.range(end:Long) --> Creates a Dataset with a single LongType column named id,
      *  containing elements in a range from 0 to end (exclusive) with step value 1
      */
-    val large_dataset: Dataset[java.lang.Long] = spark.range(10e4.toLong)
-    val huge_dataset: Dataset[java.lang.Long] = spark.range(10e6.toLong)
+    val large_dataset: Dataset[java.lang.Long] = spark.range(10e6.toLong) // 10,000,000
+    val huge_dataset: Dataset[java.lang.Long] = spark.range(10e7.toLong) // 100,000,000 rows
     println("large_dataset partition no " + large_dataset.rdd.getNumPartitions) // 4
     println("huge_dataset partition no " + huge_dataset.rdd.getNumPartitions) // 4
 
@@ -76,8 +76,8 @@ object SparkBucketing {
      * Saving dataset as bucketed table on id as bucket column with 4 bucket
      */
     large_dataset.write
-      .bucketBy(4, "id")
-      .sortBy("id")
+      .bucketBy(4, "id") // <-- 4 buckets on id column
+      .sortBy("id") // <-- optionally. Used to sort buckets
       .mode(SaveMode.Overwrite)
       .saveAsTable("large")
 
@@ -107,13 +107,19 @@ object SparkBucketing {
     /*
      * trigger execution of the join query using foreach
      */
-    bucketed_large_table.join(bucketed_huge_table, "id").foreach(_ => ())
+    bucketed_huge_table.join(bucketed_large_table, "id").foreach(_ => ())
 
     /*
-     * The above join query of the bucketed tables shows no exchange stage in physical plan,
+     * Open the spark-UI: with port 4040. go to SQL tab and take a look to "foreach at SparkBucketing" Query.
+     * 
+     * You can notice in the UI that, the above join query of the bucketed tables shows no Exchange stage in physical plan,
      * because shuffling has already been done at the time of writing dataset.
+     * 
+     * Note - To keep the spark UI open for this program, uncomment the below given code
+     * 
+     *   while(true){}
      */
-
+    
   }
 
 }
