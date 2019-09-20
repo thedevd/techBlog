@@ -39,6 +39,11 @@ object SparkDefaultParallelism {
     val r = pair_rdd.reduceByKey(_+_, 4) // --> numOfPartitions is specified, so this is used
     println(r.getNumPartitions) // 4
     
+    /*
+     * Loading single csv file into Dataframe create only single partition
+     * And also generic transformation applied to dataframe will also lead one partition
+     * except for the shuffling kind operation (join etc) where it is used spark.sql.shuffle.partitions value
+     */
     val df = spark.read.format("csv")
     .option("header", false)
     .option("delimiter", ",")
@@ -46,6 +51,14 @@ object SparkDefaultParallelism {
     .load(getClass.getResource("/sparksql/student_marks.txt").getPath)
     
     println(df.rdd.getNumPartitions) // 1
+    
+    val passed_student = df.filter(df("_c3") >= 70)
+    passed_student.show()
+    println(passed_student.rdd.getNumPartitions) // still 1 partition
+    
+    val repartitioned_df = passed_student.repartition(spark.sparkContext.defaultParallelism)
+    println(repartitioned_df.rdd.getNumPartitions) // 2
+    
 
   }
 }
