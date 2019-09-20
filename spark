@@ -32,3 +32,6 @@ https://github.com/apache/spark/blob/master/docs/structured-streaming-kafka-inte
 
 ## A good small problems in spark coding
 http://sqlandhadoop.com/spark-dataframe-concatenate-strings/
+
+## Undestanding spark partitioning 
+https://techmagie.wordpress.com/2015/12/19/understanding-spark-partitioning/
