@@ -41,10 +41,10 @@ import java.io.File
  *
  * USE-CASE here is -
  * We have 2 directories =>
- * 1. src/main/resources/structured-streaming/fileinput/
+ * 1. src/main/resources/structured-streaming/filestream/
  *    which contains a static file customer_info.csv with Customer information
  *
- * 2. src/main/resources/structured-streaming/fileinput/orders/
+ * 2. src/main/resources/structured-streaming/filestream/orders/
  *    which contains CSV files with order details and the files are dropped periodically.
  *    This directory is partitioned date-wise.
  *
