@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples
+package com.thedevd.scalaexamples.functions
 
 /*
  * In scala you can compose two functions in a way that output of one function

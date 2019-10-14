@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples
+package com.thedevd.scalaexamples.functions
 
 import scala.annotation.tailrec
 

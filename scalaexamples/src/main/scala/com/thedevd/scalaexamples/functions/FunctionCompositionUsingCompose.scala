@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples
+package com.thedevd.scalaexamples.functions
 
 /*
  * Calling compose will take the result from the second function and pass it as input parameter to the first function.

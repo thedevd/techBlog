@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples
+package com.thedevd.scalaexamples.functions
 
 /*
  * Currying in programming world means transforming a function
