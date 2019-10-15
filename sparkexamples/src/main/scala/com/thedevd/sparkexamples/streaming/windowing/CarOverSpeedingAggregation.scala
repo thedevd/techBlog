@@ -34,6 +34,10 @@ import org.apache.spark.sql.streaming.Trigger
  *    kafka-topics.bat --create --topic cars --zookeeper localhost:2181 --replication-factor 1 --partitions 1
  *    kafka-topics.bat --create --topic overspeedingcars --zookeeper localhost:2181 --replication-factor 1 --partitions 1
  *    
+ * 4. Run the RandomCarsKafkaProducer.scala to produce random carEvents with thier speeds
+ * 5. Run the streaming application 'CarOverSpeedingAggregation.scala' and check the console + kafka topic 'overspeedingcars'
+ *    for the output.
+ *    
  *    
  * Terminologies in window based aggregations-
  * ##############################################
@@ -125,7 +129,7 @@ object CarOverSpeedingAggregation {
      * i.e. based on the time at which the event generated at the sensor source (this is called EventTime),
      * not based on when it was processed in the system or executor (This is called ProcessingTime)
      *
-     * To achieve this we need to group the events into 5-second interval time groups, based on its EventTime.
+     * To achieve this we need to group the events into 60-second interval time groups, based on its EventTime.
      * This grouping is called Windowing.
      *
      * In Spark, Windowing is done by adding an additional column 'window' in the groupBy clause.

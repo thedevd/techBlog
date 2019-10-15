@@ -1,7 +1,6 @@
-package com.thedevd.sparkexamples.streaming.windowing
+package com.thedevd.sparkexamples.streaming.windowing.util
 
 import java.util.Properties
-import org.apache.kafka.common.serialization.StringSerializer
 import org.apache.kafka.clients.producer.KafkaProducer
 import java.util.Random
 import org.apache.kafka.clients.producer.ProducerRecord
