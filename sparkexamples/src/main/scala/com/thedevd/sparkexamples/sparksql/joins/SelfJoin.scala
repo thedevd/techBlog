@@ -58,8 +58,8 @@ object SelfJoin {
       emp_manager_df.as("manager"),
       $"emp.manager_id" === $"manager.emp_id") // === Equality test b/w two columns
 
-    val selfjoin1 = emp_manager_df.as("emp").join(emp_manager_df.as("manager")) // self join using alias
-      .where($"emp.manager_id" === $"manager.emp_id") // joining condition
+    val selfjoin1 = emp_manager_df.as("e").join(emp_manager_df.as("m")) // self join using alias
+      .where($"e.manager_id" === $"m.emp_id") // joining condition
       
     println("Showing the employee with their manager name")
     selfjoin1.select($"e.emp_id", $"e.emp_name", $"m.emp_name".as("manager_name")).show() // select using alias
