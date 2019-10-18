@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples.basics
+package com.thedevd.scalaexamples.basics.traits
 
 /*
  * What is sealed class/trait
