@@ -26,6 +26,7 @@ object ScalaFold {
   def example1() = {
 
     val numList = List(1, 2, 3, 4, 5)
+    // val numList = 1 to 100 // used this collection for more better clarity
     
     // Note- using par on numList to create parallel collection.
     
@@ -104,7 +105,7 @@ object ScalaFold {
         case "male" => "Mr."
         case "female" => "Ms."
       }
-      result :+ s"[$title ${emp.name} ${emp.age}]" // :+ used to create List
+      result :+ s"[$title ${emp.name} ${emp.age}]" // :+ used to append elements to List
     })
 
     val empDetailsWithTitle1 = empList.foldRight(List[String]())({ (emp, result) =>
