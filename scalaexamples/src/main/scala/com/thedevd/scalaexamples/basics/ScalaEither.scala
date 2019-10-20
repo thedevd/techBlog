@@ -33,7 +33,7 @@ import scala.collection.Map
  *     Example 1 - divideByZero
  *         Either[String, Int]
  *
- *     Example 2- getEmployeeFromWebService
+ *     Example 2- getEmployeeFromDb
  *         Either[String, Employee]
  *
  *
@@ -71,10 +71,10 @@ object ScalaEither {
     }
 
     // how to use Either further
-    val error = divideXByY(1, 0) // --> Error: Bro, you can not divide by 0.
-    val result = divideXByY(6, 2) // --> 3
-    eitherPrinterUtil(error)
-    eitherPrinterUtil(result)
+    val error = divideXByY(1, 0) 
+    val result = divideXByY(6, 2) 
+    eitherPrinterUtil(error) // --> Error: Bro, you can not divide by 0.
+    eitherPrinterUtil(result) // --> 3
 
     println(divideXByY(2, 2)) // --> Right(1)
     println(divideXByY(2, 0)) // --> Left(Bro, you can not divide by 0.)
@@ -119,7 +119,7 @@ object ScalaEither {
       case Right(value) => println(value)
     }
 
-    // Instead of using pattern matching we can make use of isLeft or isRight
+    // Instead of using pattern matching we can also make use of isLeft or isRight
     /*
      * if(either.isLeft) println("Error => " + either.left.get)
      * else println(either.right.get)
