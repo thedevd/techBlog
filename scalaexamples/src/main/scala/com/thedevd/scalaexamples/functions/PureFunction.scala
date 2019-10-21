@@ -1,4 +1,4 @@
-package com.thedevd.scalaexamples.basics
+package com.thedevd.scalaexamples.functions
 
 /*
  * 1. In Functional Programming, pure function is defined like this:
