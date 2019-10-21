@@ -112,6 +112,9 @@ object ScalaTry {
 
   def example2_parseInt() = {
 
+    /*
+     * Demo using Option
+     */
     def parseInt_Option(s: String): Option[Int] = {
       try {
         Some(Integer.parseInt(s))
@@ -122,6 +125,9 @@ object ScalaTry {
     println(parseInt_Option("10")) // --> Some(10)
     println(parseInt_Option("10a")) // --> None
 
+    /*
+     * Demo using Try
+     */
     def parseInt_Try(s: String): Try[Int] = {
       try {
         Success(Integer.parseInt(s))
@@ -132,9 +138,14 @@ object ScalaTry {
         // So what is I want to return simply a string message, then I have to use Either[A,B]
       }
     }
+    // def parseInt_Try(s:String): Try[Int] = Try(s.toInt)
     println(parseInt_Try("10")) // --> Success(10)
     println(parseInt_Try("10a")) // --> Failure(java.lang.NumberFormatException: For input string: "10a")
 
+    
+    /*
+     * Demo using Either
+     */
     def parseInt_Either(s: String): Either[String, Int] = {
       try {
         Right(Integer.parseInt(s))
