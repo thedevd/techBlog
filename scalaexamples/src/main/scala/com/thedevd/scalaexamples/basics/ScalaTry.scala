@@ -3,6 +3,8 @@ package com.thedevd.scalaexamples.basics
 import scala.util.Try
 import scala.util.Failure
 import scala.util.Success
+import scala.io.Source
+import java.io.File
 
 /*
  * Before reading this, go through these classes first ScalaOption.scala and ScalaEither.scala.
@@ -60,6 +62,7 @@ object ScalaTry {
 
     example1_divisionByZero()
     example2_parseInt()
+    example3_readFromFile()
   }
 
   def example1_divisionByZero() = {
@@ -158,6 +161,19 @@ object ScalaTry {
     
     // chaining the statements
     println(parseInt_Try("10").map(_*10)) // --> Success(100)
+  }
+  
+  
+  def example3_readFromFile() = {
+    
+    def readFromFile(filePath: String): Try[List[String]] = {
+      Try(Source.fromFile(new File(filePath)).getLines().toList)
+    }
+    
+    readFromFile("/notexist/file.txt") match {
+      case Failure(error) => println("Error occurred: " + error)
+      case Success(lines) => lines.foreach(println)
+    } // --> Error occurred: java.io.FileNotFoundException: \notexist\file.txt (The system cannot find the path specified)
   }
 
 }
