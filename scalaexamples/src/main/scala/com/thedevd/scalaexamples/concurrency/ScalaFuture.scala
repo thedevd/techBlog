@@ -43,6 +43,13 @@ import scala.concurrent.Await
  *             import scala.concurrent.ExecutionContext.Implicits.global 
  *             Future {...}
  *             
+ * What is ExecutionContext
+ * ###########################
+ * Future and Promises revolve around ExecutionContexts, which is responsible for executing computations.
+ * An ExecutionContext is similar to an Executor: it executes computations in a new thread/pooled thread.
+ * The scala.concurrent package comes out of the box with an ExecutionContext implementation, a global static thread pool.
+ * import scala.concurrent.ExecutionContext.Implicits.global is used to import global static thread pool.
+ *             
  * A Future has an important property that it may only be assigned once. Once a Future object is given a value or an exception, 
  * it becomes immutable– it can never be overwritten.
  *
