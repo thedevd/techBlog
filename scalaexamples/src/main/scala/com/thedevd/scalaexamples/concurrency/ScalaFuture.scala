@@ -23,7 +23,11 @@ import scala.concurrent.Await
  * 2. A Futures run immediately after you create it.
  *    (So it is not like java thread where you have to call start() method to run the task)
  * 3. The value in a Future is always an instance of one of the Try types: Success or Failure.
- * 4. onComplete() or other callback methods (onSuccess, onFailure) are used to process result of future.
+ *       3.a When a Future is completed with a value, we say that the future was successfully completed with that value.
+         3.b When a Future is completed with an exception thrown by the computation, we say that 
+             the Future was failed with that exception.
+ * 4. onComplete() or other callback methods (onSuccess, onFailure) are used to process future's result
+ *    when it is available. Means what to do with future'result is decided in callback.
  * 5. Use for-comprehension, if you want to combine results of more than one future to produce single result.
  *
  * so overall -
@@ -34,6 +38,13 @@ import scala.concurrent.Await
  *
  * Note - Import 'import scala.concurrent.ExecutionContext.Implicits.global' is needed to create Future task,
  * because internally implemented apply method of Future takes ExecutionContenxt type parameter.
+ *             Future { ... }(executionContext)   
+ *                   OR in more general way-
+ *             import scala.concurrent.ExecutionContext.Implicits.global 
+ *             Future {...}
+ *             
+ * A Future has an important property that it may only be assigned once. Once a Future object is given a value or an exception, 
+ * it becomes immutable– it can never be overwritten.
  *
  */
 object ScalaFuture {
