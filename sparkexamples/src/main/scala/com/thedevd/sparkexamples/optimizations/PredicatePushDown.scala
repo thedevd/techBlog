@@ -50,6 +50,12 @@ import org.apache.spark.sql.types.StructType
  * data is loaded into memory. Thus this reduces the physical query plan execution time.
  *
  * In the below, example we will see, internally spark will use PushDownPredicate when using where or filter on dataset.
+ * 
+ * Restriction of predicate pushdown
+ * #####################################
+ * Predicate pushdown does not work with typed DataSet API, it only works with untyped DataSet API.
+ * see the post - https://stackoverflow.com/questions/50129411/why-is-predicate-pushdown-not-used-in-typed-dataset-api-vs-untyped-dataframe-ap
+ * This will see in the gotchas section
  */
 object PredicatePushDown {
 
@@ -93,6 +99,59 @@ object PredicatePushDown {
      *         PushedFilters: [IsNotNull(marks), GreaterThan(marks,70.0)], ReadSchema: struct<id:int,name:string,subject:string,marks:double>
      * 
      */
+    
+    
+    // -####################### Gotchas
+    /*
+     * Predicate pushdown does not work with typed Dataset APIs. The reason of this is -
+     * Typed transformations are black boxes, and effectively create analysis barrier for the catalyst optimizer. 
+     * So projection/predicates cannot be be pushed down over typed transformation.
+     * 
+     * Lets see this with example
+     */
+    import spark.implicits._
+    val student_ds = data.as[Student]
+   
+    /*
+     *  Find all the subject where student scored passing criteria (more than 70)
+     */
+    
+    // This will work, you have compile time safety... but it will not use predicate pushdown!!!
+    val passed_typedAPI = student_ds.filter(_.marks > 70) // typed API transformation
+    
+    // This will work as expected and use predicate pushdown!!!, but you have no compile time safety
+    val passed_untypedAPI = student_ds.filter("marks > 70") // untypedAPI transformation
+    
+    println("################### passed_typedAPI physical plan ")
+    passed_typedAPI.explain()
+    
+    println("################### passed_untypedAPI physical plan ")
+    passed_untypedAPI.explain()
+    
+    /*
+     * Although student_ds.filter(_.marks > 70) and student_ds.filter("marks > 70") will produce the same result
+     * but student_ds.filter(_.marks > 70) will not perform predicate Pushdown.
+     * 
+     * See PushedFilters list in both the cases. (The untyped API has the items in PushedFilters list -
+     * 
+     *  ################### passed_typedAPI physical plan 
+     *  == Physical Plan ==
+     *  *(1) Filter <function1>.apply
+     *  +- *(1) FileScan csv [id#0,name#1,subject#2,marks#3] Batched: false, Format: CSV, 
+     *  Location: InMemoryFileIndex[file:/C:/Users/Dell/mygithub/techBlog/sparkexamples/target/classes/sparksql/stu..., PartitionFilters: [], 
+     *  PushedFilters: [], ReadSchema: struct<id:int,name:string,subject:string,marks:double>
+     *  
+     *  ################### passed_untypedAPI physical plan 
+     *  == Physical Plan ==
+     *  *(1) Project [id#0, name#1, subject#2, marks#3]
+     *  +- *(1) Filter (isnotnull(marks#3) && (marks#3 > 70.0))
+     *     +- *(1) FileScan csv [id#0,name#1,subject#2,marks#3] Batched: false, Format: CSV, 
+     *     Location: InMemoryFileIndex[file:/C:/Users/Dell/mygithub/techBlog/sparkexamples/target/classes/sparksql/stu..., PartitionFilters: [], 
+     *     PushedFilters: [IsNotNull(marks), GreaterThan(marks,70.0)], ReadSchema: struct<id:int,name:string,subject:string,marks:double>
+     *  
+     */
 
   }
+  
+  case class Student(id: Int, name: String, subject: String, marks: Double)
 }
