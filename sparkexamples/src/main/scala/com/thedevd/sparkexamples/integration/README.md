@@ -51,6 +51,9 @@
       .load()
 ```
 
+Full source code is available here -  
+[SparkCassandraConnector.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/integration/SparkCassandraConnector.scala)
+
 ## II. Spark Integration with JDBC Sources
 1. Spark can easily be integrated with any JDBC source (MySql, Oracle, Postgres) using specific jdbc connector library.
    For example to connect with Mysql use this library -
@@ -89,3 +92,6 @@
       .option("dbtable", "student_score")
       .load()
 ```
+
+Full source code is available here -  
+[SparkJDBCIntegration.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/integration/SparkJDBCIntegration.scala)
