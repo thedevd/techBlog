@@ -59,13 +59,13 @@ import org.apache.spark.sql.SaveMode
  * In this example we will be writting /sparksql/employee.json in employee table of cassandra,
  * and in next part we will read the same data from cassandra.
  */
-object CassandraConnectorIntegration {
+object SparkCassandraConnector {
 
   def main(args: Array[String]): Unit = {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     val spark = SparkSession.builder()
-      .appName("CassandraConnectorIntegration")
+      .appName("SparkCassandraIntegration")
       .master("local[*]")
       .getOrCreate()
 
