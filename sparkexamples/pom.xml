@@ -57,6 +57,13 @@
 			<version>2.4.3</version>
 		</dependency>
 
+		<!-- This is added for Spark-cassandra integration -->
+		<dependency>
+			<groupId>com.datastax.spark</groupId>
+			<artifactId>spark-cassandra-connector_2.11</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+
 
 		<!-- Mixing Scala Into a Java Maven Project -->
 		<!-- Make Scala available in project. Pay extra attention to the version -->
