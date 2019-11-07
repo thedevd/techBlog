@@ -1,10 +1,13 @@
 package com.thedevd.javaexamples.multithreading;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ProducerConsumerWithWaitAndNotify {
 
 	public static void main( String[] args )
 	{
-		MyBlockingQ queue = new MyBlockingQ();
+		MyBlockingQ queue = new MyBlockingQ(5);
 
 		Producer producer = new Producer(queue);
 		Consumer consumer = new Consumer(queue);
@@ -15,44 +18,37 @@ public class ProducerConsumerWithWaitAndNotify {
 
 class MyBlockingQ {
 
-	int item;
-	boolean isProduced = false;
+	private int maxSize;
+	private Queue<Integer> queue;
 
-	public synchronized void put( int item )
+	public MyBlockingQ( int maxSize )
 	{
-		if( isProduced )
-		{
-			try
-			{
-				wait(); // wait for consumer to consume it first
-			}
-			catch( InterruptedException e )
-			{
-				System.err.print(e);
-			}
-		}
-		this.item = item;
-		System.out.println("Produced item: " + this.item);
-		isProduced = true;
-		notify();
+		queue = new LinkedList<Integer>();
+		this.maxSize = maxSize;
 	}
 
-	public synchronized void get()
+	public synchronized void put( int item ) throws InterruptedException
 	{
-		if( !isProduced )
+		while( queue.size() == maxSize )
 		{
-			try
-			{
-				wait(); // if no item produced then wait for Producer to produce it first
-			}
-			catch( InterruptedException e )
-			{
-				System.err.print(e);
-			}
+			System.out.println("##### queue is full, waiting ...");
+			wait(); // if queue is full, then wait for a consumer to consume an item first.
 		}
-		System.out.println("Consumed item: " + this.item);
-		isProduced = false;
-		notify();
+		queue.add(item);
+		notifyAll(); // sending signal to all consumers that queue has something to consumer.
+	}
+
+	public synchronized int get() throws InterruptedException
+	{
+		while( queue.size() == 0 )
+		{
+			System.out.println("##### queue is empty, waiting ...");
+			wait(); // if no item in queue then wait for Producer to produce it first.
+		}
+		int item = queue.poll();
+		notifyAll(); // sending signal to all producer that queue has some space now.
+
+		return item;
 
 	}
 }
@@ -71,14 +67,18 @@ class Producer extends Thread {
 		int i = 0;
 		while( true )
 		{
-			queue.put(i++);
 			try
 			{
-				Thread.sleep(1000);
+				queue.put(i);
+				System.out.println("Produced item: " + i);
+				i++;
+
+				// producer is little bit slow than consumer.
+				Thread.sleep(1500);
 			}
-			catch( InterruptedException e )
+			catch( InterruptedException e1 )
 			{
-				System.err.print(e);
+				e1.printStackTrace();
 			}
 		}
 	}
@@ -97,14 +97,22 @@ class Consumer extends Thread {
 	{
 		while( true )
 		{
-			queue.get();
 			try
 			{
+				int item = queue.get();
+				System.out.println("Consumed item: " + item);
+
+				/* Just for demo I have made consumer little bit faster than producer, It means
+				 * after some point, queue empty condition will come, and consumer will go on
+				 * waiting state.
+				 * 
+				 * So you will see this message in console - ##### queue is empty, waiting ... */
 				Thread.sleep(1000);
 			}
-			catch( InterruptedException e )
+			catch( InterruptedException e1 )
 			{
-				System.err.print(e);
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}
