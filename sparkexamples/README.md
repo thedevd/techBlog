@@ -54,3 +54,39 @@ First read this - [File Formats in Hadoop Ecosystem](https://github.com/thedevd/
 2. Accumulators - [Accumulator.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/Accumulator.scala)
 3. Creating Custom Accumulators - [CustomAccumulator.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/CustomAccumulator.scala)
 4. Black listed wordCount problem using custom accumulator - [BlacklistWordCount.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BlacklistWordCount.scala)
+
+## Partitioning Concepts in Spark
+1. **spark.default.parallelism** (default no of partitions) - [SparkDefaultParallelism.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/partitions/SparkDefaultParallelism.scala)
+2. **Hash Partitioner and Range Partitioner** - [HashAndRangePartitioners.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/partitions/HashAndRangePartitioners.scala)
+3. **spark.sql.shuffle.partitions** - [SparkSqlShufflePartitions.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/partitions/SparkSqlShufflePartitions.scala)
+4. **Coalesce Vs repartition** (Partition management operations) - [CoalesceVsRepartition.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/CoalesceVsRepartition.scala)
+5. **map() vs mapPartitions() transformation** - [MapVsMapPartitions.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/MapVsMapPartitions.scala)
+6.  **mapPartitions() vs mapPartitionsWithIndex() transformation** - [MapPartitionsVsMapPartitionsWithIndex.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/MapPartitionsVsMapPartitionsWithIndex.scala)
+
+## Spark Structured streaming
+1. **Structured streaming using File Source** - [SparkStructuredStreamingWithFileSource.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/filestreams/SparkStructuredStreamingWithFileSource.scala)
+2. **Structured streaming using Kafka Soruce** - [SparkStructuredStreamingWithKafkaSource.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/kafkasource/SparkStructuredStreamingWithKafkaSource.scala)
+3. **Output Modes** for sink
+   * Complete Output mode - [CompleteOutputModeDemo.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/kafkasource/CompleteOutputModeDemo.scala)
+   * Update Output mode - [UpdateOutpuModeDemo.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/kafkasource/UpdateOutpuModeDemo.scala)
+   * Append Output mode - [Append Mode](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/filestreams/SparkStructuredStreamingWithFileSource.scala)
+4. **Window and watermark based structured streaming** - [CarOverSpeeding UseCase](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/streaming/windowing/CarOverSpeedingAggregation.scala)
+
+## Spark Optimizations
+1. **Predicate Push Down** - [PredicatePushDown.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/PredicatePushDown.scala)
+2. **Bucketing in Spark using bucketBy()** - [SparkBucketing.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/SparkBucketing.scala)
+3. **Algorithm used by SparkSQL engine to join dataframe**
+   * BroadcastHashJoin - [BroadcastHashJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/BroadcastHashJoin.scala)
+   * ShuffleHashJoin - [ShuffleHashJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/ShuffleHashJoin.scala)
+   * SortMergeJoin - [SortMergeJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/SortMergeJoin.scala)
+4. **Cost Based Optimizer (CBO)** - 
+   * CBO on join query - [CostBasedOptimizerWithJoinQuery.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/CostBasedOptimizerWithJoinQuery.scala)
+   * CBO on join with filter criteria - [CostBasedOptimizerWithJoinAndFilterQuery.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/optimizations/CostBasedOptimizerWithJoinAndFilterQuery.scala) 
+   
+## Spark Integration Connector 
+1. Spark-Cassandra Integration using Spark-Cassandra-Connector - [SparkCassandraConnector.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/integration/SparkCassandraConnector.scala)
+2. Spark-JDBC integration (for mysql) - [SparkJDBCIntegration.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/integration/SparkJDBCIntegration.scala)
+
+## Special scenarios of Spark framework
+1. **Multiple Spark Contexts** - [MultipleSparkContext.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/specialcase/MultipleSparkContext.scala)
+2. **Multiple SparkSessions** - [MultipleSparkSession.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/specialcase/MultipleSparkSession.scala)
