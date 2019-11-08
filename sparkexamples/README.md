@@ -1,0 +1,30 @@
+## RDDs
+1. Read a file and count words - [WordCount.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/WordCount.scala)
+2. Sum of prime numbers problem - [SumOfPrimeNumbersFromFile.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/SumOfPrimeNumbersFromFile.scala)
+3. Zip Transformation on RDD - [RddZipOperation.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/RddZipOperation.scala)
+4. ZipWithIndex Transformation on RDD - [RddZipWithIndex.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/RddZipWithIndex.scala)
+5. Union, Sample (Transformation) and takeSample (Action) - [RddSampleOperation.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/RddSampleOperation.scala)
+6. Airport located in USA problem - [AirportProblem.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/AirportProblem.scala)
+7. SameHostAccessed on both days - [SameHostsAccessedProblem.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/rdd/SameHostsAccessedProblem.scala)
+8. **fold vs reduce** action - [FoldVsReduce.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/FoldVsReduce.scala)
+
+## PairRDD
+1. AvgHousePriceProblem Using **FoldByKey** - [AvgHousePriceProblemUsingFoldByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/aggregates/AvgHousePriceProblemUsingFoldByKey.scala)
+2. AvgHousePriceProblem Using **ReduceByKey** - [AvgHousePriceProblemUsingReduceByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/aggregates/AvgHousePriceProblemUsingReduceByKey.scala)
+3. AvgHousePriceProblem Using **AggregateByKey** - [AvgHousePriceProblemUsingAggregateByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/aggregates/AvgHousePriceProblemUsingAggregateByKey.scala)  
+4. AvgHousePriceProblem Using **CombineByKey** - [AvgHousePriceProblemUsingCombineByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/aggregates/AvgHousePriceProblemUsingCombineByKey.scala) 
+5. Student Max Subject Scoring Problem using **AggregateByKey** - [StudentScoreProblem.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/aggregates/StudentScoreProblem.scala)
+6. Airport List By Contry Problem Using **GroupByKey** and **reduceByKey** - [AirportContryProblemUsingGroupByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/groupByKey/AirportContryProblemUsingGroupByKey.scala)
+7. **GroupByKeyVsReduceByKey** to solve WordCount problem - [GroupByKeyVsReduceByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/groupByKey/GroupByKeyVsReduceByKey.scala)
+8. [SubtractByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/SubtractByKey.scala)
+9. **Joins** on pairRDD - [InnerJoin](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/join/InnerJoinOnRdd.scala), [RightOuterJoin](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/join/RightOuterJoinOnRdd.scala)
+10. WordCountProblem **sortBy** asc order of count - [WordCountProblemSortedByCount.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/pairRdd/sort/WordCountProblemSortedByCount.scala)
+11. **reduce vs reduceByKey** - [ReduceVsReduceByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/ReduceVsReduceByKey.scala)
+
+## SparkSQL (DataFrames and DataSets)
+
+## Shared Variables (broadcast and accumulators)
+1. Broadcast Variables - [BroadcastVariable.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariable.scala), [BroadcastVariableWithUDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariableWithUDF.scala)
+2. Accumulators - [Accumulator.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/Accumulator.scala)
+3. Creating Custom Accumulators - [CustomAccumulator.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/CustomAccumulator.scala)
+4. Black listed wordCount problem using custom accumulator - [BlacklistWordCount.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BlacklistWordCount.scala)
