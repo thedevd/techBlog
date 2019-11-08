@@ -22,6 +22,7 @@
 11. **reduce vs reduceByKey** - [ReduceVsReduceByKey.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/ReduceVsReduceByKey.scala)
 
 ## SparkSQL (DataFrames and DataSets)
+1. **RDD vs DataFrames vs Dataset** - [RddVsDataFrameVsDataSet.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/RddVsDataFrameVsDataSet.scala)
 
 ## Shared Variables (broadcast and accumulators)
 1. Broadcast Variables - [BroadcastVariable.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariable.scala), [BroadcastVariableWithUDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariableWithUDF.scala)
