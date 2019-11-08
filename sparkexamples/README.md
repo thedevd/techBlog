@@ -43,6 +43,7 @@
 7. **LeftAnti Join** - [LeftAntiJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/LeftAntiJoin.scala)
 
 ## SparkSQL reading/writing fileFormats (Avro, Parquet, JSON, CSVs)
+First read this - [File Formats in Hadoop Ecosystem](https://github.com/thedevd/techBlog/wiki/File-formats-in-Hadoop-ecosystem)
 1. JSON format - [JsonRead.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/JsonRead.scala)
 2. Reading multiple CSV files - [MultipleCsvFileLoadInDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/MultipleCsvFileLoadInDF.scala)
 3. Avro read/write - [AvroReadWrite.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/AvroReadWrite.scala)
