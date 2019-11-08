@@ -23,6 +23,30 @@
 
 ## SparkSQL (DataFrames and DataSets)
 1. **RDD vs DataFrames vs Dataset** - [RddVsDataFrameVsDataSet.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/RddVsDataFrameVsDataSet.scala)
+2. **DataFrame Vs DataSet** - [DataFrameVsDataSet.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/DataFrameVsDataSet.scala)
+3. **Rdd To DataFrame Conversion** - [RddToDataFrameConversion.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/RddToDataFrameConversion.scala)
+4. AvgHousePriceProblem using sparkSQL - [HouseAvgPriceProblem.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/HouseAvgPriceProblem.scala)
+5. Adding Column To DataFrame - [AddingColumnToDataFrame.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/AddingColumnToDataFrame.scala)
+6. **Spark UDF (User defined functions)** - [SparkUDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/SparkUDF.scala)
+7. Student's max and min scoring subject problem - [SparkSqlAggregation.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/SparkSqlAggregation.scala)
+8. Reading Complex CSV as DataFrame - [ReadComplexCSVInDataFrame.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/ReadComplexCSVInDataFrame.scala)
+9. Generating Row Sequence Numbers using ZipWithIndex - [SequenceNumberInDataFrameUsingZipWithIndex.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/SequenceNumberInDataFrameUsingZipWithIndex.scala)
+10. **Filter vs Where** - [FilterVsWhereInSparkSql.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/differences/FilterVsWhereInSparkSql.scala)
+
+## SparkSQL Joins
+1. **Inner Join** - [InnerJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/InnerJoin.scala)
+2. **Self Join** - [SelfJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/SelfJoin.scala)
+3. **Left Join** - [LeftJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/LeftJoin.scala)
+4. **Right Join** - [RightJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/RightJoin.scala)
+5. **Full Outer Join** - [FullOuterJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/FullOuterJoin.scala)
+6. **LeftSemi Join** - [LeftSemiJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/LeftSemiJoin.scala)
+7. **LeftAnti Join** - [LeftAntiJoin.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sparksql/joins/LeftAntiJoin.scala)
+
+## SparkSQL reading/writing fileFormats (Avro, Parquet, JSON, CSVs)
+1. JSON format - [JsonRead.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/JsonRead.scala)
+2. Reading multiple CSV files - [MultipleCsvFileLoadInDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/MultipleCsvFileLoadInDF.scala)
+3. Avro read/write - [AvroReadWrite.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/AvroReadWrite.scala)
+4. Parquet read/write - [ParquetReadWrite.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/fileformats/ParquetReadWrite.scala)
 
 ## Shared Variables (broadcast and accumulators)
 1. Broadcast Variables - [BroadcastVariable.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariable.scala), [BroadcastVariableWithUDF.scala](https://github.com/thedevd/techBlog/blob/master/sparkexamples/src/main/scala/com/thedevd/sparkexamples/sharedvariables/BroadcastVariableWithUDF.scala)
