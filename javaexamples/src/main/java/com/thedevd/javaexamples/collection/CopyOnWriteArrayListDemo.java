@@ -2,7 +2,6 @@ package com.thedevd.javaexamples.collection;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
@@ -52,7 +51,7 @@ public class CopyOnWriteArrayListDemo {
 
 	public static void main( String[] args )
 	{
-		List<Integer> list = new ArrayList<>();
+		ArrayList<Integer> list = new ArrayList<>();
 		IntStream.rangeClosed(1, 10).forEach(n -> list.add(n));
 		
 		Iterator<Integer> iteratorOnAL = list.iterator();
@@ -70,7 +69,7 @@ public class CopyOnWriteArrayListDemo {
 		System.out.println("list after operations:"+ list);
 		// list after operations:[1, 20, 5, 7, 9]
 		
-		List<Integer> copyOnWriteAL = new CopyOnWriteArrayList<>();
+		CopyOnWriteArrayList<Integer> copyOnWriteAL = new CopyOnWriteArrayList<>();
 		IntStream.rangeClosed(1, 10).forEach(n -> copyOnWriteAL.add(n));
 		
 		Iterator<Integer>  iteratorOnCOWAL = copyOnWriteAL.iterator();
@@ -78,11 +77,11 @@ public class CopyOnWriteArrayListDemo {
 		{
 			Integer item = iteratorOnCOWAL.next();
 			System.out.println(item);
-			copyOnWriteAL.add(11); // allowed , no exception
+			copyOnWriteAL.addIfAbsent(11); // adding elements is allowed , no exception
 			// iteratorOnCOWAL.remove(); --> throws java.lang.UnsupportedOperationException
 		}
 		 
 		System.out.println("copyOnWriteAL after modifications is:"+ copyOnWriteAL);
-		// copyOnWriteAL after modifications is:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11]
+		// copyOnWriteAL after modifications is:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 	}
 }
