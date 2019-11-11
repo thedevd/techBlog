@@ -22,3 +22,8 @@
  
  ## Java8 Streams
  1. **Sort map by values problem** - [SortMapByValues.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/SortMapByValues.java)
+ 
+ ## Coding problems
+ 1. Maximum absolute difference in array - [MaxAbsoluteDifferenceInArray.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/MaxAbsoluteDifferenceInArray.java)
+ 2. Reverse single linked list - [ReverseSingleLinkedList.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/ReverseSingleLinkedList.java)
+ 3. Print Odd and Even using two threads (Synchronization problem) - [PrintOddEvenUsingTwoThreads.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/PrintOddEvenUsingTwoThreads.java)
