@@ -156,6 +156,9 @@ class ComputeProduct implements Runnable {
 			Thread.sleep(5000);
 
 			barrier.await(10, TimeUnit.SECONDS); // after completing, wait at barrier
+			
+			// Some other task to do, but thread wont be able to continue from this until barrier is broken.
+			// So this is another difference b/w CountDownLatch and CyclicBarrier.
 		}
 		catch( InterruptedException | BrokenBarrierException | TimeoutException e )
 		{
