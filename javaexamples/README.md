@@ -22,7 +22,7 @@
  5. **Java Concurrency – Synchronizers** - 
      The java.util.concurrent package contains several classes that help set of threads to collaborate with each other. Some of those classes are -
     * CountDownLatch - [CountDownLatchDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CountDownLatchDemo.java)
-    * CyclicBarrier
+    * CyclicBarrier - [CyclicBarrierDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo.java)
     * Semaphore
     * SynchronousQueue
     * Phaser
