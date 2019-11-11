@@ -9,6 +9,18 @@ import java.util.concurrent.CountDownLatch;
  * So CountDownLatch is used to make sure that the main task should wait for specific number of other threads to complete,
  * then only the  main task will start.
  * 
+ * CountDownLatch vs CyclicBarrier
+ * #####################################
+ * A better real world example of CountDownLatch would be an exam prompter who waits patiently for each student 
+ * to hand in their test. Students don't wait once they complete their exams and are free to leave. 
+ * Once the last student hands in the test to prompter (or the time limit expires), 
+ * the prompter stops waiting and leaves with the tests.
+ * 
+ * So With a CountDownLatch, the waiter thread (exam prompter) wait for the last arriving thread (student) to arrive, 
+ * but those arriving threads don't do any waiting themselves after they countDown the latch.
+ * Where As with a CyclicBarrier, each thread arrive at barrier and then wait for the last thread to arrive, and
+ * then only all these threads continue themselves
+ * 
  * Working of CountDownLatch 
  * ########################## 
  * When we create object of countDownLatch, we specify a number of threads that task should wait for. 
@@ -16,6 +28,7 @@ import java.util.concurrent.CountDownLatch;
  * As soon as the count becomes zero, the waiting task starts running.
  * 
  *    CountDownLatch latch = new CountDownLatch(2); 
+ * 
  * 
  * */
 public class CountDownLatchDemo {
