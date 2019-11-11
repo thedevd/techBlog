@@ -51,37 +51,69 @@ public class CopyOnWriteArrayListDemo {
 
 	public static void main( String[] args )
 	{
-		ArrayList<Integer> list = new ArrayList<>();
-		IntStream.rangeClosed(1, 10).forEach(n -> list.add(n));
+		/*
+		 * ######### ArrayList ######### 
+		 */
+		ArrayList<Integer> arrayList = new ArrayList<>();
+		arrayList.add(1);
+		arrayList.add(2);
 		
-		Iterator<Integer> iteratorOnAL = list.iterator();
-		while(iteratorOnAL.hasNext()) {
-			Integer item = iteratorOnAL.next();
+		Iterator<Integer> iteratorOnArrayList = arrayList.iterator();
+		
+		/* After the Iterator is created on ArrayList, you can not modify the list using add or remove.
+		 * Doing so will throw ConcurrentModificationException -
+		 * 
+		 * arrayList.add(3);
+		 * arrayList.remove(0);
+		 * 
+		 * But update to an existing item is allowed using set method, because this does not
+		 * change size of the arrayList
+		 * 
+		 * An elements from ArrayList can be removed using remove() method of Iterator, but 
+		 * same is not possible using remove() of ArrayList collection itself.
+		 */
+		
+		arrayList.set(1,4); 
+		
+		while(iteratorOnArrayList.hasNext()) {
+			Integer item = iteratorOnArrayList.next();
 			System.out.println(item);
-			// list.add(11); --> throws ConcurrentModificationException 
-			// list.remove(1) --> throws ConcurrentModificationException 
-			list.set(1, 20); // Set is allowed as it does not change size of ArrayList (modCount variable)
+			// arrayList.add(11); --> throws ConcurrentModificationException 
+			// arrayList.remove(0) --> throws ConcurrentModificationException 
+			// list.set(1, 4); --> Set is allowed as it does not change size of ArrayList (modCount variable)
 			if (item % 2 == 0 ) {
-				iteratorOnAL.remove(); // remove on Iterator is possible with ArrayList
+				iteratorOnArrayList.remove(); // remove on Iterator is possible with ArrayList
 			}
 		}
 		
-		System.out.println("list after operations:"+ list);
-		// list after operations:[1, 20, 5, 7, 9]
+		System.out.println("arrayList after iterator.remove():"+ arrayList);
+		// arrayList after iterator.remove():[1]
 		
+		/*
+		 * #########  CopyOnWriteArrayList ######### 
+		 */
 		CopyOnWriteArrayList<Integer> copyOnWriteAL = new CopyOnWriteArrayList<>();
-		IntStream.rangeClosed(1, 10).forEach(n -> copyOnWriteAL.add(n));
+		copyOnWriteAL.add(1);
+		copyOnWriteAL.add(2);
+		copyOnWriteAL.addIfAbsent(1); // addIfAbsent only adds item if it does not exist
 		
-		Iterator<Integer>  iteratorOnCOWAL = copyOnWriteAL.iterator();
+		Iterator<Integer>  iteratorOnCOWAL = copyOnWriteAL.iterator(); // iterator on original list
+		
+		/*
+		 * After iterator is created on original arrayList, doing add, remove operation on list
+		 * is done on separate copy.
+		 *  
+		 */
+		copyOnWriteAL.add(3); // allowed
+		copyOnWriteAL.remove(0); // allowed
 		while( iteratorOnCOWAL.hasNext())
 		{
 			Integer item = iteratorOnCOWAL.next();
-			System.out.println(item);
-			copyOnWriteAL.addIfAbsent(11); // adding elements is allowed , no exception
+			System.out.println(item); // 1,2 --> not showing items which were added after iterator is created, because items were added in copy
 			// iteratorOnCOWAL.remove(); --> throws java.lang.UnsupportedOperationException
 		}
 		 
 		System.out.println("copyOnWriteAL after modifications is:"+ copyOnWriteAL);
-		// copyOnWriteAL after modifications is:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+		// copyOnWriteAL after modifications is:[2, 3]]
 	}
 }
