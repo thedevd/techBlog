@@ -78,6 +78,8 @@ class ChessPlayer implements Runnable {
 				
 				System.out.println("Player: " + playerId + " has joined.");
 				latch.countDown(); // down the count by each player
+				
+				// Some other task, the player can continue
 			}
 			catch( InterruptedException e )
 			{
