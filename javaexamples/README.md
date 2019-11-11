@@ -19,7 +19,7 @@
    * Using Lock and Conditions - [ProducerConsumerWithLockAndCondition.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerWithLockAndCondition.java)
    * Using wait() and notify() - [ProducerConsumerWithWaitAndNotify.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerWithWaitAndNotify.java)
    * Using LinkedBlockingQueue - [ProducerConsumerUsingBlockingQueue.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerUsingBlockingQueue.java)
- 5. **Java Concurrency – Synchronizers** - 
+ 5. **`Java Concurrency – Synchronizers`** - 
      The java.util.concurrent package contains several classes that help set of threads to collaborate with each other. Some of those classes are -
     * CountDownLatch - [CountDownLatchDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CountDownLatchDemo.java)
     * CyclicBarrier - [CyclicBarrierDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo.java)
