@@ -36,7 +36,7 @@ public class CountDownLatchDemo {
 
 	public static void main( String[] args ) throws InterruptedException
 	{
-		// Two players are needed to join to start the game
+		// Final output depends on two threads, to passing 2 as initial count in CoundDownLatch
 		CountDownLatch latch = new CountDownLatch(2);
 		
 		int a = 10;
@@ -45,8 +45,8 @@ public class CountDownLatchDemo {
 		// creating worker threads and starting them.
 		ComputeSum task1 = new ComputeSum(a, b, latch, 5000);
 		ComputeProduct task2 = new ComputeProduct(a, b, latch, 10000);
-		Thread t1 = new Thread(task1, "ComputeSum"); // party 1
-		Thread t2 = new Thread(task2, "ComputeProduct"); // party 2
+		Thread t1 = new Thread(task1, "ComputeSum"); // Thread 1
+		Thread t2 = new Thread(task2, "ComputeProduct"); // Thread 2
 
 		t1.start();
 		t2.start();
