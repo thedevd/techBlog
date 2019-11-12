@@ -2,9 +2,10 @@ package com.thedevd.javaexamples.multithreading;
 
 import java.util.concurrent.CountDownLatch;
 
-/* Think, you are developing Chess game which requires at-least two players to join to get
- * start, So you want to make sure that the main game task should wait for two players to join before it
- * starts. This is the situation where countDownLatch can be used.
+/* Take an example that we have two threads, one thread's task is to compute sum of two numbers and 
+ * other thread's task is to compute product of the same numbers. Now we want to calculate the sum of output
+ * of these two threads. It means final output depends on both threads, i.e. main thread has
+ * to wait for those two threads to first complete the required task then only final output is produced.
  * 
  * So CountDownLatch is used to make sure that the main task should wait for specific number of other threads to complete,
  * then only the  main task will start.
@@ -38,68 +39,131 @@ public class CountDownLatchDemo {
 		// Two players are needed to join to start the game
 		CountDownLatch latch = new CountDownLatch(2);
 		
-		// lets create two players and start them
-		Thread player1 = new Thread(new ChessPlayer(latch, "pid1"));
-		Thread player2 = new Thread(new ChessPlayer(latch, "pid2"));
-		player1.start();
-		player2.start();
+		int a = 10;
+		int b = 20;
+
+		// creating worker threads and starting them.
+		ComputeSum task1 = new ComputeSum(a, b, latch, 5000);
+		ComputeProduct task2 = new ComputeProduct(a, b, latch, 10000);
+		Thread t1 = new Thread(task1, "ComputeSum"); // party 1
+		Thread t2 = new Thread(task2, "ComputeProduct"); // party 2
+
+		t1.start();
+		t2.start();
 		
-		// let the main task wait for above two players to join. Call await() on latch
+		// let the main task wait for above two threads to complete required computation. 
+		// to wait main thread, Call await() on latch
 		System.out.println("Main task is waiting....");
 		latch.await(); // Main task is waiting
 		
-		// Main task has started only after both players have joined (ie. count of latch is zero)
-		System.out.println("Starting main game...");
+		// Main task has started only after both threads has completed (ie. count of latch is zero)
+		System.out.println("Main task can proceed, as the count of latch is now: " + latch.getCount());
+		int finalResult = task1.getResult() + task2.getResult();
+		System.out.println("Producing final result: " + finalResult);
 		
 		/*
 		 * Overall output- 
 		 * ########################
 		 * 
 		 * Main task is waiting....
-		 * Player: pid2 is getting ready...
-		 * Player: pid1 is getting ready...
-		 * Player: pid2 has joined.
-		 * Player: pid1 has joined.
-		 * Starting main game...
+		 * ComputeSum can do any other stuffs..
+		 * ComputeProduct can do any other stuffs..
+		 * Main task can proceed, as the count of latch is now: 0
+		 * Producing final result: 230
 		 * 
 		 */
 		
 	}
 }
 
-class ChessPlayer implements Runnable {
+class ComputeSum implements Runnable {
 
+	private int x;
+	private int y;
 	private CountDownLatch latch;
-	private String playerId;
-	
-	public ChessPlayer( CountDownLatch latch, String playerId )
+	private long delayInMs;
+	private int result = 0;
+
+	public ComputeSum( int x, int y, CountDownLatch latch, long delayInMs )
 	{
 		super();
+		this.x = x;
+		this.y = y;
 		this.latch = latch;
-		this.playerId = playerId;
+		this.delayInMs = delayInMs;
 	}
-
 
 	@Override
 	public void run()
 	{
-			try
-			{
-				System.out.println("Player: " + playerId + " is getting ready...");
-				// work to do
-				Thread.sleep(3000);
-				
-				System.out.println("Player: " + playerId + " has joined.");
-				latch.countDown(); // down the count by each player
-				
-				// Some other task, the player can continue
-			}
-			catch( InterruptedException e )
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+		try
+		{
+			result = x + y;
+			Thread.sleep(delayInMs);
+
+			latch.countDown(); // down the count after required computation is done
+			
+			// Some other task to do, thread need not do wait after calling countDown().
+			// So this is another difference b/w CountDownLatch and CyclicBarrier.
+			System.out.println(Thread.currentThread().getName() + " can do any other stuffs..");
+		}
+		catch( InterruptedException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public int getResult()
+	{
+		return result;
+	}
+
+}
+
+class ComputeProduct implements Runnable {
+
+	private int x;
+	private int y;
+	private CountDownLatch latch;
+	private long delayInMs;
+	private int result;
+
+	public ComputeProduct( int x, int y, CountDownLatch latch, long delayInMs )
+	{
+		super();
+		this.x = x;
+		this.y = y;
+		this.latch = latch;
+		this.delayInMs = delayInMs;
+	}
+
+	@Override
+	public void run()
+	{
+		try
+		{
+			result = x * y;
+			Thread.sleep(delayInMs);
+
+			latch.countDown(); // down the count after required computation is done
+			
+			// Some other task to do, thread need not do wait after calling countDown().
+			// So this is another difference b/w CountDownLatch and CyclicBarrier.
+			System.out.println(Thread.currentThread().getName() + " can do any other stuffs..");
+		}
+		catch( InterruptedException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public int getResult()
+	{
+		return result;
 	}
 
 }
