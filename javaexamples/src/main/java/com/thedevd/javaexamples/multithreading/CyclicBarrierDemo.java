@@ -2,24 +2,20 @@ package com.thedevd.javaexamples.multithreading;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-/*
+/* 
  * CyclicBarrier is a synchronizer that allows set of threads to wait for each other
  * to reach a common execution point (aka barrier) before continuing further execution.
  * 
  * So CyclicBarries is used in the situation where we have a fixed number of 
- * threads (each thread basically process a part of computation) and they must wait for each other to 
- * reach a common point so that final output can be produced by combining each thread's output.
+ * threads and they must wait for each other to reach a common point. After required no 
+ * of thread reach the barrier, then they all can proceed further.
  * 
- * Take an example that we have two threads, one thread's task is to compute sum of two numbers and 
- * other thread's task is to compute product of the same numbers. Now we want to calculate the sum of output
- * of these two threads. It means final output depends on both threads, if one completes first, it has
- * to wait for other thread to complete then only final output is produced.
- * So this situation can be solved by CyclicBarrier.
+ * Real time example  - 
+ * Think of, you are developing Online game which requires at-least two players to join to start the game
+ * So here each player has to wait for its opponent to join the game first, then only game will start.
  * 
- * Working of CyclicBarrier
+  * Working of CyclicBarrier
  * ###################################
  * 1. When we create object of CyclicBarrier, we specify how many threads that the common execution
  * point aka barrier should wait.
@@ -31,7 +27,7 @@ import java.util.concurrent.TimeoutException;
  *       	cyclicBarrier.await();
  *      }
  * 
- * Once the number of threads that called await() equals numberOfThreads given at the time of creating cyclic barrier object, 
+ * Once the number of threads that called await() equals numberOfThreads which was given at the time of creating cyclic barrier object, 
  * we can execute further action.
  * 
  * 3. The CyclicBarrier can also be initialized with some action that need to be performed once all the threads have reached the barrier. 
@@ -52,59 +48,80 @@ import java.util.concurrent.TimeoutException;
  *        public void reset()
  * 5. isBroken(): Queries if this barrier is in a broken state.
  *        public boolean isBroken()
- *        true if one or more parties broke out of this barrier due to interruption or timeout.
+ *        true if one or more parties broke out of this barrier due to interruption or timeout. 
+ *        
+ *        
+ * CountDownLatch vs CyclicBarrier
+ * #####################################
+ * A better real world example of CountDownLatch would be an exam prompter who waits patiently for each student 
+ * to hand in their test. Students don't wait once they complete their exams and are free to leave. 
+ * Once the last student hands in the test to prompter (or the time limit expires), 
+ * the prompter stops waiting and leaves with the tests.
+ * 
+ * So With a CountDownLatch, the waiter thread (exam prompter) wait for the last arriving thread (student) to arrive, 
+ * but those arriving threads don't do any waiting themselves after they countDown the latch.
+ * Where As with a CyclicBarrier, each thread arrive at barrier and then wait for the last thread to arrive, and
+ * then only all these threads continue themselves
  */
+
 public class CyclicBarrierDemo {
 
-	public static void main( String[] args ) throws InterruptedException, BrokenBarrierException
+	public static void main( String[] args )
 	{
 		CyclicBarrier barrier = new CyclicBarrier(3);
 
-		int a = 10;
-		int b = 20;
+		Thread player1 = new Thread(new GamePlayer("earth007", barrier, 5000)); // party 1
+		Thread player2 = new Thread(new GamePlayer("mars007", barrier, 10000)); // party 2
 
-		// creating worker threads and starting them.
-		ComputeSum task1 = new ComputeSum(a, b, barrier);
-		ComputeProduct task2 = new ComputeProduct(a, b, barrier);
-		Thread t1 = new Thread(task1, "ComputeSum"); // party 1
-		Thread t2 = new Thread(task2, "ComputeProduct"); // party 2
+		player1.start();
+		player2.start();
 
-		t1.start();
-		t2.start();
+		try
+		{
+			System.out.println("Main: Main thread is also waiting at barrier..."); // party 3
+			barrier.await(); // main thread is also one of the party so it is also awaiting at barrier.
+		}
+		catch( InterruptedException | BrokenBarrierException e )
+		{
+			e.printStackTrace();
+		}
 
-		System.out.println("Main thread is also waiting at barrier..."); // party 3
-		barrier.await(); // main thread is also one of the party so it is also awaiting at barrier.
-
-		// barrier is broken as the number of thread waiting for the barrier at this point = 3
+		// barrier is broken as the number of thread waiting for the barrier at this point = 0
 		System.out.println(
-				"barrier is broken because no of threads waiting at barrier now:  " + barrier.getNumberWaiting());
-
-		int finalOutput = task1.getResult() + task2.getResult();
-		System.out.println("Combined result: " + finalOutput);
-
-		/* overall output ##################
+				"Main: barrier is broken because no of threads waiting at barrier now:  " + barrier.getNumberWaiting());
+		System.out.println("Main: Both Players have joined... starting the game 3, 2, 1..... GO!");
+		
+		/*
+		 * Overall Output -
+		 * ##################
+		 * Main: Main thread is also waiting at barrier...
 		 * 
-		 * Main thread is also waiting at barrier... 
-		 * barrier is broken because no of threads waiting at barrier now: 0 
-		 * Combined result: 230 
-		 * */
+		 * mars007: Welcome, Please wait we are connecting you to the online game portal..
+		 * earth007: Welcome, Please wait we are connecting you to the online game portal..
+		 * 
+		 * earth007: You are Connected successfully... waiting for an opponent to join...
+		 * mars007: You are Connected successfully... waiting for an opponent to join...
+		 * mars007: Found an opponent, Lets play
+		 * earth007: Found an opponent, Lets play
+		 * 
+		 * Main: barrier is broken because no of threads waiting at barrier now:  0
+		 * Main: Both Players have joined... starting the game 3, 2, 1..... GO!
+		 */
 	}
-
 }
 
-class ComputeSum implements Runnable {
+class GamePlayer implements Runnable {
 
+	private String id;
 	private CyclicBarrier barrier;
-	private int x;
-	private int y;
-	private int result = 0;
+	private long delayInMs;
 
-	public ComputeSum( int x, int y, CyclicBarrier barrier )
+	public GamePlayer( String id, CyclicBarrier barrier, long delayInMs )
 	{
 		super();
+		this.id = id;
 		this.barrier = barrier;
-		this.x = x;
-		this.y = y;
+		this.delayInMs = delayInMs;
 	}
 
 	@Override
@@ -112,65 +129,22 @@ class ComputeSum implements Runnable {
 	{
 		try
 		{
-			result = x + y;
-			Thread.sleep(3000);
+			// Steps to Initialize player
+			System.out.println(id + ": Welcome, Please wait we are connecting you to the online game portal..");
+			Thread.sleep(delayInMs); // doing required resource initialization
 
-			barrier.await(10, TimeUnit.SECONDS); // after completing, wait at barrier
-		}
-		catch( InterruptedException | BrokenBarrierException | TimeoutException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			System.out.println(id + ": You are Connected successfully... waiting for an opponent to join...");
+			barrier.await(); // player waiting for an opponent to join the game. (Waiting at barrier) 
 
-	}
-
-	public int getResult()
-	{
-		return result;
-	}
-
-}
-
-class ComputeProduct implements Runnable {
-
-	private CyclicBarrier barrier;
-	private int x;
-	private int y;
-	private int result;
-
-	public ComputeProduct( int x, int y, CyclicBarrier barrier )
-	{
-		super();
-		this.barrier = barrier;
-		this.x = x;
-		this.y = y;
-	}
-
-	@Override
-	public void run()
-	{
-		try
-		{
-			result = x * y;
-			Thread.sleep(5000);
-
-			barrier.await(10, TimeUnit.SECONDS); // after completing, wait at barrier
-			
-			// Some other task to do, but thread wont be able to continue from this until barrier is broken.
+			// Some other tasks to do, but thread wont be able to continue from this until barrier is broken.
 			// So this is another difference b/w CountDownLatch and CyclicBarrier.
+			System.out.println(id + ": Found an opponent, Lets play");
 		}
-		catch( InterruptedException | BrokenBarrierException | TimeoutException e )
+		catch( InterruptedException | BrokenBarrierException e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	}
-
-	public int getResult()
-	{
-		return result;
 	}
 
 }
