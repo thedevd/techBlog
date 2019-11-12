@@ -33,14 +33,19 @@ import java.util.concurrent.Semaphore;
  * then the thread will wait until one of the thread (acquiring the permit) releases the permit. 
  * And as soon as a permit is released, it is available to be acquired by one of the waiting thread.
  * 
- * To acquire and release the permit, Semaphore has two main methods - 
- *  1. acquire()  
- *  2. release()
+ * To acquire and release the permit, Semaphore has two main methods acquire() and release(). Two more variant are available - 
+ *  1. acquire() - Acquires a permit, if one is available and reduces the number of available permits by one.
+ *  2. acquire(int permits) - Acquires the given number of permits, if they are available and reduces the number of available 
+ *     permits by the given amount. 
+ *  3. release() - Releases the permit, returning them to the semaphore and increments permits number by one.
+ *  4. release(int permits)
  *  
- * We have also nonblocking method of acquire called tryAquire()
+ * We have also nonblocking method of acquire called tryAquire(long ms, TimeUnit)- means wait for permit for specified time
+ * if no permit is available during that time then  do not wait and do other stuffs.
  * 
- *  3. availablePermits() --> return available permits/pass at a time.
+ *  5. availablePermits() --> return available permits/pass at a time.
  * 
+ * Note - There is no requirement that a thread that releases a permit has to be the one that it had acquired by calling acquire().
  * 
  */
 public class SemaphoreDemo {
@@ -160,7 +165,7 @@ class MyBigTask implements Runnable {
 		}
 		finally
 		{
-			semaphore.release();
+			semaphore.release(); // Releases the given number of permits, returning them to the semaphore. 
 			System.out.println(taskName + ": ##### released semaphore");
 		}
 
