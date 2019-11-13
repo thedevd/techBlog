@@ -115,7 +115,7 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
     |**TimeOut**| offer(item, timeout, timeUnit) | poll(timeout, timeUnit) | |
  
  Therefor, from the above table we can answer these intersting differences -
- 1. **offer() vs put()** - offer(item) just try to offer an item to queue and it does not wait if item can not be inserted due to full queue. But put(item) will wait forever until space is available in the queue. So if you can not afford to loose an item, then use put(), otherwise offer().
+ 1. **offer() vs put()** - offer(item) just try to offer an item to queue and if item can not be inserted due to full queue then it either does not wait or wait for specified time. But put(item) will wait forever until space is available in the queue. So if you can not afford to loose an item, then use put(), otherwise offer().
  2. **peek() vs poll()** - poll() removes an item from the queue and returns the item itself, whereas peek() does not remove it just return the item. So peek() is only used to examine the item without removing it.
  3. **add() vs offer() vs put()** - If item can not be inserted into queue then- add() method will throw exception immediately, offer() will return either true/false and does not wait. And put() will wait forever.
       
