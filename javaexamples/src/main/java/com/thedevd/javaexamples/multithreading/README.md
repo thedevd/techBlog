@@ -72,3 +72,8 @@ public void writeResource() {
 ```
 
 Full source code is available here - [ReentrantReadWriteLockDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ReentrantReadWriteLockDemo.java)
+
+## Java BlockingQueue - java.util.concurrent.BlockingQueue
+java.util.concurrent.BlockingQueue Interface represents a Queue which is thread safe, means multiple threads can put and take elements concurrently from blocking queue without any concurrency issues. 
+   * The term Blocking means the Queue is capable to block the threads if Queue is full or empty. For instance, if a thread tries to put an item to the queue and there is no room left in queue (queue is full), then this thread will be blocked until an item is consumed by other thread and makes some room in the queue. Similarly if a thread tries to take an item and there is no item in the queue (Queue is empty) then the thread will be blocked until an item is produced by a thread. 
+   * However whether the thread will be blocked is totally depends on what method you call on the Blocking Queue (put()/offer()/add() for inserting item and poll()/peek()/take() for consuming item). 
