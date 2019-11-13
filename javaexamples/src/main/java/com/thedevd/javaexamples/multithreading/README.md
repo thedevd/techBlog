@@ -79,11 +79,24 @@ Full source code is available here - [ReentrantReadWriteLockDemo.java](https://g
    * However whether the thread will be blocked is totally depends on what method you call on the Blocking Queue (put()/offer()/add() for inserting item and poll()/peek()/take() for consuming item). 
 
 **BlockingQueue implementations** - Since BlockingQueue is an interface, you need to use one of its implementations. The java.util.concurrent package has the following implementations of the BlockingQueue interface - 
-1. ArrayBlockingQueue 
+1. ArrayBlockingQueue
+   ```java
+   BlockingQueue queue = new ArrayBlockingQueue(1024);
+   ```
 2. LinkedBlockingQueue
+   ```java
+   BlockingQueue unbounded = new LinkedBlockingQueue();
+   BlockingQueue bounded = new LinkedBlockingQueue(1024);
+   ```
 3. PriorityBlockingQueue
+   ```java
+   BlockingQueue queue   = new PriorityBlockingQueue();
+   ```
 4. SynchronousQueue
 5. DelayQueue
+   ```java
+   DelayQueue queue = new DelayQueue();
+   ```
 
 These Queues are categerized in these categories - **Bounded, Optionally Bounded and Unbounded**.
    * Bounded Queue means queue has a specific capacity. So you can not add items more than the specified capacity. If you try to put more, the put operation wiill be blocked until another thread takes something out and makes a room in the queue. Example of Bounded Queue is ArrayBlockingQueue. 
@@ -118,6 +131,8 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
  1. **offer() vs put()** - offer(item) just try to offer an item to queue and if item can not be inserted due to full queue then it either does not wait or wait for specified time. But put(item) will wait forever until space is available in the queue. So if you can not afford to loose an item, then use put(), otherwise offer().
  2. **peek() vs poll()** - poll() removes an item from the queue and returns the item itself, whereas peek() does not remove it just return the item. So peek() is only used to examine the item without removing it.
  3. **add() vs offer() vs put()** - If item can not be inserted into queue then- add() method will throw exception immediately, offer() will return either true/false and does not wait. And put() will wait forever.
+ 
+ ``Note- It is not possible to insert null into a BlockingQueue. If you try to insert null, the BlockingQueue will throw a NullPointerException.``
       
  **ArrayBlockingQueue vs LinkedBlockingQueue**
 1. ArrayBlockingQueue is always bounded, but LinkedBlockingQueue is optinally bounded Queue.
