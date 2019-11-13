@@ -86,7 +86,7 @@ Full source code is available here - [ReentrantReadWriteLockDemo.java](https://g
 5. DelayQueue
 
 These Queues are categerized in these categories - **Bounded, Optionally Bounded and Unbounded**.
-   * Bounded Queue means queue has a specific capacity. So you can not items more than the specified capacity. If you try to put more, the put operation wiill be blocked until another thread takes something out and makes a room in the queue. Example of Bounded Queue is ArrayBlockingQueue. 
+   * Bounded Queue means queue has a specific capacity. So you can not add items more than the specified capacity. If you try to put more, the put operation wiill be blocked until another thread takes something out and makes a room in the queue. Example of Bounded Queue is ArrayBlockingQueue. 
       ```java
       BlockingQueue queue = new ArrayBlockingQueue(1024); // must to specify maximum capacity
       ```
@@ -100,3 +100,8 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
       BlockingQueue<String> unbounded = new LinkedBlockingQueue<String>(); // no upperbound of the max capacity, Default is Integer.MAX_VALUE
       BlockingQueue<String> bounded   = new LinkedBlockingQueue<String>(1024); // optinally upper bounded queue.
       ```
+      
+ **ArrayBlockingQueue vs LinkedBlockingQueue**
+1. ArrayBlockingQueue is always bounded, but LinkedBlockingQueue is optinally bounded Queue.
+2. ArrayBlockingQueue uses a fixed size array internally. So ArrayBlockingQueue pre-allocates the memory at the time of creation, which will not be good in-terms of memory usage. Also if capacity is given very high then this is going to be problem with non-fragmented memory. Where as LinkedBlocking queue creates the node dynamically.
+3. So whevever you are unsure about capacity upfront, then use LinkedBlockingQueue.
