@@ -134,7 +134,71 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
  
  ``Note- It is not possible to insert null into a BlockingQueue. If you try to insert null, the BlockingQueue will throw a NullPointerException.``
       
- **ArrayBlockingQueue vs LinkedBlockingQueue**
+**ArrayBlockingQueue and LinkedBlockingQueue**\
+Functioning wise they both work the same, i.e. both stores the elements in FIFO order. The head of the queue represents the items which has been in the queue for longest time and tail represents the item which has been in queue for shortest time. Now lets see how they differes from each other - 
 1. ArrayBlockingQueue is always bounded, but LinkedBlockingQueue is optinally bounded Queue.
 2. ArrayBlockingQueue uses a fixed size array internally. So ArrayBlockingQueue pre-allocates the memory at the time of creation, which will not be good in-terms of memory usage. Also if capacity is given very high then this is going to be problem with non-fragmented memory. Where as LinkedBlocking queue creates the node dynamically.
 3. So whevever you are unsure about capacity upfront, then use LinkedBlockingQueue.
+
+**PriorityBlockingQueue**\
+This is unbounded type BlockingQueue, where storing order depends on priority of the item.\
+To check the priority of an item, the PriorityBlockingQueue looks for java.lang.Comparable implementation, it means all items being inserted in queue must implement java.lang.Comparable Interface.\
+ `Note- Iterator obtained on PriorityBlockingQueue does not guarantee that items will be iterating in priority order.`
+ ```java
+ BlockingQueue<String> priorityBlockingQueue = new PriorityBlockingQueue<String>(); // Unbounded queue
+ //String implements java.lang.Comparable
+ priorityBlockingQueue.put("item1");
+ 
+ String item = queue.take();
+ ```
+ 
+ **DelayQueue**
+  * DelayeQueue is unbounded type BlockingQueue.As the name indicates, DelayQueue has something to do with delayTime of an item, it means thie queue orders the items based on thier delay time.
+  * Unique characteristic of the DelayQueye is that Consumer can consume only those items from queue whose delay time has expired.
+  * DelayQueue can accepts only those items that belong to a type Delayed Inteface. So the item which we want to insert in DelayQueue must implement Delayed Interface.
+  ```java
+  public class MyDelayItem implements Delayed {
+    private String data;
+    private long startTime;
+ 
+    public MyDelayItem(String data, long delayInMilliseconds) {
+        this.data = data;
+        this.startTime = System.currentTimeMillis() + delayInMilliseconds;
+    }
+    
+    @Override
+    public long getDelay(TimeUnit unit) {
+       long diff = startTime - System.currentTimeMillis();
+       return unit.convert(diff, TimeUnit.MILLISECONDS);
+    }
+    
+    @Override
+    public int compareTo(Delayed o) {
+       if (this.time < ((MyDelayItem)o).time) { 
+            return -1; 
+        } 
+        if (this.time > ((MyDelayItem)o).time) { 
+            return 1; 
+        } 
+        return 0; 
+    }
+    
+    @Override
+	  public String toString() {
+		  return "MyDelayItem [startTime=" + startTime + ", data=" + data + "]";
+	  }
+  }
+    
+  public class DelayQueueDemo {
+	  public static void main( String[] args ) throws InterruptedException {
+		  DelayQueue<MyDelayItem> queue = new DelayQueue<>();
+		  queue.put(new MyDelayItem(10000, "item1"));
+		  queue.put(new MyDelayItem(5000, "item2"));
+		  queue.put(new MyDelayItem(20000, "item3"));
+
+	    System.out.println(queue.take()); 
+      // This is goint to print item2, because that item'delay will expire first than item1 and item3
+      // MyDelayItem [startTime=1573651690821, data=item2] 
+	  }
+  }
+  ```
