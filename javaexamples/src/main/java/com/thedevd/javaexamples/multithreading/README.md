@@ -101,6 +101,24 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
       BlockingQueue<String> bounded   = new LinkedBlockingQueue<String>(1024); // optinally upper bounded queue.
       ```
       
+ **BlockingQueue Methods** - As we discussed earlier that when a thread tries to insert or retrieve an element from the BlockingQueue, whether that thread will be blocked or not is totally depends on what method you call on the Blocking Queue. The java.util.concurrent.BlockingQueue Inteface has 4 sets of methods for inserting, removing and examininig an item of the Queue. Each set of methods behaves differenlty when the requested operation can not be performed. These 4 different set of behaviours are -
+ 1. **Throws Exception** - If attempted opeation is not possible immediately, an exception is thrown. (fail-fast in nature).
+ 2. **Return special value** - If attempted opertaion is not possible immediately, a special value is returned (basically true/false).
+ 3. **Blocks** - If attempted operation is not possible immediately, then method call blocks until some certain condition met.
+ 4. **TimeOut** - If attempted operation is not possible immediately. then method call blocks during the specified time duration only. After time expires, returns special value either true/false or item itself.
+ 
+    |    |Insert|Remove|Examine|
+    |----|------|------|-------|
+    |**Throws Exception**| add(item) | remove(item) | element() |
+    |**Returns Special Value**| offer(item) | poll() | peek() |
+    |**Blocks**| **put(item)** | **take()** | |
+    |**TimeOut**| offer(item, timeout, timeUnit) | poll(timeout, timeUnit) | |
+ 
+ Therefor, from the above table we can answer these intersting differences -
+ 1. **offer() vs put()** - offer(item) just try to offer an item to queue and it does not wait if item can not be inserted due to full queue. But put(item) will wait forever until space is available in the queue. So if you can not afford to loose an item, then use put(), otherwise offer().
+ 2. **peek() vs poll()** - poll() removes an item from the queue and returns the item itself, whereas peek() does not remove it just return the item. So peek() is only used to examine the item without removing it.
+ 3. **add() vs offer() vs put()** - If item can not be inserted into queue then- add() method will throw exception immediately, offer() will return either true/false and does not wait. And put() will wait forever.
+      
  **ArrayBlockingQueue vs LinkedBlockingQueue**
 1. ArrayBlockingQueue is always bounded, but LinkedBlockingQueue is optinally bounded Queue.
 2. ArrayBlockingQueue uses a fixed size array internally. So ArrayBlockingQueue pre-allocates the memory at the time of creation, which will not be good in-terms of memory usage. Also if capacity is given very high then this is going to be problem with non-fragmented memory. Where as LinkedBlocking queue creates the node dynamically.
