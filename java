@@ -37,3 +37,6 @@ https://dzone.com/articles/java-what-limit-number-threads
 
 # Inheritance versus composition: Which one should you choose?
 https://www.javaworld.com/article/2076814/inheritance-versus-composition--which-one-should-you-choose-.html
+
+# java.util.concurrency - Java Concurrency Utilities
+http://tutorials.jenkov.com/java-util-concurrent/
