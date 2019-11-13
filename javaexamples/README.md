@@ -1,8 +1,8 @@
-## Basics
+## [Basics](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic)
 1. **Static block vs Instance block** - [InstanceBlockAndStaticBlock.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic/InstanceBlockAndStaticBlock.java)
 2. **Shallow copy vs Deep copy** - [ShallowAndDeepCloning.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic/ShallowAndDeepCloning.java)
 
-## Collections
+## [Collections](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection)
 1. **hashCode() and equal() role in Hash-based collection** - [HashSetExampleWithEqualsAndHashcode.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/HashSetExampleWithEqualsAndHashcode.java)
 2. **ArrayList vs CopyOnWriteArrayList** - [CopyOnWriteArrayListDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArrayListDemo.java)
 3. **CopyOnWriteArraySet vs CopyOnWriteArrayList** - [CopyOnWriteArraySetDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArraySetDemo.java)
@@ -35,10 +35,10 @@ The java.util.concurrent package contains several classes that help set of threa
     * Phaser
     * Exchanger
     
- ## Java8 Streams
+ ## [Java8 Streams](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams)
  1. **Sort map by values problem** - [SortMapByValues.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/SortMapByValues.java)
  
- ## Coding problems
+ ## [Coding problems](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms)
  1. Maximum absolute difference in array - [MaxAbsoluteDifferenceInArray.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/MaxAbsoluteDifferenceInArray.java)
  2. Reverse single linked list - [ReverseSingleLinkedList.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/ReverseSingleLinkedList.java)
  3. Print Odd and Even using two threads (Synchronization problem) - [PrintOddEvenUsingTwoThreads.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/PrintOddEvenUsingTwoThreads.java)
