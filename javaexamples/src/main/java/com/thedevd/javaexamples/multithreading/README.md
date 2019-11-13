@@ -74,6 +74,29 @@ public void writeResource() {
 Full source code is available here - [ReentrantReadWriteLockDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ReentrantReadWriteLockDemo.java)
 
 ## Java BlockingQueue - java.util.concurrent.BlockingQueue
-java.util.concurrent.BlockingQueue Interface represents a Queue which is thread safe, means multiple threads can put and take elements concurrently from blocking queue without any concurrency issues. 
+**java.util.concurrent.BlockingQueue Interface** represents a Queue which is thread safe, means multiple threads can put and take elements concurrently from blocking queue without any concurrency issues. 
    * The term Blocking means the Queue is capable to block the threads if Queue is full or empty. For instance, if a thread tries to put an item to the queue and there is no room left in queue (queue is full), then this thread will be blocked until an item is consumed by other thread and makes some room in the queue. Similarly if a thread tries to take an item and there is no item in the queue (Queue is empty) then the thread will be blocked until an item is produced by a thread. 
    * However whether the thread will be blocked is totally depends on what method you call on the Blocking Queue (put()/offer()/add() for inserting item and poll()/peek()/take() for consuming item). 
+
+**BlockingQueue implementations** - Since BlockingQueue is an interface, you need to use one of its implementations. The java.util.concurrent package has the following implementations of the BlockingQueue interface - 
+1. ArrayBlockingQueue 
+2. LinkedBlockingQueue
+3. PriorityBlockingQueue
+4. SynchronousQueue
+5. DelayQueue
+
+These Queues are categerized in these categories - **Bounded, Optionally Bounded and Unbounded**.
+   * Bounded Queue means queue has a specific capacity. So you can not items more than the specified capacity. If you try to put more, the put operation wiill be blocked until another thread takes something out and makes a room in the queue. Example of Bounded Queue is ArrayBlockingQueue. 
+      ```java
+      BlockingQueue queue = new ArrayBlockingQueue(1024); // must to specify maximum capacity
+      ```
+   * Unbounded Queue means queue can expand its size as needed. PriorityBlockingQueue is a bounded Queue.
+      ```java
+      BlockingQueue queue   = new PriorityBlockingQueue(); // no upperbound of the max capacity, Default is Integer.MAX_VALUE
+      ```
+   * Optionally Bounded Queue means specifying the capacity upfront is optional. So these queue can be made either bounded or unbounded.
+   LinkedBlockingQueue is example of optionally bounded queue.
+      ```java
+      BlockingQueue<String> unbounded = new LinkedBlockingQueue<String>(); // no upperbound of the max capacity, Default is Integer.MAX_VALUE
+      BlockingQueue<String> bounded   = new LinkedBlockingQueue<String>(1024); // optinally upper bounded queue.
+      ```
