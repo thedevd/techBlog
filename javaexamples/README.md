@@ -7,7 +7,7 @@
 2. **ArrayList vs CopyOnWriteArrayList** - [CopyOnWriteArrayListDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArrayListDemo.java)
 3. **CopyOnWriteArraySet vs CopyOnWriteArrayList** - [CopyOnWriteArraySetDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArraySetDemo.java)
 
-## Multithreading and Concurrency
+## [Multithreading and Concurrency](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading)
 1. **Callable** (returning value from thread) - [ExecutorServiceAndCallableExample.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExecutorServiceAndCallableExample.java)
 2. **Locks** -
    * ReentrantLock - [ReentrantLockDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ReentrantLockDemo.java)
