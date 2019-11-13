@@ -102,10 +102,10 @@ These Queues are categerized in these categories - **Bounded, Optionally Bounded
       ```
       
  **BlockingQueue Methods** - As we discussed earlier that when a thread tries to insert or retrieve an element from the BlockingQueue, whether that thread will be blocked or not is totally depends on what method you call on the Blocking Queue. The java.util.concurrent.BlockingQueue Inteface has 4 sets of methods for inserting, removing and examininig an item of the Queue. Each set of methods behaves differenlty when the requested operation can not be performed. These 4 different set of behaviours are -
- 1. **Throws Exception** - If attempted opeation is not possible immediately, an exception is thrown. (fail-fast in nature).
- 2. **Return special value** - If attempted opertaion is not possible immediately, a special value is returned (basically true/false).
- 3. **Blocks** - If attempted operation is not possible immediately, then method call blocks until some certain condition met.
- 4. **TimeOut** - If attempted operation is not possible immediately. then method call blocks during the specified time duration only. After time expires, returns special value either true/false or item itself.
+1. **Throws Exception** - If attempted opeation is not possible immediately, an exception is thrown. (fail-fast in nature).
+2. **Return special value** - If attempted opertaion is not possible immediately, a special value is returned (basically true/false).
+3. **Blocks** - If attempted operation is not possible immediately, then method call blocks until some certain condition met.
+4. **TimeOut** - If attempted operation is not possible immediately. then method call blocks during the specified time duration only. After time expires, returns special value either true/false or item itself.
  
     |    |Insert|Remove|Examine|
     |----|------|------|-------|
