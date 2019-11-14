@@ -141,8 +141,8 @@ Functioning wise they both work the same, i.e. both stores the elements in FIFO 
 3. So whevever you are unsure about capacity upfront, then use LinkedBlockingQueue.
 
 **PriorityBlockingQueue**\
-This is unbounded type BlockingQueue, where storing order depends on priority of the item.\
-To check the priority of an item, the PriorityBlockingQueue looks for java.lang.Comparable implementation, it means all items being inserted in queue must implement java.lang.Comparable Interface.\
+  * This is unbounded type BlockingQueue, where storing order depends on priority of the item, not the FIFO.
+  * To check the priority of an item, the PriorityBlockingQueue looks for java.lang.Comparable implementation, it means all items being inserted in queue must implement java.lang.Comparable Interface.\
  `Note- Iterator obtained on PriorityBlockingQueue does not guarantee that items will be iterating in priority order.`
  ```java
  BlockingQueue<String> priorityBlockingQueue = new PriorityBlockingQueue<String>(); // Unbounded queue
