@@ -23,7 +23,7 @@
  java.util.concurrency.BlockingQueue Interface has following implementations-
     * ArrayBlockingQueue
     * LinkedBlockingQueue
-    * PriorityBlockingQueue
+    * PriorityBlockingQueue - [PriorityBlockingQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/PriorityBlockingQueueDemo.java)
     * DelayQueue- [DelayQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/DelayQueueDemo.java)
     * SynchronousQueue
  6. **Java Concurrency – Synchronizers**\
