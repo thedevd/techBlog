@@ -34,12 +34,12 @@ object ScalaApplyMethod {
     val student1 = Student("vikas",40)
     
     /*
-     * See the magic of apply here, Although PersonRaw is expected to take two arguments separetly for name and age,
+     * See the magic of apply here, Although PersonRaw is expected to take two arguments separately for name and age,
      * but we are creating object using a raw string with name and age seperated by comma. So to create object
-     * using this raw string we have defined companion object with apply() method, we is responsible to 
+     * using this raw string we have defined companion object with apply() method, which is responsible to 
      * construct the name and age from raw string and return us expected PersonRaw object.
      */
-    val specialPerson = PersonRaw("ravi,30")
+    val specialPerson = PersonRaw("ravi,30") // --> equivalent to PersonRaw.apply("ravi,30")
     println(specialPerson) // name: ravi, age: 30
   }
 
