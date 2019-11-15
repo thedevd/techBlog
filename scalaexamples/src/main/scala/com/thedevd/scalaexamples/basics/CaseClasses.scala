@@ -18,9 +18,19 @@ package com.thedevd.scalaexamples.basics
  * 5. Can be used in pattern matching
  * 6. Copy method	to clone instances
  *
- * Drawback
- * ##############
- * You can not further create subclass of Case class. So no inheritance case class supports
+ * Drawback of case class with Inheritance
+ * #########################################
+ * Case-to-case inheritance in not allowed, So Case Class can NOT extend another Case class.,
+ * but Case Class can extend another Class/Abstract Class/trait .. (Even though case class can be declared abstract)
+ * 
+ * case class A (a:Int)
+ * case class B(a:Int, b: Int) extends A(a) -------> case-to-case inheritance not supported
+ * 
+ * class C(c: Int) --> normal class
+ * case class B(c:Int, b: Int) extends C(c) ---> Supported
+ * 
+ * abstract case class AbstractCaseClass(z: Int) ---> case class can be abstract
+ * 
  */
 object CaseClasses {
 
