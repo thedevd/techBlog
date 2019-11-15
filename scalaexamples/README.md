@@ -2,6 +2,7 @@
 * Case Class - [CaseClasses.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CaseClasses.scala)
 * Companion Object - [CompanionObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CompanionObject.scala)
 * Auxiliary Constructor (Constructor overloading) - [AuxiliaryConstructor.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/AuxiliaryConstructor.scala)
+* apply() method - [ScalaApplyMethod.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaApplyMethod.scala)
 * [Traits](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits)
    * Scala Traits - [ScalaTraits.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraits.scala)
    * Traits Mixins - [ScalaTraitsMixins.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraitsMixins.scala)
