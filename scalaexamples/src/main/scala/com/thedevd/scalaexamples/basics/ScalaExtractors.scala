@@ -17,28 +17,33 @@ package com.thedevd.scalaexamples.basics
  * unapply() method always returns Option[T] type, means it return
  *   either Some[T] - if it can successfully extract the parameters from the given object
  *   or None - if parameters can not be extracted from the given object.
- * 
- * unapply() is widely used in Pattern matching.  
+ *
+ * unapply() is widely used in Pattern matching.
  * unapply() method can also be used when we want to do pattern matching on a string and that
- * string represents the object state. 
- *    
- * Extractor vs case class 
+ * string represents the object state.
+ *
+ * Extractor vs case class
  * ############################
  * Although case class provides unapply() method internally to do pattern matching, but the default implementation
- * does not give us full control on how to extract values from object. Whereas Defining extractor explicitly gives 
+ * does not give us full control on how to extract values from object. Whereas Defining extractor explicitly gives
  * us the the this control and due to this freedom we can also extract values from String represented object.
- * 
+ *
  *    case class Student(name: String, age: Int)
  *    val s1 = Student("dev",28)
  *    s1 match {
  *    	case Student(name,age) => println(s"Topper in class: name=$name, age=$age")
  *    	case _ => println("Not a student")
  *    }
- *    
+ *
  *    So you can see here, s1 is matched against its case class by constructor pattern matching. so this way
  *    is straigtforward to extract values and print. But what if we want pattern matching for a string
  *    representing Student object, I mean val s1= "dev,28". To achieve this we can explicitly define Extractor
- *    and use custom logic to extract the values. 
+ *    and use custom logic to extract the values.
+ *    
+ * unapplySeq() Extractor
+ * #########################
+ * Scala provides another extractor called unapplySeq() which can be used to extract values from variable numbers of object.
+ * see  example3_unapplySeq().
  */
 object ScalaExtractors {
 
@@ -46,18 +51,19 @@ object ScalaExtractors {
 
     example1_extractFromObject()
     example2_extractFromString()
-    
+    example3_unapplySeq()
+
     // try to do pattern matching on object that is not an extractor
     val human = Human("hooman", 100)
     /*
-     * Error with pattern matching, compiler will say- 
+     * Error with pattern matching, compiler will say-
      * "object Human is not a case class, nor does it have an unapply/unapplySeq member"
-     * 
+     *
      *   human match {
      *      case Human(name,age) => println("I am human [" + name + " " + age + "]")
      *   }
-     *   
-     *   So it is clear, that unapply() is used in pattern matching, Without unapply() 
+     *
+     *   So it is clear, that unapply() is used in pattern matching, Without unapply()
      *   pattern matching of an object is not possible.
 		*/
   }
@@ -75,7 +81,7 @@ object ScalaExtractors {
       case Person(p_name, p_age) => println(s"Person [name: $p_name, age: $p_age]")
       case _ => println("Invalid person as age can not be zero")
     } // --> Person [name: dev, age: 28]
-    
+
     Person("ravi", 0) match {
       case Person(p_name, p_age) => println(s"Person [name: $p_name, age: $p_age]")
       case _ => println("Invalid person as age can not be zero")
@@ -87,34 +93,49 @@ object ScalaExtractors {
     val studentDev = Student("dev", 28)
     val Student(s_name, s_age) = studentDev
     println(s"Student [name: $s_name, age: $s_age]") // --> Student [name: dev, age: 28]
-    
+
     Student("ravi", 34) match {
-      case Student(s_name, s_age) => println("I am student") 
+      case Student(s_name, s_age) => println("I am student")
     } // --> I am student
-    
+
   }
 
   def example2_extractFromString() {
 
     val e1 = "dev,28"
     println(Employee.unapply(e1)) // --> Some((dev,28))
-    
+
     // unapply() making pattern matching possible on String object
-    e1 match { 
-      case Employee(e_name,e_age) => println(s"Employee [name:$e_name, age:$e_age]")
+    e1 match {
+      case Employee(e_name, e_age) => println(s"Employee [name:$e_name, age:$e_age]")
       case _ => println("Invalid Employee")
     } // --> Employee [name:dev, age:28]
-    
+
     "ravi" match {
-      case Employee(e_name,e_age) => println(s"Employee [name:$e_name, age:$e_age]")
+      case Employee(e_name, e_age) => println(s"Employee [name:$e_name, age:$e_age]")
       case _ => println("Invalid Employee")
     } // --> Invalid Employee
-    
+
     // Even though partial matching can also be done
     "ankit,75" match {
-      case Employee(_,75) => println(s"Employee is senion citizen")
-       case _ => println("Invalid Employee")
+      case Employee(_, 75) => println(s"Employee is senion citizen")
+      case _ => println("Invalid Employee")
     } // --> Employee is senion citizen
+  }
+
+  def example3_unapplySeq() {
+
+    /*
+     * So far we have seen using unapply() which takes one object and extract values from it.
+     * What if we have variable numbers of objects, for Example we have a string that represents
+     * more than on Employee. Scala provides another extractor called unapplySeq() which
+     * can be used to extract values from variable numbers of object.
+     */
+    val employees = "dev,28:ravi,34:ankit,30:atul,31"
+    employees match {
+      case Employees(Employee(n1,_), Employee(n2,_), _*) => println(s"$n1 : $n2")
+      case _ => println("Invalid employees list")
+    }
   }
 
   // Person object is an extractor here which takes Person object and extract values from it.
@@ -135,7 +156,7 @@ object ScalaExtractors {
   class Employee(name: String, age: Int)
   object Employee {
     def apply(name: String, age: Int): Employee = new Employee(name, age)
-    
+
     def unapply(employee: String): Option[(String, Int)] = {
       val tokens = employee split "," // employee.split(",")
       if (tokens.length < 2 || tokens(1).toInt == 0) None
@@ -143,9 +164,15 @@ object ScalaExtractors {
     }
   }
   
+  object Employees {
+    def unapplySeq(employees: String): Option[Seq[String]] = {
+      Some(employees.split(":"))
+    }
+  }
+
   // This class is not case class and also it does not implement unapply() so this can not be used in pattern matching.
-  class Human(name: String, age:Int)
+  class Human(name: String, age: Int)
   object Human {
-    def apply(name: String, age:Int): Human = new Human(name, age)
+    def apply(name: String, age: Int): Human = new Human(name, age)
   }
 }
