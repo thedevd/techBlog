@@ -17,9 +17,17 @@ package com.thedevd.scalaexamples.basics
  * unapply() method always returns Option[T] type, means it return
  *   either Some[T] - if it can successfully extract the parameters from the given object
  *   or None - if parameters can not be extracted from the given object.
- *   
- * unapply() method is mostly used when we want to do pattern matching on a string and that
- * string represents the object state. (We will look this in demo). 
+ * 
+ * unapply() is widely used in Pattern matching.  
+ * unapply() method can also be used when we want to do pattern matching on a string and that
+ * string represents the object state. 
+ *    
+ * Extractor vs case class 
+ * ############################
+ * Although case class provides unapply() method internally to do pattern matching, but the default implementation
+ * does not give us full control on how to extract values from object. Whereas Defining extractor explicitly gives 
+ * us the the this control and due to this freedom we can also extract values from String represented object.
+ * 
  *    case class Student(name: String, age: Int)
  *    val s1 = Student("dev",28)
  *    s1 match {
@@ -29,14 +37,8 @@ package com.thedevd.scalaexamples.basics
  *    
  *    So you can see here, s1 is matched against its case class by constructor pattern matching. so this way
  *    is straigtforward to extract values and print. But what if we want pattern matching for a string
- *    representing Student object, I mean val s1= "dev,28". To achieve this we need to use Extractor concept.
- *    
- * Extractor vs case class 
- * ############################
- * Although case class provides unapply() method internally to do pattern matching, but the default implementation
- * does not give us full control on how to extract values from object. Whereas Defining extractor explicitly gives 
- * us the the this control and due to this freedom we can also extract values from String represented object.
- *     See the object Employee { } for this 
+ *    representing Student object, I mean val s1= "dev,28". To achieve this we can explicitly define Extractor
+ *    and use custom logic to extract the values. 
  */
 object ScalaExtractors {
 
