@@ -3,7 +3,7 @@
 * Companion Object - [CompanionObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CompanionObject.scala)
 * Auxiliary Constructor (Constructor overloading) - [AuxiliaryConstructor.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/AuxiliaryConstructor.scala)
 * apply() method (Scala Injectors) - [ScalaApplyMethod.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaApplyMethod.scala)
-* unapply() method (Scala Extractor) - [ScalaExtractors.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaExtractors.scala)
+* unapply() and unapplySeq() methods (Scala Extractors) - [ScalaExtractors.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaExtractors.scala)
 * [Traits](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits)
    * Scala Traits - [ScalaTraits.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraits.scala)
    * Traits Mixins - [ScalaTraitsMixins.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraitsMixins.scala)
