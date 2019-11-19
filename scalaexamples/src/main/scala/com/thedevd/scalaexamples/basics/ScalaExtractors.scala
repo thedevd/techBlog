@@ -7,7 +7,7 @@ package com.thedevd.scalaexamples.basics
  * ############################
  * Just opposite of apply(), scala has unapply() method.
  * apply()-  method takes parameters and turns them into an object where as
- * unapply() - method takes and object(Most of the time String object) and extract values from it.
+ * unapply() - method takes an object and extract values from it.
  *             These values are the same from which object was constructed in apply().
  *
  * Any object that implements unapply() method is called Extractor and they are widely used in pattern matching.
@@ -30,6 +30,13 @@ package com.thedevd.scalaexamples.basics
  *    So you can see here, s1 is matched against its case class by constructor pattern matching. so this way
  *    is straigtforward to extract values and print. But what if we want pattern matching for a string
  *    representing Student object, I mean val s1= "dev,28". To achieve this we need to use Extractor concept.
+ *    
+ * Extractor vs case class 
+ * ############################
+ * Although case class provides unapply() method internally to do pattern matching, but the default implementation
+ * does not give us full control on how to extract values from object. Whereas Defining extractor explicitly gives 
+ * us the the this control and due to this freedom we can also extract values from String represented object.
+ *     See the object Employee { } for this 
  */
 object ScalaExtractors {
 
@@ -37,7 +44,20 @@ object ScalaExtractors {
 
     example1_extractFromObject()
     example2_extractFromString()
-
+    
+    // try to do pattern matching on object that is not an extractor
+    val human = Human("hooman", 100)
+    /*
+     * Error with pattern matching, compiler will say- 
+     * "object Human is not a case class, nor does it have an unapply/unapplySeq member"
+     * 
+     *   human match {
+     *      case Human(name,age) => println("I am human [" + name + " " + age + "]")
+     *   }
+     *   
+     *   So it is clear, that unapply() is used in pattern matching, Without unapply() 
+     *   pattern matching of an object is not possible.
+		*/
   }
 
   def example1_extractFromObject() {
@@ -65,7 +85,11 @@ object ScalaExtractors {
     val studentDev = Student("dev", 28)
     val Student(s_name, s_age) = studentDev
     println(s"Student [name: $s_name, age: $s_age]") // --> Student [name: dev, age: 28]
-
+    
+    Student("ravi", 34) match {
+      case Student(s_name, s_age) => println("I am student") 
+    } // --> I am student
+    
   }
 
   def example2_extractFromString() {
@@ -88,7 +112,7 @@ object ScalaExtractors {
     "ankit,75" match {
       case Employee(_,75) => println(s"Employee is senion citizen")
        case _ => println("Invalid Employee")
-    }
+    } // --> Employee is senion citizen
   }
 
   // Person object is an extractor here which takes Person object and extract values from it.
@@ -115,5 +139,11 @@ object ScalaExtractors {
       if (tokens.length < 2 || tokens(1).toInt == 0) None
       else Some((tokens(0), tokens(1).toInt))
     }
+  }
+  
+  // This class is not case class and also it does not implement unapply() so this can not be used in pattern matching.
+  class Human(name: String, age:Int)
+  object Human {
+    def apply(name: String, age:Int): Human = new Human(name, age)
   }
 }
