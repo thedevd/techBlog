@@ -25,13 +25,13 @@
     * LinkedBlockingQueue - [ProducerConsumerUsingBlockingQueue.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerUsingBlockingQueue.java)
     * PriorityBlockingQueue - [PriorityBlockingQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/PriorityBlockingQueueDemo.java)
     * DelayQueue- [DelayQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/DelayQueueDemo.java)
-    * SynchronousQueue
+    * SynchronousQueue (implementing direct handoff) - [SynchronousQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SynchronousQueueDemo.java)
  6. **Java Concurrency – Synchronizers**\
 The java.util.concurrent package contains several classes that help set of threads to collaborate with each other. Some of those classes are -
     * CountDownLatch - [CountDownLatchDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CountDownLatchDemo.java)
     * CyclicBarrier - [CyclicBarrierDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo.java),  [CyclicBarrierDemo2.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo2.java)
     * Semaphore And Mutex - [SemaphoreDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SemaphoreDemo.java), [MutexDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/MutexDemo.java)
-    * SynchronousQueue
+    * SynchronousQueue (Implement direct handoff) - [SynchronousQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SynchronousQueueDemo.java)
     * Phaser
     * Exchanger
     
