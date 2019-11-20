@@ -15,10 +15,12 @@ import java.util.concurrent.PriorityBlockingQueue;
  * 
  * What is PriorityBlockingQueue
  * ################################
- * 1. PriorityBlockingQueue is a type of unbounded BlockingQueue, which orders the elements based on thier
- * priority, not based on FIFO.
+ * 1. PriorityBlockingQueue is a type of unbounded BlockingQueue, which orders the elements based on their
+ * priority, not on FIFO.
  * 2. To check the priority of an item, the PriorityBlockingQueue looks for java.lang.Comparable implementation, 
  * it means all items being inserted in queue must implement java.lang.Comparable Interface.
+ * 3. It is to be noted that in case you obtain an Iterator from a PriorityBlockingQueue, the Iterator does not guarantee 
+ * to iterate the elements in priority order.
  * 
  * Real world example would be giving priority to emergency patient first at hospital.
  * Hospital serves normal and emergency case. If any emergency patient come, he will be 
@@ -55,6 +57,7 @@ public class PriorityBlockingQueueDemo {
 		 * 
 		 * So you can see EMERGENCY patients are taken first, then NORMAL patient will be served.
 		 */
+		
 	}
 }
 
