@@ -34,6 +34,7 @@ The java.util.concurrent package contains several classes that help set of threa
     * SynchronousQueue (direct handoff) - [SynchronousQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SynchronousQueueDemo.java)
     * Phaser
     * Exchanger (bidirection data handoff) - [ExchangerDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExchangerDemo.java)
+7. **java.lang.ThreadLocal** - [ThreadLocalDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ThreadLocalDemo.java)
     
  ## [Java8 Streams](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams)
  1. **Sort map by values problem** - [SortMapByValues.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/SortMapByValues.java)
