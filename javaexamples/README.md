@@ -7,6 +7,7 @@
 1. **hashCode() and equal() role in Hash-based collection** - [HashSetExampleWithEqualsAndHashcode.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/HashSetExampleWithEqualsAndHashcode.java)
 2. **ArrayList vs CopyOnWriteArrayList** - [CopyOnWriteArrayListDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArrayListDemo.java)
 3. **CopyOnWriteArraySet vs CopyOnWriteArrayList** - [CopyOnWriteArraySetDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/CopyOnWriteArraySetDemo.java)
+4. **HashMap vs WeakHashMap** - [HashMapVsWeakHashMap.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/HashMapVsWeakHashMap.java)
 
 ## [Multithreading and Concurrency](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading)
 1. **Callable** (returning value from thread) - [ExecutorServiceAndCallableExample.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExecutorServiceAndCallableExample.java)
