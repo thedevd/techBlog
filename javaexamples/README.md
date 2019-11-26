@@ -1,6 +1,7 @@
 ## [Basics](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic)
 1. **Static block vs Instance block** - [InstanceBlockAndStaticBlock.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic/InstanceBlockAndStaticBlock.java)
 2. **Shallow copy vs Deep copy** - [ShallowAndDeepCloning.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic/ShallowAndDeepCloning.java)
+3. **Strong reference/WeakReference/SoftReference/PhantomReference** - [MemoryReferenceTypesInJava.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/basic/MemoryReferenceTypesInJava.java) 
 
 ## [Collections](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection)
 1. **hashCode() and equal() role in Hash-based collection** - [HashSetExampleWithEqualsAndHashcode.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/HashSetExampleWithEqualsAndHashcode.java)
