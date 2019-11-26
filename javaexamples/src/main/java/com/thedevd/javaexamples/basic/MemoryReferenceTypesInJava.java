@@ -73,7 +73,12 @@ import java.util.List;
  *      you can use ReferenceQueue as to keep track of list of objects garbage collected and perform any clean-up by polling ReferenceQueue.
  * 
  * Common Usecase of PhantomReference is to use them as alternative of finalize() method which is expensive and even we 
- * do not know whey finalize() will be called by GC.
+ * do not know whey finalize() will be called by GC. So this provides a way to do manual memory management.
+ * 
+ * Note --> Unlike soft and weak references, phantom references are not automatically cleared by the garbage collector as 
+ * they are enqueued. An object that is reachable via phantom references will remain  until all such references are cleared 
+ * or themselves become unreachable. And this is why we have to manually clear() up phantom references to avoid facing a situation 
+ * where the JVM starts dying with an OutOfMemoryError.
  * 
  * Summary --
  * #############
@@ -87,7 +92,8 @@ import java.util.List;
  *                  the JVM absolutely needs memory. So GC will wait for running-out-of-memory situation to come.
  *                  
  * Phantom reference - If an object has only Phantom reference, then object is directly eligible for GC.
- *                     It is used to keep track of objects being garbage collected and do some cleanup.
+ *                     It is used to know when an object has actually become unreachable and 
+ *                     doing some cleanup as alternative of finalize(). 
  */
 public class MemoryReferenceTypesInJava {
 
@@ -135,6 +141,8 @@ public class MemoryReferenceTypesInJava {
 		{
 			// see here we have now full control to finalize the objects.
 			((EmployeeFinalizer) referenceFromRefQueue).cleanup();
+			referenceFromRefQueue.clear(); // VERY IMPORTANT
+			
 		}
 	}
 
