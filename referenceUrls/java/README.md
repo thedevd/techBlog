@@ -41,3 +41,9 @@ https://www.javaworld.com/article/2076814/inheritance-versus-composition--which-
 * java.util.concurrency - Java Concurrency Utilities \
 http://tutorials.jenkov.com/java-util-concurrent/ \
 http://tutorials.jenkov.com/java-concurrency
+
+* Jackson standard binary dataformat backends -
+https://github.com/FasterXML/jackson-dataformats-binary
+
+* JsonManagedReference vs JsonBackReference
+https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackreference
