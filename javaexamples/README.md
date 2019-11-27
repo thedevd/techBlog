@@ -11,25 +11,25 @@
 5. **IdentityHashMap vs HashMap** - [IdentityHashMapVsHashMap.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/collection/IdentityHashMapVsHashMap.java)
 
 ## [Multithreading and Concurrency](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading)
-1. **Callable** (returning value from thread) - [ExecutorServiceAndCallableExample.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExecutorServiceAndCallableExample.java)
-2. **Locks** -
+* **Callable** (returning value from thread) - [ExecutorServiceAndCallableExample.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExecutorServiceAndCallableExample.java)
+* **Locks** -
    * ReentrantLock - [ReentrantLockDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ReentrantLockDemo.java)
    * ReentrantReadWriteLock - [ReentrantReadWriteLockDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ReentrantReadWriteLockDemo.java)
-3. **Race condition** -
+* **Race condition** -
    * Check-the-act - [RaceConditionCheckThenAct.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/RaceConditionCheckThenAct.java)
    * Read-modify-write - [RaceConditionReadModifyWrite.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/RaceConditionReadModifyWrite.java)
-4. **Producer-Consumer Pattern problem** -
+* **Producer-Consumer Pattern problem** -
    * Using Lock and Conditions - [ProducerConsumerWithLockAndCondition.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerWithLockAndCondition.java)
    * Using wait() and notify() - [ProducerConsumerWithWaitAndNotify.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerWithWaitAndNotify.java)
    * Using LinkedBlockingQueue - [ProducerConsumerUsingBlockingQueue.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerUsingBlockingQueue.java)
- 5. **Java Concurrency - BlockingQueue**\
+ * **Java Concurrency - BlockingQueue**\
  java.util.concurrency.BlockingQueue Interface has following implementations-
     * ArrayBlockingQueue
     * LinkedBlockingQueue - [ProducerConsumerUsingBlockingQueue.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ProducerConsumerUsingBlockingQueue.java)
     * PriorityBlockingQueue - [PriorityBlockingQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/PriorityBlockingQueueDemo.java)
     * DelayQueue- [DelayQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/DelayQueueDemo.java)
     * SynchronousQueue (direct handoff) - [SynchronousQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SynchronousQueueDemo.java)
- 6. **Java Concurrency – Synchronizers**\
+ * **Java Concurrency – Synchronizers**\
 The java.util.concurrent package contains several classes that help set of threads to collaborate with each other. Some of those classes are -
     * CountDownLatch - [CountDownLatchDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CountDownLatchDemo.java)
     * CyclicBarrier - [CyclicBarrierDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo.java),  [CyclicBarrierDemo2.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/CyclicBarrierDemo2.java)
@@ -37,7 +37,7 @@ The java.util.concurrent package contains several classes that help set of threa
     * SynchronousQueue (direct handoff) - [SynchronousQueueDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/SynchronousQueueDemo.java)
     * Phaser
     * Exchanger (bidirection data handoff) - [ExchangerDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ExchangerDemo.java)
-7. **java.lang.ThreadLocal** - [ThreadLocalDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ThreadLocalDemo.java)
+* **java.lang.ThreadLocal** - [ThreadLocalDemo.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/multithreading/ThreadLocalDemo.java)
     
  ## [Java8 Streams](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams)
  1. **Sort map by values problem** - [SortMapByValues.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/SortMapByValues.java)
