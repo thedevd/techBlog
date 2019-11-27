@@ -28,7 +28,11 @@
 ## [Collections in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections)
 1. Array vs ArrayBuffer - [ArrayBufferVsArray.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ArrayBufferVsArray.scala)
 2. List vs ListBuffer - [ListBufferVsList.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListBufferVsList.scala)
+3. Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
 
 ## [Concurrency in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency)
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
 2. Future and Promise - [ScalaFutureAndPromise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFutureAndPromise.scala)
+
+## [Coding problems using Scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems)
+1. Fraction of 100 problems - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
