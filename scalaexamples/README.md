@@ -24,6 +24,7 @@
 4. Currying Function - [CurryingFunction.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/functions/CurryingFunction.scala)
 5. Function Composition using **AndThen** - [FunctionCompositionUsingAndThen.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/functions/FunctionCompositionUsingAndThen.scala)
 6. Function Composition using **compose** - [FunctionCompositionUsingCompose.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/functions/FunctionCompositionUsingCompose.scala)
+7. PartialFunction (isDefinedAt(), apply(), case, andThen, orElse) - [PartialFunctionsInScala.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/functions/PartialFunctionsInScala.scala)
 
 ## [Collections in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections)
 1. Array vs ArrayBuffer - [ArrayBufferVsArray.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ArrayBufferVsArray.scala)
