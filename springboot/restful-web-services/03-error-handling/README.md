@@ -23,4 +23,4 @@ Above given large response is from restCall - http://localhost:8080/users/save o
 }
 ```
 
-You can see, status and message field are only useful for client, but even though message has too much information which does not seem to be client friendly (But can be useful for only developers). So let's see how we can handle these errors properly by wrapping them in nice and clean JSON representation to make client's life happier.
+You can see, "status" and "message" fields are only useful for client, but even though "message" filed has too much information which does not seem to be client friendly (But can be useful for only developers). So let's see how we can handle these errors properly by wrapping them in nice and clean JSON representation to make client's life happier.
