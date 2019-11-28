@@ -37,19 +37,7 @@ In spring boot, we have two main annotations that are used to provide custom exc
 Altogether, we use @ExceptionHandler on methods of @ControllerAdvice classes so that the exception handling will be applied globally or to a subset of controllers.
 <hr/>
 
-So what we have done in this demo, we have created a well defined strucutred for a custom business domain related exception such as - **UserNotFoundException.java** and for other generic exception - **RestApiException.java**
-```java
-@SuppressWarnings( "serial" )
-public class UserNotFoundException extends RuntimeException {
-
-	public UserNotFoundException( String message )
-	{
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
-
-}
-```
+So what we have done in this demo, we have created a well defined strucutred called -**RestApiException.java** to wrap the error information in proper JSON represented structure. And then created a central point for handling the exceptions - **CustomExceptionHandler.java**
 ```java
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
