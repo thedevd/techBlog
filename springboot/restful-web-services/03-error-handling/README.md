@@ -35,3 +35,90 @@ In spring boot, we have two main annotations that are used to provide custom exc
 * @ExceptionHandler annoted method actually defined how to handle the exception when it is thrown from any Controller classes. Handle the exception means wrap the error information in organized way and return the response.
 
 Altogether, we use @ExceptionHandler on methods of @ControllerAdvice classes so that the exception handling will be applied globally or to a subset of controllers.
+<hr/>
+
+So what we have done in this demo, we have created a well defined strucutred for a custom business domain related exception such as - **UserNotFoundException.java** and for other generic exception - **RestApiException.java**
+```java
+@SuppressWarnings( "serial" )
+public class UserNotFoundException extends RuntimeException {
+
+	public UserNotFoundException( String message )
+	{
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+}
+```
+```java
+import java.time.LocalDateTime;
+import org.springframework.http.HttpStatus;
+
+public class RestApiException {
+
+	private HttpStatus status; // holds the HTTP call response status
+	private LocalDateTime timestamp; // holds the date-time instance of when the error happened.
+	private String message; // holds a user-friendly message about the error.
+	private String debugMessage; // holds message describing the error in more detail for debug.
+
+	public RestApiException()
+	{
+		this.timestamp = LocalDateTime.now();
+	}
+
+	public RestApiException( HttpStatus status, String message )
+	{
+		this(); // to set timestamp
+		this.status = status;
+		this.message = message;
+	}
+
+	public RestApiException( HttpStatus status, String message, Throwable ex )
+	{
+		this(); // to set timestamp
+		this.status = status;
+		this.message = message;
+		this.debugMessage = ex.getLocalizedMessage();
+	}
+
+	public HttpStatus getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus( HttpStatus status )
+	{
+		this.status = status;
+	}
+
+	public LocalDateTime getTimestamp()
+	{
+		return timestamp;
+	}
+
+	public void setTimestamp( LocalDateTime timestamp )
+	{
+		this.timestamp = timestamp;
+	}
+
+	public String getMessage()
+	{
+		return message;
+	}
+
+	public void setMessage( String message )
+	{
+		this.message = message;
+	}
+
+	public String getDebugMessage()
+	{
+		return debugMessage;
+	}
+
+	public void setDebugMessage( String debugMessage )
+	{
+		this.debugMessage = debugMessage;
+	}
+}
+```
