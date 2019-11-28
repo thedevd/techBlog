@@ -177,3 +177,11 @@ Let's see this in action -\
     "debugMessage": null
    }
    ```
+   ```java
+   @ExceptionHandler( UserNotFoundException.class )
+   public final ResponseEntity<Object> handleUserNotFoundException( UserNotFoundException ex, WebRequest request )
+   {
+     RestApiException apiError = new RestApiException(HttpStatus.NOT_FOUND, ex.getMessage());
+     return buildResponseEntity(apiError);
+    }
+   ```
