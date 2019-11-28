@@ -221,6 +221,7 @@ Let's see this in action - \
      return buildResponseEntity(apiError);
   }
   ```
+**Note- You can see that handleHttpMessageNotReadable()is overriden handler for HttpMessageNotReadableException which comes from spring default implementated class called ResponseEntityExceptionHandler. That is why there is no @ExceptionHandler annotation on this method.** \
 
 **Handling all other type of Exception class**
 * Start the application.
