@@ -165,7 +165,9 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 If you look at class CustomExceptionHandler, then you see we have different different Exception Handlers to handle specfic type of exception either your own exception (UserNotFoundException) or spring boot provided (such as HttpMessageNotReadableException). So what is going to happen, whenever an exception will be thrown from a @RestController or @Controller annoted class, the springboot framework will come and find the @ControllerAdvice annoted class and then will search for related @ExceptionHandler annoted method. After it find the right ExceptionHandler then the error response is generated as per the implementation.\
 
-Let's see this in action -\
+<hr/>
+
+Let's see this in action -
 * Start the application.
 * Hit this GET rest call http://localhost:8080/users/100 which is to get user by Id, and we are providing a non existent Id  
 * In background, as per the restApi implementation of getUserById(), we are throwing UserNotFoundException if user with requested id not found. Here user with id 100 is not found so UserNotFoundException is thrown, immediately spring is going to look @ControllerAdvice annoted class called CustomExceptionHandler and then look for ExceptionHandler for UserNotFoundException. And since we have that ExceptionHandler defined in the @ControllerAdvice class, the error response is generated then according to that -
