@@ -14,7 +14,7 @@ A sample of error response by Default exception handler in spring boot -\
     "path": "/users/save"
 }
 ```
-Above given large response is from restCall - http://localhost:8080/users/save of 02-userservice-crud application, when we try to save a user with this malformed JSON-
+Above given large response is from restCall - http://localhost:8080/users/save of [02-userservice-crud](https://github.com/thedevd/techBlog/tree/master/springboot/restful-web-services/02-userservice-crud) application, when we try to save a user with this malformed JSON-
 ```json
 {
     "id": null,
