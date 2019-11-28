@@ -10,6 +10,7 @@ Steps to implement i18N -
 1. Create resource bundles files for each of the locale in src/main/resource folder. (take a special care here with basename and the locale. Locale is appended with underscore for ex- messages_in (IN for India Locale), messages_fr (FR for france).\
    Add key-value for the messages in the specific language.\
    ```message.good.morning=Namaste```
+   [See this](https://github.com/thedevd/techBlog/tree/master/springboot/restful-web-services/04-i18n/src/main/resources)
    
 2. Once the resource bundle files are created, then we should somehow tell the Spring about the basename for the resource bundles files.
 This can be done by initializing @Bean of ResourceBundleMessageSource -
@@ -21,6 +22,7 @@ This can be done by initializing @Bean of ResourceBundleMessageSource -
     return messageSource;
    }
    ```
+   [See this](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/04-i18n/src/main/java/com/thedevd/springboot/Application.java)
    
  3. Next step is we need to tell the spring to use a requested Locale coming in request header or if not available then use a particular locate as default locale in the application. This can be done by initilializing @Bean of LocaleResolver - 
     ```java
@@ -31,6 +33,7 @@ This can be done by initializing @Bean of ResourceBundleMessageSource -
      return localeResolver;
     }
     ```
+    [See this](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/04-i18n/src/main/java/com/thedevd/springboot/Application.java)
     
 Now we all set to go. In order to use any message from the configured locale, we need to use **LocaleContextHolder.getLocale()** - this will retreive the message from a correct resource bundle of configured locale.
 
@@ -47,3 +50,4 @@ public class I18NGreetingController {
 	}
 }
 ```
+[See this](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/04-i18n/src/main/java/com/thedevd/springboot/controller/I18NGreetingController.java)
