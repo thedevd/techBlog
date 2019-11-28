@@ -24,3 +24,6 @@ https://github.com/Baeldung/spring-security-registration
 
 * Crudrepository vs JpaRepository interface in Spring data JPA \
 https://stackoverflow.com/questions/14014086/what-is-difference-between-crudrepository-and-jparepository-interfaces-in-spring
+
+* Spring boot rest api error handling best practice
+https://www.toptal.com/java/spring-boot-rest-api-error-handling
