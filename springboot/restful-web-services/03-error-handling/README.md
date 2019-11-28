@@ -167,7 +167,8 @@ If you look at class CustomExceptionHandler, then you see we have different diff
 
 <hr/>
 
-Let's see this in action -
+Let's see this in action - \
+**Handling UserNotFoundException**
 * Start the application.
 * Hit this GET rest call http://localhost:8080/users/100 which is to get user by Id, and we are providing a non existent Id  
 * In background, as per the restApi implementation of getUserById(), we are throwing UserNotFoundException if user with requested id not found. Here user with id 100 is not found so UserNotFoundException is thrown, immediately spring is going to look @ControllerAdvice annoted class called CustomExceptionHandler and then look for ExceptionHandler for UserNotFoundException. And since we have that ExceptionHandler defined in the @ControllerAdvice class, the error response is generated then according to that -
@@ -187,3 +188,24 @@ Let's see this in action -
      return buildResponseEntity(apiError);
     }
    ```
+
+**Handling HttpMessageNotReadableException** \
+* Start the application
+* Hit this POST rest call http://localhost:8080/users/save which is to save/update an user, and provide a malformed json (dob is not malformed) -
+  ```
+  {
+    "id": null,
+    "name": "dev",
+    "dob": "aa1989-12-23"
+  }
+  ```
+  * Malformed JSON will cause HttpMessageNotReadableException by the spring framework. After the excpetion is thrown, spring is going to look @ControllerAdvice annoted class called CustomExceptionHandler and then look for ExceptionHandler for HttpMessageNotReadableException. And since we have that ExceptionHandler defined in the @ControllerAdvice class, the error response is generated according to that -
+  
+  ```
+  {
+    "status": "BAD_REQUEST",
+    "timestamp": "2019-11-28T22:29:33.189",
+    "message": "Malformed JSON request",
+    "debugMessage": "JSON parse error: Cannot deserialize value of type `java.time.LocalDate` from String \"aa1989-12-23\": Failed to  deserialize java.time.LocalDate: (java.time.format.DateTimeParseException) Text 'aa1989-12-23' could not be parsed at index 0; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.time.LocalDate` from String \"aa1989-12-23\": Failed to deserialize java.time.LocalDate: (java.time.format.DateTimeParseException) Text 'aa1989-12-23' could not be parsed at index 0\n at [Source: (PushbackInputStream); line: 4, column: 12] (through reference chain: com.thedevd.springboot.bean.User[\"dob\"])"
+    }
+  ```
