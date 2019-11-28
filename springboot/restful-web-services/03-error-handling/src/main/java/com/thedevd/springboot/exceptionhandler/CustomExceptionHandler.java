@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import com.thedevd.springboot.exception.RestApiException;
 import com.thedevd.springboot.exception.UserNotFoundException;
 
 @ControllerAdvice
@@ -25,7 +24,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	/* 
-	 * Handle UserNotFoundException. Thrown user does not exist. 
+	 * Handle UserNotFoundException. Thrown when user does not exist. 
 	 */
 	@ExceptionHandler( UserNotFoundException.class )
 	public final ResponseEntity<Object> handleUserNotFoundException( UserNotFoundException ex, WebRequest request )

@@ -1,4 +1,4 @@
-package com.thedevd.springboot.exception;
+package com.thedevd.springboot.exceptionhandler;
 
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
