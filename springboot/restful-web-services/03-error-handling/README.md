@@ -37,7 +37,7 @@ In spring boot, we have two main annotations that are used to provide custom exc
 Altogether, we use @ExceptionHandler on methods of @ControllerAdvice classes so that the exception handling will be applied globally or to a subset of controllers.
 <hr/>
 
-So what we have done in this demo, we have created a well defined strucutred called -**RestApiException.java** to wrap the error information in proper JSON represented structure. And then created a central point for handling the exceptions - **CustomExceptionHandler.java**
+So what we have done in this demo, we have created a well defined strucutred called -**RestApiException.java** to wrap the error information in proper JSON represented structure. And then created a central point for handling the exceptions - **CustomExceptionHandler.java** (a @ControllerAdvice annoted class)
 ```java
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
@@ -162,3 +162,5 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 }
 ```
+
+If you look at class CustomExceptionHandler, then you see we have different different Exception Handlers to handle specfic type of exception either your own exception (UserNotFoundException) or spring boot provided (suc as HttpMessageNotReadableException). So what is going to happen, whenever an exception will be thrown from a @RestController or @Controller annoted class, the springboot framework will come and find the @ControllerAdvice annoted class and then will search for related @ExceptionHandler annoted method. After it find the right ExceptionHandler then the error response is generated as per the implementation.
