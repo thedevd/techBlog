@@ -189,7 +189,7 @@ Let's see this in action - \
     }
    ```
 
-**Handling HttpMessageNotReadableException** \
+**Handling HttpMessageNotReadableException**
 * Start the application
 * Hit this POST rest call http://localhost:8080/users/save which is to save/update an user, and provide a malformed json (dob is not malformed) -
   ```
@@ -222,7 +222,7 @@ Let's see this in action - \
   }
   ```
 
-**Handling all other type of Exception class** \
+**Handling all other type of Exception class**
 * Start the application.
 * Hit this POST url http://localhost:8080/users/save2 which is created just to demo this usecase. The implementation of the call is throwing RuntimeExcpetion if id or dob is null in the user being saved or updated.
   ```
