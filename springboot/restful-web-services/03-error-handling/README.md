@@ -199,7 +199,7 @@ Let's see this in action - \
     "dob": "aa1989-12-23"
   }
   ```
-  * Malformed JSON will cause HttpMessageNotReadableException by the spring framework. After the excpetion is thrown, spring is going to look @ControllerAdvice annoted class called CustomExceptionHandler and then look for ExceptionHandler for HttpMessageNotReadableException. And since we have that ExceptionHandler defined in the @ControllerAdvice class, the error response is generated according to that -
+* Malformed JSON will cause HttpMessageNotReadableException by the spring framework. After the excpetion is thrown, spring is going to look @ControllerAdvice annoted class called CustomExceptionHandler and then look for ExceptionHandler for HttpMessageNotReadableException. And since we have that ExceptionHandler defined in the @ControllerAdvice class, the error response is generated according to that -
   
   ```
   {
@@ -209,3 +209,46 @@ Let's see this in action - \
     "debugMessage": "JSON parse error: Cannot deserialize value of type `java.time.LocalDate` from String \"aa1989-12-23\": Failed to  deserialize java.time.LocalDate: (java.time.format.DateTimeParseException) Text 'aa1989-12-23' could not be parsed at index 0; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.time.LocalDate` from String \"aa1989-12-23\": Failed to deserialize java.time.LocalDate: (java.time.format.DateTimeParseException) Text 'aa1989-12-23' could not be parsed at index 0\n at [Source: (PushbackInputStream); line: 4, column: 12] (through reference chain: com.thedevd.springboot.bean.User[\"dob\"])"
     }
   ```
+  ```java
+  /* 
+   * Handle HttpMessageNotReadableException. Thrown when request JSON is malformed. 
+   */
+  @Override
+  protected ResponseEntity<Object> handleHttpMessageNotReadable( HttpMessageNotReadableException ex,
+    HttpHeaders headers, HttpStatus status, WebRequest request )
+  {
+     RestApiException apiError = new RestApiException(HttpStatus.BAD_REQUEST, "Malformed JSON request", ex);
+     return buildResponseEntity(apiError);
+  }
+  ```
+
+**Handling all other type of Exception class** \
+* Start the application.
+* Hit this POST url http://localhost:8080/users/save2 which is created just to demo this usecase. The implementation of the call is throwing RuntimeExcpetion if id or dob is null in the user being saved or updated.
+  ```
+  {
+    "id": 1,
+    "name": "devendra",
+    "dob": null
+  }
+  ```
+ * dob as null will throw RuntimeException (Which is a subtype of Exception). And we have a ExceptionHandler defined for this in @ControllerAdvice class CustomExceptionHandler, so error response is generated accordingly -
+   ```
+   {
+    "status": "INTERNAL_SERVER_ERROR",
+    "timestamp": "2019-11-28T22:38:41.856",
+    "message": "User Id or dob can not be null",
+    "debugMessage": "User Id or dob can not be null"
+   }
+   ```
+   ```java
+   /*
+   * Handle generic Exception.class
+   */
+   @ExceptionHandler( Exception.class )
+   public final ResponseEntity<Object> handleAllException( Exception ex, WebRequest request ) throws Exception
+   {
+      RestApiException apiError = new RestApiException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex);
+      return buildResponseEntity(apiError);
+   }
+   ```
