@@ -22,3 +22,5 @@ Above given large response is from restCall - http://localhost:8080/users/save o
     "dob": "1989-12-23aa"
 }
 ```
+
+You can see, status and message field are only useful for client, but even though message has too much information which does not seem to be client friendly (But can be useful for only developers). So let's see how we can handle these errors properly by wrapping them in nice and clean JSON representation to make client's life happier.
