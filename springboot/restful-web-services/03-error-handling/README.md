@@ -1,3 +1,4 @@
+## Say 'NO' to Spring boot Default Exception handlers
 * If you are relying on the Default Exception Handlers of SpringBoot, then you see they provide more of error stack traces which are hard to understand and thus become useless for the API's client or users. 
 * So you always want to handle those API errors correctly and want to provide some meaningful user's friendly error messages which can help the API's client to easilty understand and handle them properly. 
 * And to achieve this you basically put a well defined structure to the error information so that client can easily parse them according to thier usage.
@@ -24,3 +25,13 @@ Above given large response is from restCall - http://localhost:8080/users/save o
 ```
 
 You can see, "status" and "message" fields are only useful for client, but even though "message" filed has too much information which does not seem to be client friendly (But can be useful for only developers). So let's see how we can handle these errors properly by wrapping them in nice and clean JSON representation to make client's life happier.
+
+## Spring Boot custom Exception Handling and handlers
+In spring boot, we have two main annotations that are used to provide custom exception handler in the application, they are-
+1. @ControllerAdvice - used with Class
+2. @ExceptionHandler - used with method
+
+* @ControllerAdvice annoted class provides a central point to define how to handle particular exception when they are thrown from any Controller classes. As the name suggest, it is "Advice" for multiple controllers.
+* @ExceptionHandler annoted method actually defined how to handle the exception when it is thrown from any Controller classes. Handle the exception means wrap the error information in organized way and return the response.
+
+Altogether, we use @ExceptionHandler on methods of @ControllerAdvice classes so that the exception handling will be applied globally or to a subset of controllers.
