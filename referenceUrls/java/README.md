@@ -47,3 +47,6 @@ https://github.com/FasterXML/jackson-dataformats-binary
 
 * JsonManagedReference vs JsonBackReference
 https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackreference
+
+* Best practice of Exception Handling in Java
+https://stackify.com/best-practices-exceptions-java/
