@@ -76,7 +76,26 @@ When the bean validation fails, spring will throw MethodArgumentNotValidExceptio
 		return buildRestApiExceptionResponse(apiError);
 	}
 ```
+<hr/>
 
-
+Let's see this in action-
+* Start the application.
+* Hit this POST call to add a user - http://localhost:8080/users/save. And provide this data where you can see name is having only two characters
+  ```
+  {
+    "id": null,
+    "name": "de",
+    "dob": "1989-12-23"
+  }
+  ```
+ * Spring will check the validation and @Size() validation on name field of User bean will fail and this reponse will be returned
+   ```
+   {
+    "status": "BAD_REQUEST",
+    "timestamp": "2019-11-29T12:50:20.563",
+    "message": "Arguments validation failed",
+    "debugMessage": "Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> com.thedevd.springboot.controller.UserController.saveUser(com.thedevd.springboot.bean.User): [Field error in object 'user' on field 'name': rejected value [de]; codes [Size.user.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.name,name]; arguments []; default message [name],20,3]; default message [name should be 3 to 20 characters long]] "
+   }
+   ```
 
 
