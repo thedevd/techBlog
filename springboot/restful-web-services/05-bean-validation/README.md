@@ -1,5 +1,5 @@
 ## SpringBoot Java-Bean Validations using javax.validations API
-In this demo, we are going to look at basic of java bean validation in Spring boot using Java-Validation-Api (javax.validations package). This API provides lot of validation annotations that can be used to validate a Java Bean in a RestCall. \
+In this demo, we are going to look at basic of java bean validation in Spring boot using Java-Validation-Api (javax.validations package). This API provides lot of validation annotations that can be used to validate a Java Bean in a RestCall.
 
 In this demo, we have a User bean, and we have added simple validation on name and dob -
 ```java
@@ -35,27 +35,27 @@ public class User {
 }
 ```
 
-All of the annotations used above standard JSR annotations (JSR 380 is a specification of the Java API for bean validation). Some commonly used annotations are -
-* @NotNull – validates that the annotated property value is not null
-* @NotEmpty – validates that the property is not null or empty; can be applied to String, Collection, Map or Array values.
-* @NotBlank – can be applied only to text values and validated that the property is not null or whitespace.
+All of the annotations used above are standard JSR annotations. (JSR 380 is a specification of the Java API for bean validation). Some commonly used annotations are -
+* **@NotNull** – validates that the annotated property value is not null
+* **@NotEmpty** – validates that the property is not null or empty; can be applied to String, Collection, Map or Array values.
+* **@NotBlank** – can be applied only to text values and validated that the property is not null or whitespace.
 
-* @AssertTrue – validates that the annotated property value is true
-* @Positive and @PositiveOrZero – apply to numeric values and validate that they are strictly positive, or positive including 0.
-* @Negative and @NegativeOrZero – apply to numeric values and validate that they are strictly negative, or negative including 0.
+* **@AssertTrue** – validates that the annotated property value is true
+* **@Positive and @PositiveOrZero** – apply to numeric values and validate that they are strictly positive, or positive including 0.
+* **@Negative and @NegativeOrZero** – apply to numeric values and validate that they are strictly negative, or negative including 0.
 
-* @Size – validates that the annotated property value has a size between the attributes min and max; can be applied to String, Collection, Map, and array properties
-* @Min – vValidates that the annotated property has a value no smaller than the value attribute
-* @Max – validates that the annotated property has a value no larger than the value attribute
-* @Email – validates that the annotated property is a valid email address
+* **@Size** – validates that the annotated property value has a size between the attributes min and max; can be applied to String, Collection, Map, and array properties
+* **@Min** – vValidates that the annotated property has a value no smaller than the value attribute
+* **@Max** – validates that the annotated property has a value no larger than the value attribute
+* **@Email** – validates that the annotated property is a valid email address
 
-* @Past and @PastOrPresent – validate that a date value is in the past or the past including the present; can be applied to date types including those added in Java 8.
-* @Future and @FutureOrPresent – validates that a date value is in the future, or in the future including the present.
+* **@Past and @PastOrPresent** – validate that a date value is in the past or the past including the present; can be applied to date types including those added in Java 8.
+* **@Future and @FutureOrPresent** – validates that a date value is in the future, or in the future including the present.
 
 Some annotations accept additional attributes, but the message attribute is common to all of them. This is the message that will usually be rendered when the value of the respective property fails.
-
 <hr/>
-To use the above defined User Java-Bean validations in a restCall, you just have to add @Valid annotation.-
+
+To use the above defined User Java-Bean validations in a restCall, you just have to add @Valid annotation.
 ```java
 	@PostMapping("/users/save")
 	public ResponseEntity<Object> saveUser(@Valid @RequestBody User user) { // @Valid enables the bean validation
