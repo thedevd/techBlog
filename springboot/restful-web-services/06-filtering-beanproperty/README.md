@@ -59,3 +59,91 @@
   }
   ```
   So you can see ssn property is not included.
+
+### 2. Dynamic filtering using FilterProviders and @JsonFilter annotation
+* This way gives flexibility to apply different-different filtering with different-different RestAPI calls. Let's see how to do this.
+* Apply @JsonFilter annotation on Bean level. Noted that this annotation takes filterId as parameter which is very important because this filterId will be used further in RestAPI call to let the MappingJacksonValue know that which FilterId bean class is using.\
+  [SomeBean.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/06-filtering-beanproperty/src/main/java/com/thedevd/springboot/bean/SomeBean.java)
+  ```java
+  import com.fasterxml.jackson.annotation.JsonFilter;
+
+  @JsonFilter("SomeBeanFilter") // dynamic Filtering. Filter id here is very IMPORTANT, as this is used by FilterProvider
+  public class SomeBean {
+
+	private String property1;
+	private String property2;
+	private String property3;
+
+	public SomeBean()
+	{
+		super();
+	}
+
+	public SomeBean( String property1, String property2, String property3 )
+	{
+		super();
+		this.property1 = property1;
+		this.property2 = property2;
+		this.property3 = property3;
+	}
+	
+	// getters and setters
+
+  }
+  ```
+
+* Now use the same filter Id when creating the FilterProvider in RestAPI call. Steps are -
+  * Create SimpleBeanPropertyFilter by specifying the properties you want and all others will be filtered out.
+  ```java
+  // SimpleBeanPropertyFilter.filterOutAllExcept() static method to construct filter that filters out all properties 
+  // except ones specified in filterOutAllExcept()
+  SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("property1","property2");
+  ```
+  * Create FilterProvider and add the above created property filter with correct FilterId.
+  ```java
+  // note- filter id is very IMPORTANT
+  SimpleFilterProvider filterProvider = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter); 
+  ```
+  * Inform the MappingJacksonValue to use above created FilterProvider by using setFilters() method. So when returning response mappingJacksonValue will know which FiterProvider to apply on the bean and what properties to filter out.
+  ```java
+  MappingJacksonValue mapping = new MappingJacksonValue(sbean);
+  mapping.setFilters(filterProvider); // telling the mappingJackson to use this filterProvider
+  ```
+  [FilteringController.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/06-filtering-beanproperty/src/main/java/com/thedevd/springboot/controller/FilteringController.java)
+  ```java
+  @RestController
+  public class FilteringController {
+
+	// include only property1 and property2 of SomeBean
+	@GetMapping("/filtering/dynamic/property1and2")
+	public ResponseEntity<MappingJacksonValue> dynamicFilteringDemo1(){
+		SomeBean sbean = new SomeBean("property1", "property2", "property3");
+		
+		// SimpleBeanPropertyFilter.filterOutAllExcept() static method to construct filter that filters out all properties except ones specified in filterOutAllExcept()
+		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("property1","property2");
+		
+		SimpleFilterProvider filterProvider = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter); // note- filter id is very IMPORTANT
+		
+		MappingJacksonValue mapping = new MappingJacksonValue(sbean);
+		mapping.setFilters(filterProvider); // telling the mappingJackson to use this filterProvider
+		
+		return ResponseEntity.status(HttpStatus.OK).body(mapping);
+	}
+	
+	// include only property2 and property3 of SomeBean
+	@GetMapping("/filtering/dynamic/property2and3")
+	public ResponseEntity<MappingJacksonValue> dynamicFilteringDemo2(){
+		List<SomeBean> sbeanList = Arrays.asList(new SomeBean("property1", "property2", "property3"),
+				new SomeBean("property11", "property22", "property33"));
+		
+		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("property2", "property3");
+		
+		SimpleFilterProvider filterProvider = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter); // note- filter id is very IMPORTANT
+		
+		MappingJacksonValue mapping = new MappingJacksonValue(sbeanList);
+		mapping.setFilters(filterProvider);// telling the mappingJackson to use this filterProvider
+		
+		return ResponseEntity.status(HttpStatus.OK).body(mapping);
+	}
+  }
+  ```
