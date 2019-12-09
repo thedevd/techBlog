@@ -6,6 +6,10 @@
 * The static way does not give flexibilty on controlling different different set of properties to be exposed with different different RESTApi response. What I mean let;s say you have three properties in your bean (property1, property2 and property3) and you want to expose only - [property1, property2] in one of RestAPI response and [property2, property3] in another RestAPI response. So this kind of dynamic filtering is not possible with static way.
 
 * In this demo we will look at both i.e. static way and dynamic way.
+* Rest endpoits created in this demo- 
+  * http://localhost:8080/filtering/static
+  * http://localhost:8080/filtering/dynamic/property1and2
+  * http://localhost:8080/filtering/dynamic/property2and3
 <hr/>
 
 ### 1. Static filtering using @JsonIgore
