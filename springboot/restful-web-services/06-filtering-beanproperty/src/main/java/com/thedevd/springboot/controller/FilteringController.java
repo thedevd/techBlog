@@ -24,7 +24,7 @@ public class FilteringController {
 	// include only property1 and property2 of SomeBean
 	@GetMapping("/filtering/dynamic/property1and2")
 	public ResponseEntity<MappingJacksonValue> dynamicFilteringDemo1(){
-		SomeBean sbean = new SomeBean("property1", "property2", "property3");
+		SomeBean sbean = new SomeBean("value1", "value2", "value3");
 		
 		// SimpleBeanPropertyFilter.filterOutAllExcept() static method to construct filter that filters out all properties except ones specified in filterOutAllExcept()
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("property1","property2");
@@ -40,8 +40,8 @@ public class FilteringController {
 	// include only property2 and property3 of SomeBean
 	@GetMapping("/filtering/dynamic/property2and3")
 	public ResponseEntity<MappingJacksonValue> dynamicFilteringDemo2(){
-		List<SomeBean> sbeanList = Arrays.asList(new SomeBean("property1", "property2", "property3"),
-				new SomeBean("property11", "property22", "property33"));
+		List<SomeBean> sbeanList = Arrays.asList(new SomeBean("value1", "value2", "value3"),
+				new SomeBean("value11", "value22", "value33"));
 		
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("property2", "property3");
 		
