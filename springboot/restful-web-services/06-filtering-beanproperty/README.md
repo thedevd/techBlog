@@ -147,3 +147,25 @@
 	}
   }
   ```
+  So you can see we have two restAPI calls here which are exposing only the required properties which are mentioned in **SimpleBeanPropertyFilter.filterOutAllExcept() methods**. Calling these API will produced different-different response based on how the filtering is done within. (**Note that these APIs have return type as MappingJacksonValue**)
+
+    * http://localhost:8080/filtering/dynamic/property1and2
+    ```
+    {
+    "property1": "property1",
+    "property2": "property2"
+    }
+    ```
+    * http://localhost:8080/filtering/dynamic/property2and3
+    ```
+    [
+    {
+        "property2": "property2",
+        "property3": "property3"
+    },
+    {
+        "property2": "property22",
+        "property3": "property33"
+    }
+    ]
+    ```
