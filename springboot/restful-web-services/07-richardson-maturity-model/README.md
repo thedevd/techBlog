@@ -129,22 +129,22 @@ Most of the time we have seen that developers do not use proper HTTP methods and
          	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
          }
      
-   }
-   ``` 
-  Invoking this GET request will return this type of result (see all-users href-link in the response)-\
-  GET http://localhost:8080/users/1
-   ```
-   {
-    "id": 1,
-    "name": "dev",
-    "dob": "1989-12-13",
-    "_links": {
+     }
+     ``` 
+     Invoking this GET request will return this type of result (see all-users href-link in the response)-\
+     GET http://localhost:8080/users/1
+     ```
+     {
+      "id": 1,
+      "name": "dev",
+      "dob": "1989-12-13",
+      "_links": {
         "all-users": {
             "href": "http://localhost:8080/users"
-        }
-    }
-   }
-   ```
+       }
+      }
+     }
+     ```
   
 3. Full code - [UserController.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/07-richardson-maturity-model/src/main/java/com/thedevd/springboot/controller/UserController.java)
      ```java
