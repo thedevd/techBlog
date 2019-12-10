@@ -1,6 +1,6 @@
 ## Richardson Maturity Model for RESTful APIs
-* Richardson maturity model is used to decide how mature is your Rest APIs, mature means how much your REST API is RESTful compliant.
-* This model was introduced by Leonard Richardson. What he did, he analyzed no of web services design and then came up with total 4 categories to identify their maturity level as per RESTful desing principles. The better your API fulfils these priciples, the more mature it is considered.
+* Richardson maturity model is used to decide how mature your Rest APIs are, mature means how much your REST APIs are RESTful compliant.
+* This model was introduced by Leonard Richardson. What he did, he analyzed no of web services design and then came up with total 4 categories to identify their maturity level as per RESTful design principles. The better your API fulfils these principles, the more mature it is considered.
 * Leonard Richardson has used these 4 levels to decide maturity of a web service -
   * Level 0 - **Single URI and single HTTP Method**
   * Level 1 - **Resources with unique URI** but single HTTP method
