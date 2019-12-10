@@ -243,4 +243,70 @@ Most of the time we have seen that developers do not use proper HTTP methods and
      }
      
      ```
+     
+ 4. Let's run all these RESTful API and see thier response of LEVEL-3 maturity.
+    * GET http://localhost:8080/users/
+    ```
+    [
+      {
+        "id": 1,
+        "name": "dev",
+        "dob": "1989-12-13"
+      },
+      {
+        "id": 2,
+        "name": "ravi",
+        "dob": "1985-12-14"
+      },
+      {
+        "id": 3,
+        "name": "ankit",
+        "dob": "1990-12-15"
+      }
+    ]
+    ```
+    * GET http://localhost:8080/users/1
+    ```
+    {
+      "id": 1,
+      "name": "dev",
+      "dob": "1989-12-13",
+      "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        }
+      }
+    }
+    ```
+    * POST http://localhost:8080/users \
+      payload - {"name": "Ammy Jackson","dob": "1995-12-13"}
+    ```
+    {
+      "id": 4,
+      "name": "Ammy Jackson",
+      "dob": "1995-12-13",
+      "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        },
+        "self": {
+            "href": "http://localhost:8080/users/4"
+        }
+      }
+    }
+    ```
+    * PUT http://localhost:8080/users \
+      payload - {"id": 4, "name": "Rammy Jackson ", "dob": "1995-12-13"}
+    ```
+    {
+      "id": 4,
+      "name": "Rammy Jackson ",
+      "dob": "1995-12-13",
+      "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        }
+      }
+    }
+    ```
 
