@@ -29,12 +29,13 @@ Most of the time we have seen that developers do not use proper HTTP methods and
    * use PUT when updating an existing resource with proper HTTP status code (200-OK, 400-BAD_REQUEST)
    * use POST when creating a new resource with proper HTTP status code (**201-CREATED**, 400-BAD_REQUEST)
    * use TRACE when want test what server receives. (It simply returns what was sent).
-Example-
-     * GET http://localhost:8080/users - retrieves all users
-     * POST http://localhost:8080/users - creates a new user and returns 201 on success
-     * PUT http://localhost:8080/users - updates an existing user and returns 200 on success
-     * GET http://localhost:8080/users/1 - get specific user with id 1 and returns 404 on failure.
-     * DELETE http://localhost:8080/users/1 - delete specific user with id 1 and returns 404 on failure.
+
+   Examples-
+   * GET http://localhost:8080/users - retrieves all users
+   * POST http://localhost:8080/users - creates a new user and returns 201 on success
+   * PUT http://localhost:8080/users - updates an existing user and returns 200 on success
+   * GET http://localhost:8080/users/1 - get specific user with id 1 and returns 404 on failure.
+   * DELETE http://localhost:8080/users/1 - delete specific user with id 1 and returns 404 on failure.
   
    Services falling at this level can be treated close to truly RESTful complaint.
    
@@ -44,4 +45,102 @@ Example-
 * Example- When creating a new resource, it would be very useful to provide a link/URI of getting all-users in order to let them know how to get details of all users. This way we would make our API response more informative and self-explanatory.\
 
 ```In this demo, I have tried to bring all my APIs to LEVEL-3.```
+<hr/>
 
+1. To enable HATEOAS support in the spring application, add this starter dependency-
+   ```
+   <!-- Added for HATEOAS support -->
+   <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-hateoas</artifactId>
+   </dependency>
+   ```
+2. Design the webservices according to level-3 (Means use of correct HTTP method and HTTP status - LEVEL-2 and include HATEOAS in the response of service). Lets see how to do this-
+   * Using correct HTTP verbs (Verbs means Methods and status Codes)
+   ```java
+   @RestController
+   public class UserController {
+
+	    @Autowired
+	    UserDaoService userService;
+	    
+	    @GetMapping("/users")
+	    public ResponseEntity<Object> getAllUsers() {
+	    	// ... code here
+	    	return ResponseEntity.status(HttpStatus.OK).body(users);
+	    }
+	    
+	    @GetMapping("/users/{id}") 
+	    public ResponseEntity<Object> getUserById(@PathVariable int id) {
+	    	// ... code here
+	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+	    }
+	    
+	    @DeleteMapping("/users/{id}")
+	    public ResponseEntity<Object> deleteUserById(@PathVariable int id) {
+	    	// ... code here
+	    	return ResponseEntity.status(HttpStatus.OK).body(deletedUser);
+	    }
+	    
+	    // POST is used to create a new resource and then returns the resource URI
+	    @PostMapping("/users")
+	    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+	    	// ... code here
+	    	return ResponseEntity.status(HttpStatus.CREATED).location(linkToSelf).body(entityModel);
+	    }
+	    
+	    // PUT is used to replace a resource, if that resource  exist then simply update it, but if that resource doesn't exist then create it,
+	    @PutMapping("/users")
+	    public ResponseEntity<Object> updateUser(@Valid @RequestBody User user) {
+	    	// ... code here
+	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+	    }
+	
+   }
+   ```
+   You can see that we are using GET, POST, DELETE and PUT according to the type of action of rest api. And also returning correct status code i.e. 201-CREATED when new resource is created and 200-OK when resource is updated. (This is called LEVEL-2)
+   * Using HATEOAS capabilities in the rest api's response. For instance look below given code, when client is requesting to search for a particular user by id, then along with the request user's details - we are also including a reference link of getting all-users.
+   ```java
+   @RestController
+   public class UserController {
+
+	    @Autowired
+	    UserDaoService userService;
+	    
+	    @GetMapping("/users")
+	    public ResponseEntity<Object> getAllUsers() {
+	    	Collection<User> users = userService.findAll();
+	    	return ResponseEntity.status(HttpStatus.OK).body(users);
+	    }
+	    
+	    @GetMapping("/users/{id}") 
+	    public ResponseEntity<Object> getUserById(@PathVariable int id) {
+	    	User user = userService.findById(id);
+	    	if(user == null) {
+	    		throw new UserNotFoundException("User not found for id: " + id);
+	    	}
+	    	
+	    	/* Creating HATEOS Response where we will also be providing RestURI for retrieving all users.*/
+	    	EntityModel<User> entityModel = new EntityModel<User>(user);
+	    	WebMvcLinkBuilder linkToAllUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
+	    	entityModel.add(linkToAllUsers.withRel("all-users"));
+	    	
+	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+	    }
+	
+   }
+   ```
+   Invoking this GET request will return this type of result -\
+   GET http://localhost:8080/users/1
+   ```
+   {
+    "id": 1,
+    "name": "dev",
+    "dob": "1989-12-13",
+    "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        }
+    }
+   }
+   ```
