@@ -64,14 +64,17 @@ public class UserController {
 		/* Creating HATEOAS response by including URI for retrieving all users and getting user by id */
 		EntityModel<User> entityModel = new EntityModel<User>(newUser);
 		WebMvcLinkBuilder linkToAllUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
-		entityModel.add(linkToAllUsers.withRel("all-users"));
+		WebMvcLinkBuilder linkToSelf = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getUserById(newUser.getId()));
 		
-		URI linkToSelf = WebMvcLinkBuilder.linkTo(this.getClass())
+		entityModel.add(linkToAllUsers.withRel("all-users"));
+		entityModel.add(linkToSelf.withRel("self"));
+		
+		URI newResourceURI = WebMvcLinkBuilder.linkTo(this.getClass())
 				.toUriComponentsBuilder().path("/{id}")
 				.buildAndExpand(newUser.getId()).toUri();
 		
 		// see sending 201 Created response Code when new resource is created - This is LEVEL 2 
-		return ResponseEntity.status(HttpStatus.CREATED).location(linkToSelf).body(entityModel);
+		return ResponseEntity.status(HttpStatus.CREATED).location(newResourceURI).body(entityModel);
 	}
 	
 	// PUT is used to replace a resource, if that resource  exist then simply update it, but if that resource doesn't exist then create it,
