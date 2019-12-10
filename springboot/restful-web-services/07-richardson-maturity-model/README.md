@@ -11,12 +11,12 @@
  <hr/>
  
 1. Level-0 (**Single URI and single HTTP Method**)\
-* RestAPIs at this level do not use multiple URIs, multiple HTTP methods and HATEOAS capabilities, rather it, the services has single entry point (URI) and use single HTTP method (typically POST).
-* Generally SOAP and XML-RPC based services follow this level where services use a single URI to identify an endpoint, and HTTP POST to transfer payloads.
+   * RestAPIs at this level do not use multiple URIs, multiple HTTP methods and HATEOAS capabilities, rather it, the services has single entry point (URI) and use single HTTP method (typically POST).
+   * Generally SOAP and XML-RPC based services follow this level where services use a single URI to identify an endpoint, and HTTP POST to transfer payloads.
  
 2. Level-1 (**Resources with unique URI**)\
-* At this level, services use mutiple URIs for resoureces, where each resource is separately identified by a unique URI, and this makes it more better than level 0. **But this level still uses single HTTP method (typically POST)**.
-* Example- Instead of calling POST http://localhost:8080/users all time with correct payload, now you can distinguish users using http://localhost:8080/users/1 or http://localhost:8080/users/2 and so on.
+   * At this level, services use mutiple URIs for resoureces, where each resource is separately identified by a unique URI, and this makes it more better than level 0. **But this level still uses single HTTP method (typically POST)**.
+   * Example- Instead of calling POST http://localhost:8080/users all time with correct payload, now you can distinguish users using http://localhost:8080/users/1 or http://localhost:8080/users/2 and so on.
 
 3. Level-2 (**HTTP verbs**)\
 Most of the time we have seen that developers do not use proper HTTP methods and HTTP response code in REST services, i.e. 
