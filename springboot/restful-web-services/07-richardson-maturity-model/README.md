@@ -145,10 +145,10 @@ Most of the time we have seen that developers do not use proper HTTP methods and
     }
    }
    ```
-   
-   * Full code - [UserController.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/07-richardson-maturity-model/src/main/java/com/thedevd/springboot/controller/UserController.java)
+  
+3. Full code - [UserController.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/07-richardson-maturity-model/src/main/java/com/thedevd/springboot/controller/UserController.java)
      ```java
-	    package com.thedevd.springboot.controller;
+     package com.thedevd.springboot.controller;
 
      import java.net.URI;
      import java.util.Collection;
