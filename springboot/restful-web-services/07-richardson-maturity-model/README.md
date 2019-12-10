@@ -40,9 +40,9 @@ Most of the time we have seen that developers do not use proper HTTP methods and
    Services falling at this level can be treated close to truly RESTful complaint.
    
 4. Level-3 (**Hypermedia controls - HATEOAS**)\
-* This level means high maturity level and services at this level can be called truly RESTful complaint. If webservices follows Level-2 plus HATEOAS capabilities, then these services are at LEVEL-3 of Richardson maturity model. (HATEOAS stands for **Hypertext As The Engine Of Application State**)
-* Level-3 encourages to use HATEOAS capability in the response, doing this will help your clients to know about more information about your API and the further possibilities or action they might be interested.
-* Example- When creating a new resource, it would be very useful to provide a link/URI of getting all-users in order to let them know how to get details of all users. This way we would make our API response more informative and self-explanatory.\
+   * This level means high maturity level and services at this level can be called truly RESTful complaint. If webservices follows Level-2 plus HATEOAS capabilities, then these services are at LEVEL-3 of Richardson maturity model. (HATEOAS stands for **Hypertext As The Engine Of Application State**)
+   * Level-3 encourages to use HATEOAS capability in the response, doing this will help your clients to know about more information about your API and the further possibilities or action they might be interested.
+   * Example- When creating a new resource, it would be very useful to provide a link/URI of getting all-users in order to let them know how to get details of all users. This way we would make our API response more informative and self-explanatory.\
 
 ```In this demo, I have tried to bring all my APIs to LEVEL-3.```
 <hr/>
