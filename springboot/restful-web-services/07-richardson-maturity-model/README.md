@@ -214,14 +214,17 @@ Most of the time we have seen that developers do not use proper HTTP methods and
      		/* Creating HATEOAS response by including URI for retrieving all users and getting user by id */
      		EntityModel<User> entityModel = new EntityModel<User>(newUser);
      		WebMvcLinkBuilder linkToAllUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
+       WebMvcLinkBuilder linkToSelf = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getUserById(newUser.getId()));
+       
      		entityModel.add(linkToAllUsers.withRel("all-users"));
+       entityModel.add(linkToSelf.withRel("self"));
      		
-     		URI linkToSelf = WebMvcLinkBuilder.linkTo(this.getClass())
+     		URI newResourceURI = WebMvcLinkBuilder.linkTo(this.getClass())
      				.toUriComponentsBuilder().path("/{id}")
      				.buildAndExpand(newUser.getId()).toUri();
      		
      		// see sending 201 Created response Code when new resource is created - This is LEVEL 2 
-     		return ResponseEntity.status(HttpStatus.CREATED).location(linkToSelf).body(entityModel);
+     		return ResponseEntity.status(HttpStatus.CREATED).location(newResourceURI).body(entityModel);
      	}
      	
      	// PUT is used to replace a resource, if that resource  exist then simply update it, but if that resource doesn't exist then create it,
