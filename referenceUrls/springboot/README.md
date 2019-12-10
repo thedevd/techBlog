@@ -27,3 +27,6 @@ https://stackoverflow.com/questions/14014086/what-is-difference-between-crudrepo
 
 * Spring boot rest api error handling best practice \
 https://www.toptal.com/java/spring-boot-rest-api-error-handling
+
+* RestFul API cookbook \
+http://restcookbook.com/
