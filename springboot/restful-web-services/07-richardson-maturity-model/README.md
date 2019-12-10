@@ -57,81 +57,82 @@ Most of the time we have seen that developers do not use proper HTTP methods and
    ```
 2. Design the webservices according to level-3 (Means use of correct HTTP method and HTTP status - LEVEL-2 and include HATEOAS in the response of service). Lets see how to do this-
    * Using correct HTTP verbs (Verbs means Methods and status Codes)
-   ```java
-   @RestController
-   public class UserController {
-
-	    @Autowired
-	    UserDaoService userService;
-	    
-	    @GetMapping("/users")
-	    public ResponseEntity<Object> getAllUsers() {
-	    	// ... code here
-	    	return ResponseEntity.status(HttpStatus.OK).body(users);
-	    }
-	    
-	    @GetMapping("/users/{id}") 
-	    public ResponseEntity<Object> getUserById(@PathVariable int id) {
-	    	// ... code here
-	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
-	    }
-	    
-	    @DeleteMapping("/users/{id}")
-	    public ResponseEntity<Object> deleteUserById(@PathVariable int id) {
-	    	// ... code here
-	    	return ResponseEntity.status(HttpStatus.OK).body(deletedUser);
-	    }
-	    
-	    // POST is used to create a new resource and then returns the resource URI
-	    @PostMapping("/users")
-	    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-	    	// ... code here
-	    	return ResponseEntity.status(HttpStatus.CREATED).location(linkToSelf).body(entityModel);
-	    }
-	    
-	    // PUT is used to replace a resource, if that resource  exist then simply update it, but if that resource doesn't exist then create it,
-	    @PutMapping("/users")
-	    public ResponseEntity<Object> updateUser(@Valid @RequestBody User user) {
-	    	// ... code here
-	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
-	    }
-	
-   }
-   ```
-   You can see that we are using GET, POST, DELETE and PUT according to the type of action of rest api. And also returning correct status code i.e. 201-CREATED when new resource is created and 200-OK when resource is updated. (This is called LEVEL-2)
+     ```java
+     @RestController
+     public class UserController {
+     
+         @Autowired
+         UserDaoService userService;
+         
+         @GetMapping("/users")
+         public ResponseEntity<Object> getAllUsers() {
+         	// ... code here
+         	return ResponseEntity.status(HttpStatus.OK).body(users);
+         }
+         
+         @GetMapping("/users/{id}") 
+         public ResponseEntity<Object> getUserById(@PathVariable int id) {
+         	// ... code here
+         	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+         }
+         
+         @DeleteMapping("/users/{id}")
+         public ResponseEntity<Object> deleteUserById(@PathVariable int id) {
+         	// ... code here
+         	return ResponseEntity.status(HttpStatus.OK).body(deletedUser);
+         }
+         
+         // POST is used to create a new resource and then returns the resource URI
+         @PostMapping("/users")
+         public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+         	// ... code here
+         	return ResponseEntity.status(HttpStatus.CREATED).location(linkToSelf).body(entityModel);
+         }
+         
+         // PUT is used to replace a resource, if that resource  exist then simply update it, but if that resource doesn't exist then create it,
+         @PutMapping("/users")
+         public ResponseEntity<Object> updateUser(@Valid @RequestBody User user) {
+         	// ... code here
+         	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+         }
+     
+     }
+     ```
+     You can see that we are using GET, POST, DELETE and PUT according to the type of action of rest api. And also returning correct status code i.e. 201-CREATED when new resource is created and 200-OK when resource is updated. (This is called LEVEL-2)\
+     
    * Using HATEOAS capabilities in the rest api's response. For instance look below given code, when client is requesting to search for a particular user by id, then along with the request user's details - we are also including a reference link of getting all-users.
-   ```java
-   @RestController
-   public class UserController {
-
-	    @Autowired
-	    UserDaoService userService;
-	    
-	    @GetMapping("/users")
-	    public ResponseEntity<Object> getAllUsers() {
-	    	Collection<User> users = userService.findAll();
-	    	return ResponseEntity.status(HttpStatus.OK).body(users);
-	    }
-	    
-	    @GetMapping("/users/{id}") 
-	    public ResponseEntity<Object> getUserById(@PathVariable int id) {
-	    	User user = userService.findById(id);
-	    	if(user == null) {
-	    		throw new UserNotFoundException("User not found for id: " + id);
-	    	}
-	    	
-	    	/* Creating HATEOS Response where we will also be providing RestURI for retrieving all users.*/
-	    	EntityModel<User> entityModel = new EntityModel<User>(user);
-	    	WebMvcLinkBuilder linkToAllUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
-	    	entityModel.add(linkToAllUsers.withRel("all-users"));
-	    	
-	    	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
-	    }
-	
-   }
-   ```
-   Invoking this GET request will return this type of result -\
-   GET http://localhost:8080/users/1
+     ```java
+     @RestController
+     public class UserController {
+     
+         @Autowired
+         UserDaoService userService;
+         
+         @GetMapping("/users")
+         public ResponseEntity<Object> getAllUsers() {
+         	Collection<User> users = userService.findAll();
+         	return ResponseEntity.status(HttpStatus.OK).body(users);
+         }
+         
+         @GetMapping("/users/{id}") 
+         public ResponseEntity<Object> getUserById(@PathVariable int id) {
+         	User user = userService.findById(id);
+         	if(user == null) {
+         		throw new UserNotFoundException("User not found for id: " + id);
+         	}
+         	
+         	/* Creating HATEOS Response where we will also be providing RestURI for retrieving all users.*/
+         	EntityModel<User> entityModel = new EntityModel<User>(user);
+         	WebMvcLinkBuilder linkToAllUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
+         	entityModel.add(linkToAllUsers.withRel("all-users"));
+         	
+         	return ResponseEntity.status(HttpStatus.OK).body(entityModel);
+         }
+     
+     }
+   ``` 
+  Invoking this GET request will return this type of result -\
+  GET http://localhost:8080/users/1
    ```
    {
     "id": 1,
