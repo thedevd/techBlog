@@ -118,4 +118,19 @@
   
   }
   ```
+  At runtime, hibernate is going to provide an implementation of these repository and then you can use these repositories to achieve these some default tasks using following methods -
+  1. findAll()
+  2. findById()
+  3. deleteById()
+  4. save()
+  
+  Apart from these default JPA APIs, we can also create cutomized Query using JPA criteria API. JPA criteria API provides lot of keywords which you can use to create Queuries. For example-
+  ```java
+  @Repository
+  public interface UserRepository extends JpaRepository<User, Integer> {
+    List<User> findByNameLike(String name);
+  }
+  ```
+  Essentially, this translates into the following query automatically by hibernate
+  ` select u from User u where u.name like ?1 `
 
