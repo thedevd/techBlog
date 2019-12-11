@@ -103,7 +103,7 @@
     Hibernate: alter table post add constraint FK72mt33dhhs48hf9gcqrq4fxte foreign key (user_id) references user
     ```
     
-* In order to interact with tables in persistent storage layer, you need to create corresponsing JPARepository. As in this demo, we have two tables - User and Post, so we will create JPARepository for each table.
+* In order to interact with tables in persistent storage layer, you need to create corresponsing JpaRepository. As in this demo, we have two tables - User and Post, so we will create JpaRepository for each table.
   * [UserRepository.java](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/08-springboot-jpa/src/main/java/com/thedevd/springboot/repository/UserRepository.java)
   ```java
   @Repository
@@ -118,19 +118,22 @@
   
   }
   ```
-  At runtime, hibernate is going to provide an implementation of these repository and then you can use these repositories to achieve these some default tasks using following methods -
-  1. findAll()
-  2. findById()
-  3. deleteById()
-  4. save()
+  * At runtime, hibernate is going to provide an implementation of these repository and then you can use these repositories to achieve these some default tasks using following methods -
+    1. findAll()
+    2. findById()
+    3. deleteById()
+    4. save()
   
-  Apart from these default JPA APIs, we can also create cutomized Query using JPA criteria API. JPA criteria API provides lot of keywords which you can use to create Queuries. For example-
-  ```java
-  @Repository
-  public interface UserRepository extends JpaRepository<User, Integer> {
-    List<User> findByNameLike(String name);
-  }
-  ```
-  Essentially, this translates into the following query automatically by hibernate
-  ` select u from User u where u.name like ?1 `
+  * Apart from these default JPA APIs provided by JpaRepository, we can also create cutomized Query using JPA criteria API. JPA criteria API provides lot of keywords which you can use to create Queuries. For example-
+    ```java
+    @Repository
+    public interface UserRepository extends JpaRepository<User, Integer> {
+      List<User> findByNameLike(String name);
+    }
+    ```
+    Essentially, this translates into the following query automatically by hibernate\
+    ` select u from User u where u.name like ?1 `
+    
+  * This table describes the supported keywords which you can use inside method names to create custom Queuries.
+  ![JPA Criteria API keywords](https://github.com/thedevd/imageurls/blob/master/sprintboot/jpa_criteria_api_keywords.png)
 
