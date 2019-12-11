@@ -15,3 +15,7 @@
     <scope>runtime</scope>
   </dependency>
   ```
+  See the [pom.xml](https://github.com/thedevd/techBlog/blob/master/springboot/restful-web-services/08-springboot-jpa/pom.xml) of this demo application.
+
+  `Just to give you an idea of what we are going to implement here using JPA.`\
+  `We are building an application to keep track of User's details along with the posts they have posted in social type of platform.`
