@@ -137,3 +137,84 @@
   * This table describes the supported keywords which you can use inside method names to create custom Queuries.
   ![JPA Criteria API keywords](https://github.com/thedevd/imageurls/blob/master/sprintboot/jpa_criteria_api_keywords.png)
 
+### 3. Running the application
+Run the application, and test the jpa using these rest endpoints -
+* POST http://localhost:8080/users/ \
+  payload- {"name": "Devendra","dob": "1989-12-13"}
+  ```
+  {
+    "id": 1,
+    "name": "Devendra",
+    "dob": "1989-12-13",
+    "posts": null
+  }
+  ```
+* POST http://localhost:8080/users/1/posts \
+  payload - {"description": "Post1 by user id 1"}
+  ```
+  {
+    "postId": 2,
+    "description": "Post1 by user id 1",
+    "postedAt": "2019-12-11T13:57:26.505"
+  }
+  ```
+* GET http://localhost:8080/users/1/posts \
+  ```
+  [
+    {
+        "postId": 2,
+        "description": "Post1 by user id 1",
+        "postedAt": "2019-12-11T13:57:26.505"
+    }
+  ]
+  ```
+* GET http://localhost:8080/users/
+  ```
+  [
+    {
+        "id": 1,
+        "name": "Devendra",
+        "dob": "1989-12-13",
+        "posts": [
+            {
+                "postId": 2,
+                "description": "Post1 by user id 1",
+                "postedAt": "2019-12-11T13:57:26.505"
+            }
+        ]
+    },
+    {
+        "id": 1000,
+        "name": "ABC",
+        "dob": "2019-12-11",
+        "posts": []
+    },
+    {
+        "id": 1001,
+        "name": "Jill",
+        "dob": "2019-12-11",
+        "posts": []
+    },
+    {
+        "id": 1002,
+        "name": "Jam",
+        "dob": "2019-12-11",
+        "posts": []
+    }
+  ]
+  ```
+* GET http://localhost:8080/users/1
+  ```
+  {
+    "id": 1,
+    "name": "Devendra",
+    "dob": "1989-12-13",
+    "posts": [
+        {
+            "postId": 2,
+            "description": "Post1 by user id 1",
+            "postedAt": "2019-12-11T13:57:26.505"
+        }
+    ]
+  }
+  ```
