@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>beanvalidation</artifactId>
+	<artifactId>05-bean-validation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>05-bean-validation</name>
 	<description>Spring boot project for Bean Validation</description>

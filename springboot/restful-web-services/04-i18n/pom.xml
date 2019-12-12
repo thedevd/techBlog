@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>i18n</artifactId>
+	<artifactId>04-i18n</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>04-i18n</name>
 	<description>Spring boot project for I18N demo</description>

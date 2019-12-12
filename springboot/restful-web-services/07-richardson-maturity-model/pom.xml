@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>richardsonmaturitymodel</artifactId>
+	<artifactId>07-richardson-maturity-model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>07-richardson-maturity-model</name>
 	<description>Spring boot project for Richardson Maturity Model</description>

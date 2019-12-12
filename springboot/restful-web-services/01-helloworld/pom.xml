@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>helloworld-restful</artifactId>
+	<artifactId>01-helloworld</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>01-helloworld</name>
 	<description>Spring boot project for Helloworld rest</description>

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>errorhandling</artifactId>
+	<artifactId>03-error-handling</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>03-error-handling</name>
 	<description>Spring boot project for Error Handling of rest API</description>

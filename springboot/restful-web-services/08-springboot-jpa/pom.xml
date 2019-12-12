@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>springbootjpa</artifactId>
+	<artifactId>08-springboot-jpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>08-springboot-jpa</name>
 	<description>Spring boot project for JPA configuration</description>

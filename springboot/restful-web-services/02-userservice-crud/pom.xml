@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>userservice-restful</artifactId>
+	<artifactId>02-userservice-crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>02-userservice-crud</name>
 	<description>Spring boot project for User Service rest</description>

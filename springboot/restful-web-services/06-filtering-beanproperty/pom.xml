@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thedevd.springboot</groupId>
-	<artifactId>beanpropertyfiltering</artifactId>
+	<artifactId>06-filtering-beanproperty</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>06-filtering-beanproperty</name>
 	<description>Spring boot project for Bean Property Filtering</description>
