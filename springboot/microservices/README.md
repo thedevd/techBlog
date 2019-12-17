@@ -57,7 +57,7 @@ After we have spring-cloud-config-server created for configuration management, n
     <artifactId>spring-cloud-starter-config</artifactId>
   </dependency>
   ```
- * Very first step is rename the application.properties file of microservice to [bootstap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties) and there mention the `uri` to spring-cloud-config server.
+* Very first step is rename the application.properties file of microservice to [bootstap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties) and there mention the `uri` to spring-cloud-config server.
    ```
    spring.application.name=inventory-service
    
@@ -65,23 +65,82 @@ After we have spring-cloud-config-server created for configuration management, n
    # (i.e. provide uri of config-server)
    spring.cloud.config.uri=http://localhost:8888
    ```
-   **Note- Take a special care with application name defined by spring.application.name. This name is very important when creating the environment specific configuration in centralized Git configuration repository.** 
-* Next step is to create the envrionment specific configuration for our inventory-microservice in the centralized Git configuration repository and commit the files. `Take a special care while giving the name to the configuration file, the name should be the combination of application-name of the microservice and profile name.`\
-  * [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration
-  * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
-  * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
+  **Note- Take a special care with application name defined by spring.application.name. This name is very important when creating the environment specific configuration in centralized Git configuration repository.** 
+ 
+ * Next step is to create the envrionment specific configuration for our inventory-microservice in the centralized Git configuration repository and commit the files. `Take a special care while giving the name to the configuration file, the name should be the combination of application-name of the microservice and profile name.`\
+ * [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration
+ * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
+ * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
    
-  **Note- Do not forget to commit the changes to git configuration repository**
+   **Note- Do not forget to commit the changes to git configuration repository**
   
- * **Verify the connection to spring-cloud-config-server** -
-   * Start the spring-cloud-config-server. (This is made to run on port 8888)
-   * Start the [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). Provide the VM argument `-Dspring.profiles.active` to specify which enviroment's configuration it will fetch from cloud-config-server. (if no profile is given then default configuration will be fetched). On startup you will see this kind of log message in the microservice console -
+* **Verify the connection to spring-cloud-config-server** -
+  * Start the spring-cloud-config-server. (This is made to run on port 8888)
+  * Start the [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). Provide the VM argument `-Dspring.profiles.active` to specify which enviroment's configuration it will fetch from cloud-config-server. (if no profile is given then default configuration will be fetched). On startup you will see this kind of log message in the microservice console -
      ```
      INFO 2020 --- [  restartedMain] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
      INFO 2020 --- [  restartedMain] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=inventory-service, profiles=[dev], label=null, version=cb2ad5ac4552fefdcbd549043977e1c2f914422b, state=null
      INFO 2020 --- [  restartedMain] b.c.PropertySourceBootstrapConfiguration : Located property source: OriginTrackedCompositePropertySource {name='configService', propertySources=[MapPropertySource {name='configClient'}, OriginTrackedMapPropertySource {name='file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service-dev.properties'}, OriginTrackedMapPropertySource {name='file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties'}]}
      INFO 2020 --- [  restartedMain] c.t.s.InventoryMicroserviceApplication   : The following profiles are active: dev
      ```
+  * We can also take a look at the environment specific configuration of a micro-service using these endpoints exposed by spring-cloud-config-server itself.\
+    http://localhost:8888/inventory-service/default
+    ```
+    {
+	"name": "inventory-service",
+	"profiles": [
+		"default"
+	],
+	"label": null,
+	"version": "ac91b918c8c7b2a8e23744c044107c499572157c",
+	"state": null,
+	"propertySources": [
+		{
+			"name": "file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties",
+			"source": {
+				"server.port": "8082",
+				"spring.jpa.show-sql": "true",
+				"spring.h2.console.enabled": "false",
+				"inventory-service.dummy.property1": "default_dummyvalue1",
+				"inventory-service.dummy.property2": "default_dummyvalue2"
+			}
+		}
+	]
+    } 
+    ```
+    http://localhost:8888/inventory-service/dev
+    ```
+    {
+	"name": "inventory-service",
+	"profiles": [
+		"dev"
+	],
+	"label": null,
+	"version": "ac91b918c8c7b2a8e23744c044107c499572157c",
+	"state": null,
+	"propertySources": [
+		{
+			"name": "file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service-dev.properties",
+			"source": {
+				"spring.jpa.show-sql": "true",
+				"spring.h2.console.enabled": "true",
+				"inventory-service.dummy.property1": "dev_dummyvalue1",
+				"inventory-service.dummy.property2": "dev_dummyvalue2"
+			}
+		},
+		{
+			"name": "file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties",
+			"source": {
+				"server.port": "8082",
+				"spring.jpa.show-sql": "true",
+				"spring.h2.console.enabled": "false",
+				"inventory-service.dummy.property1": "default_dummyvalue1",
+				"inventory-service.dummy.property2": "default_dummyvalue2"
+			}
+		}
+	]
+    }
+    ```
      
  
    
