@@ -1,4 +1,4 @@
-## Spring Cloud Config Server (Configuration Manager)
+## [Spring Cloud Config Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) (Configuration Manager)
 One of the challange in microservice architecture is managing the configurations for microservices. In typical microservice architecture we usually have number of instances of services running with mutliple environments, what I mean - 
 * lets say we have three microservices [microservice-1, microservice-2 and microserver-3]. Now suppose we have different different configurations specific to environment (dev/qa/prod) for each of the services.
 * One way of managing these configurations is to keep all environment specific configuration withing microservice itself, but as soon as you scale your applications to run large no of services on multiple environments, it becomes difficult to manage those configurations which are stored in microservice level.
