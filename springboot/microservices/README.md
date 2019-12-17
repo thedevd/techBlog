@@ -65,7 +65,19 @@ After we have spring-cloud-config-server created for configuration management, n
   * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
   * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
    
-  **Note- Do not forget to commit the changes to git repository**
+  **Note- Do not forget to commit the changes to git configuration repository**
+  
+ * **Verify the connection to spring-cloud-config-server** -
+   * Start the spring-cloud-config-server. (This is made to run on port 8888)
+   * Start the [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). Provide the VM argument `-Dspring.profiles.active` to specify which enviroment's configuration it will fetch from cloud-config-server. (if no profile is given then default configuration will be fetched). On startup you will see this kind of log message in the microservice console -
+     ```
+     INFO 2020 --- [  restartedMain] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at : http://localhost:8888
+     INFO 2020 --- [  restartedMain] c.c.c.ConfigServicePropertySourceLocator : Located environment: name=inventory-service, profiles=[dev], label=null, version=cb2ad5ac4552fefdcbd549043977e1c2f914422b, state=null
+     INFO 2020 --- [  restartedMain] b.c.PropertySourceBootstrapConfiguration : Located property source: OriginTrackedCompositePropertySource {name='configService', propertySources=[MapPropertySource {name='configClient'}, OriginTrackedMapPropertySource {name='file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service-dev.properties'}, OriginTrackedMapPropertySource {name='file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties'}]}
+     INFO 2020 --- [  restartedMain] c.t.s.InventoryMicroserviceApplication   : The following profiles are active: dev
+     ```
+     
+ 
    
    
  
