@@ -51,6 +51,12 @@ One of the challange in microservice architecture is managing the configurations
 ## Microservice to spring-cloud-config-server communication
 After we have spring-cloud-config-server created for configuration management, now we have to connect our microservice to cloud-config-server in order to fetch environment specific configuration. Once we establish the communication b/w microservice and cloud-config-server then we will see upon startup microservice will connect to config-server and ask for a configuration specific to an environment.
 * For demonstration, I have created a microservice called [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). And We want to maintain seperate configurations for dev and qa envrionment.
+  ```
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+  </dependency>
+  ```
  * Very first step is rename the application.properties file of microservice to [bootstap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties) and there mention the `uri` to spring-cloud-config server.
    ```
    spring.application.name=inventory-service
