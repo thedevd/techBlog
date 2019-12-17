@@ -98,9 +98,9 @@ After we have spring-cloud-config-server created for configuration management, n
   **Note- Take a special care with application name defined by spring.application.name. This name is very important when creating the environment specific configuration in centralized Git configuration repository.** 
  
  * Next step is to create the envrionment specific configuration for our inventory-microservice in the centralized Git configuration repository and commit the files. `Take a special care while giving the name to the configuration file, the name should be the combination of application-name of the microservice and profile name.`\
- * [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration
- * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
- * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
+   * [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration
+   * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
+   * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
    
    **Note- Do not forget to commit the changes to git configuration repository**
   
