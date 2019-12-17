@@ -1,3 +1,15 @@
+## Microservice architecture advantages
+* Technologies agnostics /independent. 
+* Easy development/Management and independent deployment (Rapid Release cycle) 
+* Dynamic scaling (Distributed capabilities + Cloud support) 
+* Fault tolerance. 
+
+## Challenges in microservice architecture
+* Configuration management (100's of services + multiple environments + multiple instances) 
+* Dynamic scale up and scale down (service discovery + Load balancing) 
+* Monitoring 
+* Fault-tolerant (Services interacting like Pack of cards i,e,--> m1 -> m2 -> m3 -> m4 -> m5, then how to make fault tolerant system) 
+
 ## [Spring Cloud Config Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) (Configuration Manager)
 One of the challange in microservice architecture is managing the configurations for microservices. In typical microservice architecture we usually have number of instances of services running with mutliple environments, what I mean - 
 * lets say we have three microservices [microservice-1, microservice-2 and microserver-3]. Now suppose we have different different configurations specific to environment (dev/qa/prod) for each of the services.
