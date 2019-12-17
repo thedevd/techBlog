@@ -48,9 +48,9 @@ One of the challange in microservice architecture is managing the configurations
 	  }
     ```
     
- ## Microservice to spring-cloud-config-server communication
- After we have spring-cloud-config-server created for configuration management, now we have to connect our microservice to cloud-config-server in order to fetch environment specific configuration. Once we establish the communication b/w microservice and cloud-config-server then we will see upon startup microservice will connect to config-server and ask for a configuration specific to an environment.
- * For demonstration, I have created a microservice called [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). And We want to maintain seperate configurations for dev and qa envrionment.
+## Microservice to spring-cloud-config-server communication
+After we have spring-cloud-config-server created for configuration management, now we have to connect our microservice to cloud-config-server in order to fetch environment specific configuration. Once we establish the communication b/w microservice and cloud-config-server then we will see upon startup microservice will connect to config-server and ask for a configuration specific to an environment.
+* For demonstration, I have created a microservice called [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice). And We want to maintain seperate configurations for dev and qa envrionment.
  * Very first step is rename the application.properties file of microservice to [bootstap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties) and there mention the `uri` to spring-cloud-config server.
    ```
    spring.application.name=inventory-service
@@ -60,11 +60,12 @@ One of the challange in microservice architecture is managing the configurations
    spring.cloud.config.uri=http://localhost:8888
    ```
    **Note- Take a special care with application name defined by spring.application.name. This name is very important when creating the environment specific configuration in centralized Git configuration repository.** 
- * Next step is to create the envrionment specific configuration for our inventory-microservice in the centralized Git configuration repository and commit the files. `Take a special care while giving the name to the configuration file, the name should be the combination of application-name of the microservice and profile name.`\
-   [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration\
-   [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration\
-   [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.\
-   **Note- Do not forget to commit the changes to git repository**
+* Next step is to create the envrionment specific configuration for our inventory-microservice in the centralized Git configuration repository and commit the files. `Take a special care while giving the name to the configuration file, the name should be the combination of application-name of the microservice and profile name.`\
+  * [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties)- this is for dev environment's configuration
+  * [inventory-service-qa.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-qa.properties)- this is for qa environment's configuration
+  * [inventory-service.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service.properties) - this is default configuration.
+   
+  **Note- Do not forget to commit the changes to git repository**
    
    
  
