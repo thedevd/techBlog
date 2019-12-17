@@ -40,5 +40,6 @@
 	    public InventoryItemResponse getInventoryByProductCode(@PathVariable("productCode") String productCode);
     }
     ```
-    In the above example, we have created a Feign client to read from `inventory-service` which has the base url as `localhost:8082`. Furthermore, we have added the APIs of `inventory-service` that we want to call from `product-catalog-service`
+    In the above example, we have created a Feign client to read from `inventory-service` which has the base url as `localhost:8082`. Furthermore, we have added the APIs of `inventory-service` that we want to call from `product-catalog-service`.\
+    The major drawback of using Feign client without Ribbon (load balancer) or Eureka (Service Registry) is that you have to use hardcoded url and if there is some other instance of inventory-service we want to use, we have to modify that url value each time which is is not recommended at all. We will see how this is prevented when FeignClient is used with Ribbon or Eureka.
     
