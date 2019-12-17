@@ -16,7 +16,7 @@ public class ProductCatalogService {
 	private ProductCatalogRepository productCatalogRepository;
 	
 	@Autowired
-	private InventoryServiceProxy inventoryServiceFeignClient;
+	private InventoryServiceFeignClient inventoryServiceFeignClient;
 	
 	public ProductCatalog getProductCatalogByProductCode( String productCode) {
 		Optional<ProductCatalog> productCatalog = productCatalogRepository.findByProductCode(productCode);
