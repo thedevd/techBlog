@@ -10,6 +10,20 @@
 * Monitoring 
 * Fault-tolerant (Services interacting like Pack of cards i,e,--> m1 -> m2 -> m3 -> m4 -> m5, then how to make fault tolerant system) 
 
+## Spring Cloud 
+Spring cloud provides lot of tools which helps developers to `quickly build some common patterns of distributed system`. Some of those patterns are -
+* Configuration management -> Spring Cloud Config Server
+* Service Registration and Discovery  (aka Naming Server) -> eureka  
+* Load balancing -> Ribbon
+* Fault tolerance -> Hystrix
+* Circuit breaker
+* One-time tokens 
+* Distributed sessions
+* Global locks
+* Leadership election and cluster state monitoring
+* Distributed tracing (Debugging and testing) -> Zipkin Distributed tracing
+* Login/Security -> Netflix Zuul API gateway 
+ 
 ## [Spring Cloud Config Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) (Configuration Manager)
 One of the challange in microservice architecture is managing the configurations for microservices. In typical microservice architecture we usually have number of instances of services running with mutliple environments, what I mean - 
 * lets say we have three microservices [microservice-1, microservice-2 and microserver-3]. Now suppose we have different different configurations specific to environment (dev/qa/prod) for each of the services.
