@@ -8,3 +8,44 @@
 
 `In this, we will see how to create a Naming Server using Netflix-Eureka of Spring Cloud and how microservice will register itself with Netflix-Eureka server (this operation is known as Service Registration). And at the end we will see how a service will communicate with other services using combination of FeignClient + Ribbon + Eureka`
 <hr/>
+
+#### Seting up the Netflix-Eureka Server
+Setting up the Eureka server is very easy and straightforward, as you just have to add the netflix-eureka dependency and enable the eureka server using `@EnableEurekaServer` annotation.
+* Add starter dependency of netflix-eureka server `spring-cloud-starter-netflix-eureka-server`
+  ```xml
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+  </dependency>
+  ```
+* Enable the Eureka-Server in main class of the application. Doing this, spring will automatically configure the eureka-server.
+  ```java
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+  @SpringBootApplication
+  @EnableEurekaServer // this annotation is used to enable Eureka Server and configure it
+  public class NetflixEurekaNamingServerApplication {
+
+	  public static void main(String[] args) {
+		  SpringApplication.run(NetflixEurekaNamingServerApplication.class, args);
+	  }
+  }
+  ```
+* And at last couple of configuration. The Eureka client in the eureka-server is instructed not to register itself upon start up (`eureka.client.register-with-eureka: false`), and it is told not to search for other registry nodes to connect to, as there are none - at least not when running locally (`eureka.client.fetch-registry: false`).
+  ```
+  spring.application.name=netflix-eureka-naming-server
+  server.port=8761
+
+  # By default, the eureka client of naming server will also attempt to register itself, so need to disable that
+  eureka.client.register-with-eureka=false 
+  eureka.client.fetch-registry=false
+  ```
+* You can open the Eureka-Server console using the port we have mentioned (`server.port`) -\
+  http://localhost:8761
+  
+This is what I have created to act as Eureka-Server for my microservices (inventory-service and product-catalog-service).
+[See this](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
+
+`Ok, now we can move on to the services to see how to configure them so that they can register themselves with Eureka-Server — this is where things start to get more interesting.`
