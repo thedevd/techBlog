@@ -49,6 +49,7 @@ This is what I have created to act as Eureka-Server for my microservices (invent
 [See this](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
 
 `Ok, now we can move on to the services to see how to configure them so that they can register themselves with Eureka-Server — this is where things start to get more interesting.`
+<hr/>
 
 ### Configure the Services to register in Eureka-Server
 Here we will see how to configure services in a way that on startup they should connect to `eureka-server` and register themselves as eureka client. We are assuming that our services are already using Ribbon as load-balancer to talk to list of instances of other microservices (and this list is hardcoded in `ribbon.listOfServers` property, and after using Eureka there will not be a need to hardcode this list).
