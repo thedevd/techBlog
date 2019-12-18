@@ -10,7 +10,7 @@
 <hr/>
 
 ### Seting up the Netflix-Eureka Server
-Setting up the Eureka server is very easy and straightforward, as you just have to add the netflix-eureka dependency and enable the eureka server using `@EnableEurekaServer` annotation.
+Setting up the Eureka server is very easy and straightforward, as you just have to add the netflix-eureka dependency and enable the eureka server using `@EnableEurekaServer` annotation. (You can also refer [official documentation link](https://spring.io/guides/gs/service-registration-and-discovery/) on setting up the Eureka-Server)
 * Add starter dependency of netflix-eureka server `spring-cloud-starter-netflix-eureka-server`
   ```xml
   <dependency>
@@ -51,6 +51,41 @@ This is what I have created to act as Eureka-Server for my microservices (invent
 `Ok, now we can move on to the services to see how to configure them so that they can register themselves with Eureka-Server — this is where things start to get more interesting.`
 
 ### Configure the Services to register in Eureka-Server
-Here we will see how to configure services in a way that on startup they should connect to `eureka-server` and register themselves as eureka client. We are assuming that our services are already using Ribbon as load-balancer to talk list of instances of other microservices (and this list is hardcoded in ribbon.listOfServers property, and after using Eureka there will not be need to hardcode this list).
+Here we will see how to configure services in a way that on startup they should connect to `eureka-server` and register themselves as eureka client. We are assuming that our services are already using Ribbon as load-balancer to talk to list of instances of other microservices (and this list is hardcoded in `ribbon.listOfServers` property, and after using Eureka there will not be a need to hardcode this list).
 
 `The problem we are going to solve here is that, the product-catalog-service need to call one of the API of inventory-service. So before product-catalog-service will make call to inventory-service, the service would first need to know the list of running instances of inventory-service. This information will be provided by the Eureka-Server. So first we will configure our inventory-service to register in eureka-server`
+
+<p align="center">
+  <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka.png"/>
+</p>
+
+Lets start configuring our `inventory-service` application so that on startup it can registry itself as eureka-client with eureka-server -
+* First include the spring-cloud-starter `netflix-eureka-client` dependency in the project -
+  ```xml
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+  </dependency>
+  ```
+* Just like enabling Eureka-Server, enable the eureka-client for the `inventory-service`. For this add `@EnabledDiscoveryClient` annotation on the main class of the service -
+  ```java
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+  @SpringBootApplication
+  @EnableDiscoveryClient // Enable the client implementation for Eureka-Client
+  public class InventoryMicroserviceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(InventoryMicroserviceApplication.class, args);
+	}
+  }
+  ```
+  `@EnabledDiscoveryClient` tells the Spring Boot service to activate the Netflix Eureka DiscoveryClient implementation and register its own host and port with the Eureka server.
+* After enabling DisconveryClient implementation of Eureka-client, provide the url of eureka-server to `inventory-service` so that it knows which url to use to connect `Eureka-Server`. (see [bootstrap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties))
+  ```
+  # Url of Eureka-server for service registry
+  eureka.client.serviceUrl.default-zone=http://localhost:8761/eureka/
+  ```
+That's it, service has been configured for Service-Registry operation with Eureka-Server. So when a eureka-client enabled service starts then it connects with Eureka-server and registers itself with Eureka, it provides `meta-data` about itself — such as `host, port, health indicator URL,and other details`. Eureka-Server receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance is normally removed from the registry.
