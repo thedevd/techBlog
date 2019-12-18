@@ -1,5 +1,5 @@
 ## Use of Feign Client to call other microservices
-product-catalog-service need to call inventory-service to fetch the availableQuantity of a product in inventory store. We will see how product-catalog-service can call inventory-service's API using `FeignClient`.
+Our `product-catalog-service` need to call `inventory-service` to fetch the availableQuantity of a product in inventory store. We will see how `product-catalog-service` can call `inventory-service's` API using `FeignClient`.
 * Spring Cloud OpenFeign is a declarative REST client which can be used by a micro-service to call another microservice.
 * **How to include Feign Client**
   * To include Feign in project use the `spring-cloud-starter-openfeign` dependency -
@@ -46,8 +46,8 @@ product-catalog-service need to call inventory-service to fetch the availableQua
 
 ## Use of Ribbon (A Load balancer)
 In this we will see how we can make use of Ribbon (Load balancer) to load balance the request.
-* In this demo we will see how to configure our product-catalog-service to allow FeignClient to communicate with Load balancer component called Ribbon. 
-* We will run more than two instances of inventory-service (first on 8082 port, second on 8083 and so on) and then configure the Ribbon in our product-catalog-service so that when it will make call to the APIs of inventory-service, the request will be routed to one of the running instance of inventory-service.
+* In this demo we will see how to configure our `product-catalog-service` to allow FeignClient to communicate with Load balancer component called Ribbon. 
+* We will run more than two instances of `inventory-service` (first on 8082 port, second on 8083 and so on) and then configure the Ribbon in our `product-catalog-service` so that when it will make call to the APIs of `inventory-service`, the request will be routed to one of the running instance of `inventory-service`.
   <p align="center">
     <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-load-balance-inventory-service.png">
   </p>
@@ -87,7 +87,8 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
  * Lets see the action of Load-balancer which we have configured so far-
    * Make sure spring-cloud-config-server is running, because each service on startup will talk to config-server for the required configuration.
    * Start two instances of inventory-service - first on 8082 port and second on 8083 port (use -Dserver.port property to launch them in 8082 and 8083 port respectively). For demo we are persisting some inventory details for several products (see [data.sql](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/data.sql)).
-   * Now start the product-catalog-service which internally talks to inventory-service to fetch availableQuantity of the product. The product-catalog-service is made to run on port 8092 by default. For demo we are persisting some products in the database on application startup, see [data.sql](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/resources/data.sql). Lets see the product catalog details using the following api -\
+   * Now start the product-catalog-service which internally talks to inventory-service to fetch availableQuantity of the product. The product-catalog-service is made to run on port 8092 by default. And for demo we are persisting some products in the database on application startup, see [data.sql](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/resources/data.sql).\
+     Lets try to fetch the product catalog details using the following api -\
      GET http://localhost:8092/api/product/p10000
      ```
      {
@@ -112,5 +113,5 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
      ```
      **Conclusion- You can see that, when we call the above API first time, the request for fetching availableQuantity goes to one of the instance of inventory-service running on port 8082. And on second time the request routed to different instance of inventory-service which runs on 8083. This proves that our Ribbon (Load-Balancer) is working expected**
      
-* **Drawback of using Ribbon alone**
- You might have noticed that, the product-catalog-service (which want to call inventory-service) need to have inventory-service's listOfServers (see above) which is hardcoded list. So incase there is a new instance of inventory-service is added in the application, we also need to make change in the `inventory-service.ribbon.listOfServers` property in the configuration file of product-catalog-service. This makes it more troublesome when the instances are frequently added and removed, so use of Ribbon alone is not sufficient when you have large no of services talking to each other. **And this is the place where Naming Server comes into the picture, where you do not have to hard code the listOfServers that load-balancer has to talk.**
+* **Drawback of using Ribbon alone**\
+ You might have noticed that, the `product-catalog-service` (which want to call `inventory-service`) need to have inventory-service's listOfServers (see above) which is hardcoded list. So incase there is a new instance of `inventory-service` is added in the application, we also need to make change in the `inventory-service.ribbon.listOfServers` property in the configuration file of product-catalog-service. This makes it more troublesome when the instances are frequently added and removed, so use of Ribbon alone is not sufficient when you have large no of services talking to each other. **And this is the place where Naming Server comes into the picture, where you do not have to hard code the listOfServers that load-balancer has to talk.**
