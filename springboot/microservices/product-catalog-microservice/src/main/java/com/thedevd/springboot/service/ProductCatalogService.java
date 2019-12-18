@@ -28,6 +28,10 @@ public class ProductCatalogService {
 		InventoryItemResponse inventoryResponse = inventoryServiceFeignClient.getInventoryByProductCode(productCode);
 		productCatalog.get().setAvailableQuantity(inventoryResponse.getAvailableQuantity());
 		
+		// also include the port to know which instance of inventory-service has returned the availableQuantity.
+		// this is done just for demo purpose of Ribbon (load balancer). (Do not do this in production)
+		productCatalog.get().setInventoryServicePort(inventoryResponse.getPort());
+		
 		return productCatalog.get();
 	}
 }

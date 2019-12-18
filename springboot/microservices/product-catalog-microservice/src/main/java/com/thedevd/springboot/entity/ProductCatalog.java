@@ -30,6 +30,11 @@ public class ProductCatalog {
 
 	@Transient
 	private Integer availableQuantity;
+	
+	// This property is added just to identify which instance of inventory-service has returned the response
+	// when Ribbon (load balancer) is used
+	@Transient
+	private String inventoryServicePort; 
 
 	public ProductCatalog() {
 		super();
@@ -71,4 +76,12 @@ public class ProductCatalog {
 		return id;
 	}
 
+	public String getInventoryServicePort() {
+		return inventoryServicePort;
+	}
+
+	public void setInventoryServicePort(String inventoryServicePort) {
+		this.inventoryServicePort = inventoryServicePort;
+	}
+	
 }
