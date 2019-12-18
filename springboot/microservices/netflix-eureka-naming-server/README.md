@@ -9,7 +9,7 @@
 `In this, we will see how to create a Naming Server using Netflix-Eureka of Spring Cloud and how microservice will register itself with Netflix-Eureka server (this operation is known as Service Registration). And at the end we will see how a service will communicate with other services using combination of FeignClient + Ribbon + Eureka`
 <hr/>
 
-#### Seting up the Netflix-Eureka Server
+### Seting up the Netflix-Eureka Server
 Setting up the Eureka server is very easy and straightforward, as you just have to add the netflix-eureka dependency and enable the eureka server using `@EnableEurekaServer` annotation.
 * Add starter dependency of netflix-eureka server `spring-cloud-starter-netflix-eureka-server`
   ```xml
@@ -49,3 +49,8 @@ This is what I have created to act as Eureka-Server for my microservices (invent
 [See this](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
 
 `Ok, now we can move on to the services to see how to configure them so that they can register themselves with Eureka-Server — this is where things start to get more interesting.`
+
+### Configure the Services to register in Eureka-Server
+Here we will see how to configure services in a way that on startup they should connect to `eureka-server` and register themselves as eureka client. We are assuming that our services are already using Ribbon as load-balancer to talk list of instances of other microservices (and this list is hardcoded in ribbon.listOfServers property, and after using Eureka there will not be need to hardcode this list).
+
+`The problem we are going to solve here is that, the product-catalog-service need to call one of the API of inventory-service. So before product-catalog-service will make call to inventory-service, the service would first need to know the list of running instances of inventory-service. This information will be provided by the Eureka-Server. So first we will configure our inventory-service to register in eureka-server`
