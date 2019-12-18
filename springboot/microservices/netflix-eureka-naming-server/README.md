@@ -7,6 +7,8 @@
   </p>
 
 `In this, we will see how to create a Naming Server using Netflix-Eureka of Spring Cloud and how microservice will register itself with Netflix-Eureka server (this operation is known as Service Registration). And at the end we will see how a service will communicate with other services using combination of FeignClient + Ribbon + Eureka`
+
+**Note** - There are other implementations for other service registries like Hashicorp’s Consul or Apache Zookeeper.
 <hr/>
 
 ### Setting up the Netflix-Eureka Server
@@ -116,4 +118,4 @@ Lets verify that `inventory-service` is getting registered with Eureka-service p
     <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/eureka-server-console.png"/>
   </p>
   
-`Do the same configuration for our product-catalog-inventory service`
+`I have done the same configuration for product-catalog-inventory service`
