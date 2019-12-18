@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "inventory")
@@ -20,6 +21,12 @@ public class InventoryItem {
 
 	@Column(name = "quantity")
 	private Integer availableQuantity = 0;
+	
+	
+	// This property is added just to identify which instance of inventory-service will be serving the request
+	// when Ribbon (load balancer) will be used. So this does not have any business use
+	@Transient
+	private String port; 
 
 	public InventoryItem() {
 		super();
@@ -49,4 +56,12 @@ public class InventoryItem {
 		this.availableQuantity = availableQuantity;
 	}
 
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+	
 }

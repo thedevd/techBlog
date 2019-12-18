@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,9 @@ public class InventoryItemController {
 
 	@Autowired
 	private InventoryItemRepository inventoryItemRepository;
+	
+	@Autowired
+	private Environment environment;
 
 	@GetMapping("/api/inventory")
 	public ResponseEntity<List<InventoryItem>> getAllInventory() {
@@ -31,6 +35,9 @@ public class InventoryItemController {
 	public ResponseEntity<InventoryItem> getInventoryByProductCode(@PathVariable String productCode) {
 		Optional<InventoryItem> inventoryItem = inventoryItemRepository.findByProductCode(productCode);
 		if (inventoryItem.isPresent()) {
+			// setting the port to distinguish which instance of service served the request when loadbalancer is used.
+			inventoryItem.get().setPort(environment.getProperty("local.server.port"));
+			
 			return ResponseEntity.status(HttpStatus.OK).body(inventoryItem.get());
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
