@@ -143,4 +143,4 @@ So after using eureka what will happen, the load-balancer will ask eureka about 
    <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka.png"/>
   </p>
 
-* After services have been configured talking to eureka-server, they all can discover each other easily using the service-registry stored in eureka-server.
+* After services have been configured talking to eureka-server, they all can discover each other easily in the service-registry of eureka-server and Ribbon can easily distribute the load as per the availability of the running instances of service.
