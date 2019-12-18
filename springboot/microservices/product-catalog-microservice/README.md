@@ -123,3 +123,5 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
      
 * **Drawback of using Ribbon alone**\
  You might have noticed that, the `product-catalog-service` (which want to call `inventory-service`) need to have inventory-service's listOfServers (see above) which is hardcoded list. So incase there is a new instance of `inventory-service` is added in the application, we also need to make change in the `inventory-service.ribbon.listOfServers` property in the configuration file of product-catalog-service. This makes it more troublesome when the instances are frequently added and removed, so use of Ribbon alone is not sufficient when you have large no of services talking to each other. **And this is the place where Naming Server comes into the picture, where you do not have to hard code the listOfServers that load-balancer has to talk.**
+
+## Use of Ribbon with Eureka-Server 
