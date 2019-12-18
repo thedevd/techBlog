@@ -26,4 +26,8 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 
 ## [Spring-Cloud-Config-Server (Configuration management)](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
    
- 
+## [Service-to-Service call using FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
+
+## [Ribbon-A client side load balancer](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-a-load-balancer)
+
+## [Netflix-Eureak- A Naming Server for Service Discovery](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
