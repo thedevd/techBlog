@@ -97,7 +97,7 @@ Lets start configuring our `inventory-service` application so that on startup it
   ```
   `@EnabledDiscoveryClient` tells the Spring Boot service to activate the Netflix Eureka DiscoveryClient implementation and register its own host and port with the Eureka server.\
   In addition to this, the eureka-client also provides ability to define a Spring MVC REST endpoint, `ServiceInstanceRestController`, that returns an enumeration of all the `ServiceInstance` instances of the service registered in the registry.\
-  http://localhost:8080/service-instances/inventory-service
+  http://localhost:8082/service-instances/inventory-service
   
 * After enabling DisconveryClient implementation of Eureka-client, provide the url of eureka-server to `inventory-service` so that it knows which url to use to connect `Eureka-Server`. (see [bootstrap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties))
   ```
