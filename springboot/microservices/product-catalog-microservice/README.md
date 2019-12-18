@@ -43,4 +43,10 @@ product-catalog-service need to call inventory-service to fetch the availableQua
     ```
     In the above example, we have created a Feign client to read from `inventory-service` which has the base url as `localhost:8082`. Furthermore, we have added the APIs of `inventory-service` that we want to call from `product-catalog-service`.\
     `The major drawback of using Feign client without Ribbon (load balancer) or Eureka (Service Registry) is that you have to use hardcoded url and if there is some other instance of inventory-service we want to use, we have to modify that url value each time which is is not recommended at all. We will see how this problem can be resolved when FeignClient is used with Ribbon or Eureka.`
-    
+
+## Use of Ribbon (A Load balancer)
+In this we will see how we can make use of Ribbon (Load balancer) to load balance the request. In this demo
+* We will run more than two instances of inventory-service (first on 8082 port, second on 8083 and so on) and then configure the Ribbon in our product-catalog-service so that when it will make call to the APIs of inventory-service, the request will be routed to one of the running instance of inventory-service.
+  <p align="center">
+    <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-load-balance-inventory-service.png">
+  </p>
