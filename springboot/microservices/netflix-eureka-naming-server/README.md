@@ -95,7 +95,8 @@ Lets start configuring our `inventory-service` application so that on startup it
     }
   }
   ```
-  `@EnabledDiscoveryClient` tells the Spring Boot service to activate the Netflix Eureka DiscoveryClient implementation and register its own host and port with the Eureka server.\
+  `@EnabledDiscoveryClient` tells the Spring Boot service to activate the Netflix Eureka DiscoveryClient implementation and register its own host and port with the Eureka server.
+  
   In addition to this, the eureka-client also provides ability to define a Spring MVC REST endpoint, `ServiceInstanceRestController`, that returns an enumeration of all the `ServiceInstance` instances of the service registered in the registry.\
   http://localhost:8082/service-instances/inventory-service
   
@@ -105,3 +106,13 @@ Lets start configuring our `inventory-service` application so that on startup it
   eureka.client.serviceUrl.default-zone=http://localhost:8761/eureka/
   ```
 That's it, service has been configured for Service-Registry operation with Eureka-Server. So when a eureka-client enabled service starts then it connects with Eureka-server and registers itself with Eureka, it provides `meta-data` about itself — such as `host, port, health indicator URL,and other details`. Eureka-Server receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance is normally removed from the registry.
+
+Lets verify that `inventory-service` is getting registered with Eureka-service properly-
+* Make sure our eureka-server [netflix-eureka-naming-server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server) is started and running on port 8761. Hit http://localhost:8761 to check the console, initially when no service is registered you will see nothing under `Instances currently registered with Eureka` section.
+* Now start two instances of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) application one by one. Run the first one on port 8082 and second on 8083. On startup each instance will register itself with eureka-server.
+* Hit http://localhost:8761 url of eureka-server and check the console, under `[Instances currently registered with Eureka]` section, you will see two instances of `inventory-service` registered .
+  <p align="center">
+    <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/eureka-server-console.png"/>
+  </p>
+  
+`Do the same configuration for our product-catalog-inventory service`
