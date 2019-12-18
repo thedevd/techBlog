@@ -9,7 +9,7 @@
 `In this, we will see how to create a Naming Server using Netflix-Eureka of Spring Cloud and how microservice will register itself with Netflix-Eureka server (this operation is known as Service Registration). And at the end we will see how a service will communicate with other services using combination of FeignClient + Ribbon + Eureka`
 <hr/>
 
-### Seting up the Netflix-Eureka Server
+### Setting up the Netflix-Eureka Server
 Setting up the Eureka server is very easy and straightforward, as you just have to add the netflix-eureka dependency and enable the eureka server using `@EnableEurekaServer` annotation. (You can also refer [official documentation link](https://spring.io/guides/gs/service-registration-and-discovery/) on setting up the Eureka-Server)
 * Add starter dependency of netflix-eureka server `spring-cloud-starter-netflix-eureka-server`
   ```xml
