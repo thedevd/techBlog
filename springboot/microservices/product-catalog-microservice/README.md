@@ -1,5 +1,9 @@
 ## Use of Feign Client to call other microservices
 Our `product-catalog-service` need to call `inventory-service` to fetch the availableQuantity of a product in inventory store. We will see how `product-catalog-service` can call `inventory-service's` API using `FeignClient`.
+<p align="center">
+  <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/use-of-feignclient.png"/>
+</p>
+
 * Spring Cloud OpenFeign is a declarative REST client which can be used by a micro-service to call another microservice.
 * **How to include Feign Client**
   * To include Feign in project use the `spring-cloud-starter-openfeign` dependency -
