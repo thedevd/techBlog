@@ -84,6 +84,10 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
     # load balanced when product-catalog-service need to call APIs of inventory-service.
     inventory-service.ribbon.listOfServers=http://localhost:8082,http://localhost:8083
     ```
+    <p align="center">
+     <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/enable-ribbon.png"/>
+    </p>
+
  * Lets see the action of Load-balancer which we have configured so far-
    * Make sure spring-cloud-config-server is running, because each service on startup will talk to config-server for the required configuration.
    * Start two instances of inventory-service - first on 8082 port and second on 8083 port (use -Dserver.port property to launch them in 8082 and 8083 port respectively). For demo we are persisting some inventory details for several products (see [data.sql](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/data.sql)).
