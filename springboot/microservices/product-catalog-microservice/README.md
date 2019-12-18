@@ -124,11 +124,23 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
 * **Drawback of using Ribbon alone**\
  You might have noticed that, the `product-catalog-service` (which want to call `inventory-service`) need to have inventory-service's listOfServers (see above) which is hardcoded list. So incase there is a new instance of `inventory-service` is added in the application, we also need to make change in the `inventory-service.ribbon.listOfServers` property in the configuration file of product-catalog-service. This makes it more troublesome when the instances are frequently added and removed, so use of Ribbon alone is not sufficient when you have large no of services talking to each other. **And this is the place where Naming Server comes into the picture, where you do not have to hard code the listOfServers that load-balancer has to talk.**
 
-## Use of Ribbon with Eureka-Server 
-<p align="center">
-  <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka.png"/>
-</p>
+## Use of Ribbon with Eureka-Server
+Previously we saw that if a `product-catalog-service` wants to call `inventory-service service` using Ribbon (load-balancer), then we have to hardcode the url of all the instances of `inventory-service` in `ribbon.listOfServers` property. This thing can be avoided by using `Naming-Server (Eureka)` along with Ribbon. This is what we need to change in terms of `product-catalog-service` configuration -\
+[see bootstrap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/resources/bootstrap.properties)
+```
+# Ribbon (Load balancer). Specify the list of inventory-service instances that you want to 
+# load balanced when product-catalog-service need to call APIs of inventory-service.
+# inventory-service.ribbon.listOfServers=http://localhost:8082,http://localhost:8083
 
-Previously we saw that if a service want to call another service using Ribbon (load-balancer), then we have to hardcode the url of all the instances of that service in `ribbon.listOfServers` property. This thing can be avoided by using `Naming-Server (Eureka)` along with Ribbon. So after using eureka what will happen is that, the load-balancer will ask eureka about up and running instances of the services to which it wants to route the request. Lets understand this with our scenario - 
+# Url of Eureka-server for service registry
+eureka.client.serviceUrl.default-zone=http://localhost:8761/eureka/
+```
+So after using eureka what will happen, the load-balancer will ask eureka about up and running instances of the services to which it wants to route the request. Lets understand this with our scenario - 
 
 * We have `product-catalog-service` which needs to make a call to one of the API of `inventory-service` for fetching the availableQuantity of the product in the inventory. Now lets suppose we will be runing two instances of `inventory-service`- first one on port 8082 and second on port 8083. So to make these two instances of `inventory-service` auto-discovered by the RibbonClient in the `product-catalog-service`, we need to first configure `inventory-service` and `product-catalog-service` for service-registry in Eureka-Server. I have already explained the steps on setting up a service for service-registry, check this [link](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server#configure-the-services-to-register-in-eureka-server) for the same.
+
+  <p align="center">
+   <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka.png"/>
+  </p>
+
+* After services have been configured talking to eureka-server, they all can discover each other easily using the service-registry stored in eureka-server.
