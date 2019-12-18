@@ -144,3 +144,8 @@ So after using eureka what will happen, the load-balancer will ask eureka about 
   </p>
 
 * After services have been configured talking to eureka-server, they all can discover each other easily in the service-registry of eureka-server and Ribbon can easily distribute the load as per the availability of the running instances of service.
+* So overall, flow is going to be like this (assuming we have netflix-eureka-naming server (on port 8761), product-catalog-service(on port 8092) and two instances of inventory-service are running (on port 8082 and 8083) ) -
+  * We send request to `product-catalog-service` to get the product detail - GET http://localhost:8092/api/product/p10000
+  * To get complete details of product along with availableQuantity the `product-catalog-service` will need to talk `inventory-service`. so Ribbon (RibbonClient defined in product-catalog-service) will then contact the `Eureka-Server` and ask for available instances of `inventory-service`.
+  * The `Eureka-server` will respond with requested details to the RibbonClient. Now RibbonClient of `product-catalog-service` knows that two instances of `inventory-service` are available. The Ribbon will then forward the request to one of the intstance (generally this is done using round-robin manner) and get the inventory details of the product and give it back to FeignClient of `product-catalog-service`. 
+
