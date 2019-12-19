@@ -29,7 +29,7 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Setting up config-server using spring-cloud-config-server
 * Configure a microservice to communicate with config-server.
    
-## [Service-to-Service: FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
+## [Service-to-Service call: FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
 * Configure a FeignClient in microservice using Spring-Cloud-OpenFeign.
 * Drawback of using FeignClient alone.
 
