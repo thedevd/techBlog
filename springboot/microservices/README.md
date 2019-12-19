@@ -24,20 +24,20 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Distributed tracing (Debugging and testing) -> Zipkin Distributed tracing
 * Login/Security -> Netflix Zuul API gateway
 
-## [Spring-Cloud-Config-Server (Configuration management)](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
+## [Configuration management: Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
 * Need of configuration manager in microservice architecture.
 * Setting up config-server using spring-cloud-config-server
 * Configure a microservice to communicate with config-server.
    
-## [Service-to-Service call using FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
+## [Service-to-Service: FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
 * Configure a FeignClient in microservice using Spring-Cloud-OpenFeign.
 * Drawback of using FeignClient alone.
 
-## [Ribbon-A client side load balancer](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-a-load-balancer)
+## [Load-Balancer: Ribbon-A client side load balancer](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-a-load-balancer)
 * Configure RibbonClient to talk with Ribbon- A client side load-balancer for routing requests to instances of outerworld.
 * Drawback of using RibbonClient alone.
 
-## [Netflix-Eureak- A Naming Server for Service Discovery](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
+## [Naming Server for Service Discovery: Netflix-Eureka](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
 * What is the need of Naming-server in microservice architecture.
 * Setting up the Netflix-Eureka Server
 * Configure the Services to register in Eureka-Server.
