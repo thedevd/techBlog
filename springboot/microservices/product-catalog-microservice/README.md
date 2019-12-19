@@ -140,7 +140,7 @@ So after using eureka what will happen, the load-balancer will ask eureka about 
 * We have `product-catalog-service` which needs to make a call to one of the API of `inventory-service` for fetching the availableQuantity of the product in the inventory. Now lets suppose we will be runing two instances of `inventory-service`- first one on port 8082 and second on port 8083. So to make these two instances of `inventory-service` auto-discovered by the RibbonClient in the `product-catalog-service`, we need to first configure `inventory-service` and `product-catalog-service` for service-registry in Eureka-Server. I have already explained the steps on setting up a service for service-registry, check this [link](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server#configure-the-services-to-register-in-eureka-server) for the same.
 
   <p align="center">
-   <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka.png"/>
+   <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-with-eureka-server.png"/>
   </p>
 
 * After services have been configured talking to eureka-server, they all can discover each other easily in the service-registry of eureka-server and Ribbon can easily distribute the load as per the availability of the running instances of service.
