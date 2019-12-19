@@ -25,9 +25,20 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Login/Security -> Netflix Zuul API gateway
 
 ## [Spring-Cloud-Config-Server (Configuration management)](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
+* Need of configuration manager in microservice architecture.
+* Setting up config-server using spring-cloud-config-server
+* Configure a microservice to communicate with config-server.
    
 ## [Service-to-Service call using FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
+* Configure a FeignClient in microservice using Spring-Cloud-OpenFeign.
+* Drawback of using FeignClient alone.
 
 ## [Ribbon-A client side load balancer](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-a-load-balancer)
+* Configure RibbonClient to talk with Ribbon- A client side load-balancer for routing requests to instances of outerworld.
+* Drawback of using RibbonClient alone.
 
 ## [Netflix-Eureak- A Naming Server for Service Discovery](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
+* What is the need of Naming-server in microservice architecture.
+* Setting up the Netflix-Eureka Server
+* Configure the Services to register in Eureka-Server.
+* [Use of Ribbon with Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-with-eureka-server).
