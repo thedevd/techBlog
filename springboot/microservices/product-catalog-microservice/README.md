@@ -53,7 +53,7 @@ In this we will see how we can make use of Ribbon (Load balancer) to load balanc
 * In this demo we will see how to configure our `product-catalog-service` to allow FeignClient to communicate with Load balancer component called Ribbon. 
 * We will run more than two instances of `inventory-service` (first on 8082 port, second on 8083 and so on) and then configure the Ribbon in our `product-catalog-service` so that when it will make call to the APIs of `inventory-service`, the request will be routed to one of the running instance of `inventory-service`.
   <p align="center">
-    <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-load-balance-inventory-service.png">
+    <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ribbon-load-balancer-inventory-service.png"/>
   </p>
   
 * **How to enable support of Ribbon**
