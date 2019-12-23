@@ -27,3 +27,6 @@ https://chartio.com/resources/tutorials/how-to-rename-a-database-in-mysql/
 
 * A Guide to Cassandra with Java \
 http://www.baeldung.com/cassandra-with-java
+
+* Primary key GenerationType STRATEGY in Hibernate (AUTO, IDENTITY, SEQUENCE, TABLE) \
+https://thoughts-on-java.org/jpa-generate-primary-keys/
