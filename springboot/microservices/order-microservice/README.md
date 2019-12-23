@@ -1,4 +1,5 @@
 ### Rest endpoints
+`Note - order-service will call customer-service to get the customer-details of order like name,emailid and address.` 
 * GET order details by id - http://localhost:8072/api/order/id/10001
   ```
   {
