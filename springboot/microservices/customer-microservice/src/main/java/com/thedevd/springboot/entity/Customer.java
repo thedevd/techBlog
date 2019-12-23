@@ -26,7 +26,7 @@ public class Customer {
 
 	@Column(name = "phone_no", unique = true, nullable = false)
 	//@Length(min = 10, max = 10)
-	@Pattern(regexp = "\\[0-9]{10}")
+	@Pattern(regexp = "[0-9]{10}")
 	private String phoneNo;
 
 	@Column(name = "address")
