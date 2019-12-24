@@ -111,12 +111,14 @@ In this we will discuss on three topics -
 	  public InventoryItemResponse getInventoryByProductCode(@PathVariable("productCode") String productCode);
   }
   ```
-* So seeing above, instead of telling FeignClient to connect with inventory-service directly, we want to force FeignClient to send the further request of inventory-service to Zuul API gateway which intern will route the request to inventory-service with help of eureka. To do this you just need to pass the application-name of Zuul to FeignClient and then update all the mappings starting with correct service-name, i.e.
+* So seeing above, instead of telling FeignClient to connect with inventory-microservice directly, we want to force FeignClient to send the further request of inventory-service to Zuul API gateway which intern will route the request to inventory-microservice with help of eureka. To do this you just need to pass the application-name of Zuul to FeignClient and then update all the mappings to start with application-name of inventory-microservice, i.e.
    ```java
+   // tell the Feign client to talk to Zuul API gateway instead of  end microservice.
    //@FeignClient(name = "inventory-service")
    @FeignClient(name = "netflix-zuul-api-gateway-server)
    ..
    ..
+   // update all the mappings to start with application-name of inventory-microservice application.
    //@GetMapping("/api/inventory/{productCode}")
    GetMapping("/inventory-service/api/inventory/{productCode}")
    ```
