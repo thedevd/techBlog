@@ -113,16 +113,21 @@ In this we will discuss on three topics -
   ```
 * So seeing above, instead of telling FeignClient to connect with inventory-microservice directly, we want to force FeignClient to send the further request of inventory-service to Zuul API gateway which intern will route the request to inventory-microservice with help of eureka. To do this you just need to pass the application-name of Zuul to FeignClient and then update all the mappings to start with application-name of inventory-microservice, i.e.
    ```java
-   // tell the Feign client to talk to Zuul API gateway instead of  end microservice.
-   //@FeignClient(name = "inventory-service")
-   @FeignClient(name = "netflix-zuul-api-gateway-server)
-   ..
-   ..
-   // update all the mappings to start with application-name of inventory-microservice application.
-   //@GetMapping("/api/inventory/{productCode}")
-   @GetMapping("/inventory-service/api/inventory/{productCode}")
+   // @FeignClient(name = "inventory-service", url = "localhost:8082")
+   // @FeignClient(name = "inventory-service")
+   // zuul: tell the Feign client to talk to Zuul API gateway instead of  end microservice.
+   @FeignClient(name = "netflix-zuul-api-gateway-server")
+   // @RibbonClient(name = "inventory-service")
+   public interface InventoryServiceFeignClient {
+
+	// zuul: update all the mappings to start with application-name of inventory-microservice application.
+	//@GetMapping("/api/inventory/{productCode}")
+	@GetMapping("/inventory-service/api/inventory/{productCode}")
+	public InventoryItemResponse getInventoryByProductCode(@PathVariable("productCode") String productCode);
+   }
    ```
-   see [InventoryServiceFeignClient.java](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/service/InventoryServiceFeignClient.java).
+   see [InventoryServiceFeignClient.java](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/service/InventoryServiceFeignClient.java).\
+   **Note- Ribbon is auto integrated with Zuul, so you may also remove @RibbonClient annotation from FeignClient.**
 * After we configured FeignClient to talk Zuul API gateway, we are good to go to verify the product-catalog-microservice -to- inventory-microservice communication through Zuul. But before we do this, lets implement a ZuulFilter which we will use to log the information of request recieved at Zuul API gateway server.
 
   ```java
