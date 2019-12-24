@@ -22,7 +22,7 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Global locks
 * Leadership election and cluster state monitoring
 * Distributed tracing (Debugging and testing) -> Zipkin Distributed tracing
-* Login/Security -> Netflix Zuul API gateway
+* API gateway (Authentication/Authorization/logging) -> Netflix Zuul API gateway
 
 ## [Configuration management: Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
 * Need of configuration manager in microservice architecture.
@@ -42,3 +42,10 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Setting up the Netflix-Eureka Server
 * Configure the Services to register in Eureka-Server.
 * [Use of Ribbon with Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-ribbon-with-eureka-server).
+
+## [API Gateway: Netflix-Zuul](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-zuul-api-gateway-server#netflix-zuul---an-api-gateway)
+* What is the need of API gateway in microservice architecture. (What problems it solves)
+* Setting up the Netflix-Zuul proxy server.
+* Executing a client request using Zuul. (Client-to-microservice communication via Zuul)
+* Configuring the FeignClient for microservice-to-microservice communication via Zuul.
+* Implementation of simple Pre type ZuulFilter. (For logging request inforation)
