@@ -90,4 +90,4 @@ In this we will discuss on three topics -
     "port": "8082"
     }
     ```
-  So we can see that, now clients do not need to know the port and host of the microservices, they can easily access them via Zuul API gateway proxy server. (Only host and port of Zuul is needed along with application-name of the service and the api path)
+  **So we can see that, now clients do not need to know the port and host of the microservices, instead they only need to know about Gateway service host and port along with application-name of the service and the api path; it is the Gateway's responsibility to route the service to the appropriate microservice.**
