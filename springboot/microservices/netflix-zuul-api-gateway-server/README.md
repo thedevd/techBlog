@@ -62,5 +62,31 @@ In this we will discuss on three topics -
 * The first image shows the direct interaction of client to end microservices without Zuul, where clients should know the port and host of the microservice they want to connect. The second image shows, we have now Zuul as common entry point means it receives all the requests coming from the clients(browser/mobile) and then delegates the requests to correct internal microservice. So in this clients does not need to know the port and host of the microservice they want to connect, this things is now handled by Zuul proxy server with the help of Eureka-Server having the service registry.
 * Let's test the routing of the client's request through Zuul proxy server which we have configured in first step. Before we do this we are assuming-
   * Already a [Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server) is running on port 8761.
-  * Atleast single instance of [product-catalog-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice) is running on port 8092 (.. 8093 and so on)
-  * Atleast single instance of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082 (.. 8083).
+  * Atleast single instance of [product-catalog-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice) is running on port 8092 (.. 8093). (Keep in mind the `spring.application.name` property which is `product-catalog-service`). This app has exposed an API to query the product catalog details which is - `/api/product/{productCode}`
+  * Atleast single instance of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082 (.. 8083).(Keep in mind the `spring.application.name` property which is `inventory-service`). This service has exposed an API to query inventory details of a product - `/api/inventory/{productCode}`
+  * [Zuul API gateway](https://github.com/thedevd/techBlog/edit/master/springboot/microservices/netflix-zuul-api-gateway-server/) is running on port 8765. (Note-`You might have to wait for couple of minutes for Zuul to come into action`
+  
+  The url structure for accessing the microservice through Zuul is going to be http://localhost:8765/{application-name}/{api-url}. 
+  * So to access `/api/product/{productCode}` api of `product-catalog-service`, the GET url will be - \
+    GET http://localhost:8765/product-catalog-service/api/product/p10001
+    ```
+    {
+    "id": 10001,
+    "productCode": "p10001",
+    "productName": "p10001 name",
+    "description": "p10001 description",
+    "availableQuantity": 100,
+    "inventoryServicePort": "8082"
+    }
+    ```
+  * Similarly inventory-service's api `/api/inventory/{productCode}` can be accessed through Zuul using the GET url- \
+    GET http://localhost:8765/inventory-service/api/inventory/p10001
+    ```
+    {
+    "id": 10001,
+    "productCode": "p10001",
+    "availableQuantity": 100,
+    "port": "8082"
+    }
+    ```
+  So we can see that, now clients do not need to know the port and host of the microservices, they can easily access them via Zuul API gateway proxy server. (Only host and port of Zuul is needed along with application-name of the service and the api path)
