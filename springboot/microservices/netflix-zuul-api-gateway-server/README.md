@@ -66,7 +66,8 @@ In this we will discuss on three topics -
   * Atleast single instance of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082 (.. 8083).(Keep in mind the `spring.application.name` property which is `inventory-service`). This service has exposed an API to query inventory details of a product - `/api/inventory/{productCode}`
   * [Zuul API gateway](https://github.com/thedevd/techBlog/edit/master/springboot/microservices/netflix-zuul-api-gateway-server/) is running on port 8765. (Note-`You might have to wait for couple of minutes for Zuul to come into action`
   
-  The url structure for accessing the microservice through Zuul is going to be http://localhost:8765/{application-name}/{api-url}. 
+  The url structure for accessing the microservice through Zuul is going to be \
+  http://{zuul-host}:{zuul-port}/{application-name}/{api-url}. 
   * So to access `/api/product/{productCode}` api of `product-catalog-service`, the GET url will be - \
     GET http://localhost:8765/product-catalog-service/api/product/p10001
     ```
