@@ -124,4 +124,75 @@ In this we will discuss on three topics -
    ```
    see [InventoryServiceFeignClient.java](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/service/InventoryServiceFeignClient.java).
 * After we configured FeignClient to talk Zuul API gateway, we are good to go to verify the product-catalog-microservice -to- inventory-microservice communication through Zuul. But before we do this, lets implement a ZuulFilter which we will use to log the information of request recieved at Zuul API gateway server.
+
+  ```java
+  import javax.servlet.http.HttpServletRequest;
+  import org.slf4j.Logger;
+  import org.slf4j.LoggerFactory;
+  import org.springframework.stereotype.Component;
+  import com.netflix.zuul.ZuulFilter;
+  import com.netflix.zuul.context.RequestContext;
+  import com.netflix.zuul.exception.ZuulException;
+
+  @Component
+  public class ZuulRequestLoggingPreFilter extends ZuulFilter {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Override
+	public boolean shouldFilter() {
+		return true; // true means should be applied for each request.
+	}
+
+	@Override
+	public Object run() throws ZuulException {
+		// run method is the place where our filter logic is placed
+		RequestContext reqCtx = RequestContext.getCurrentContext();
+		HttpServletRequest httpRequest = reqCtx.getRequest();
+
+		logger.info("Request method: {}, Request Url: {}", httpRequest.getMethod(),
+				httpRequest.getRequestURL().toString());
+
+		return null;
+	}
+
+	@Override
+	public String filterType() {
+		// Zuul supports 4 types of filters - pre,post,route and error
+		return "pre";
+	}
+
+	@Override
+	public int filterOrder() {
+		// decide in which order filter to be applied
+		return 1;
+	}
+
+  }
+  ```
+  This is a pre-type filter means this will be executed before request is routed to other end by Zuul. In this filter we are just logging the information of request like request-method, request-url. It means when the product-catalog-service will send request of calling inventory-service to Zuul, we will come to know about this with the help of this filter. (Also we can create such type of other filters at Zuul level to do lot of common aspects against the incoming requests like- authentication/authorization/monitoring).
+* Lets verify if actually the microservice-to-microservice communication is happening through Zuul. Before we go ahead make sure -
+  * [Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server) is running on port 8761.
+  * [Netflix-Zuul API gateway proxy server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-zuul-api-gateway-server) is running on port 8765.
+  * [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082.
+  * [product-catalog-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice) is running on port 8092.
   
+  Send the request to Zuul for getting the product-catalog details of a product with productCode 'p10001'- \
+  * GET http://localhost:8765/product-catalog-service/api/product/p10001 \
+    The response it is going to return is -
+    ```
+    {
+    "id": 10001,
+    "productCode": "p10001",
+    "productName": "p10001 name",
+    "description": "p10001 description",
+    "availableQuantity": 100,
+    "inventoryServicePort": "8082"
+    }
+    ```
+  * Now go to the console of Zuul api gateway server, you will see something like this -
+    ```
+    INFO 12044 --- [nio-8765-exec-5] c.t.s.f.ZuulRequestLoggingPreFilter      : Request method: GET, Request Url: http://localhost:8765/product-catalog-service/api/product/p10001
+    INFO 12044 --- [nio-8765-exec-6] c.t.s.f.ZuulRequestLoggingPreFilter      : Request method: GET, Request Url: http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10001
+    ```
+    **You can see we have logging information for two request. First line is for the request we sent to product-catalog-service through Zuul API gateway (http://localhost:8765/product-catalog-service/api/product/p10001) and second for the request that product-catalog-service internally sent to inventory-service through Zuul (http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10001). So this prooves that our microservice-to-microservice communication is happending pefectly via Zuul.**
