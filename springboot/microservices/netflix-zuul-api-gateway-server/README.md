@@ -60,7 +60,7 @@ In this we will discuss on three topics -
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/rest-calls-with-zuul.png"/></p>
 
 * The first image shows the direct interaction of client to end microservices without Zuul, where clients should know the port and host of the microservice they want to connect. The second image shows, we have now Zuul as common entry point means it receives all the requests coming from the clients(browser/mobile) and then delegates the requests to correct internal microservice. So in this clients does not need to know the port and host of the microservice they want to connect, this things is now handled by Zuul proxy server with the help of Eureka-Server having the service registry.
-* Let's test the routing of the client's request through Zuul proxy server which we have configured in first step. Before we do this we are assuming-
+* Let's test how client's request is executed/routed through Zuul proxy server which we have configured in first step. Before we do this we are assuming-
   * Already a [Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server) is running on port 8761.
   * Atleast single instance of [product-catalog-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice) is running on port 8092 (.. 8093). (Keep in mind the `spring.application.name` property which is `product-catalog-service`). This app has exposed an API to query the product catalog details which is - `/api/product/{productCode}`
   * Atleast single instance of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082 (.. 8083).(Keep in mind the `spring.application.name` property which is `inventory-service`). This service has exposed an API to query inventory details of a product - `/api/inventory/{productCode}`
@@ -92,3 +92,31 @@ In this we will discuss on three topics -
     }
     ```
   **So we can see that, now clients do not need to know the port and host of the microservices, instead they only need to know about Gateway service host and port along with application-name of the service and the api path; it is the Gateway's responsibility to route the service to the appropriate microservice.**
+  
+#### 3. Microservice-to-microservice communication through Zuul
+* Previously, we have seen how Zuul helps clients to communicate with appropiate microservice without knowing its deployment details (host and port). So it was a basically client-to-microservice communication through zuul, now we also want microservice-to-microservice communication to happen though zuul. We have already that scenario with `product-catalog-service` which internally makes call to `inventory-service` to get the inventory detail of the product. It is the perfect example as of now to demonstrat the microservice-to-microservice communication through Zuul.
+* As of now, product-catalog-service is calling inventory-service directly using FeignClient, where it takes help of Eureka to find out up and running instances of inventory-service. See [InventoryServiceFeignClient.java](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/service/InventoryServiceFeignClient.java) which is acting as proxy for inventory-service.
+  ```java
+  import org.springframework.cloud.netflix.ribbon.RibbonClient;
+  import org.springframework.cloud.openfeign.FeignClient;
+  import org.springframework.web.bind.annotation.GetMapping;
+  import org.springframework.web.bind.annotation.PathVariable;
+
+  // @FeignClient(name = "inventory-service", url = "localhost:8082")
+  @FeignClient(name = "inventory-service")
+  @RibbonClient(name = "inventory-service")
+  public interface InventoryServiceFeignClient {
+
+	  @GetMapping("/api/inventory/{productCode}")
+	  public InventoryItemResponse getInventoryByProductCode(@PathVariable("productCode") String productCode);
+  }
+  ```
+* So seeing above, instead of telling FeignClient to connect with inventory-service directly, we want to force FeignClient to send the further request of inventory-service to Zuul API gateway which intern will route the request to inventory-service with help of eureka. To do this you just need to pass the application-name of Zuul to FeignClient and then update all the mappings starting with correct service-name, i.e.
+   ```java
+   //@FeignClient(name = "inventory-service")
+   @FeignClient(name = "netflix-zuul-api-gateway-server)
+   ..
+   ..
+   //@GetMapping("/api/inventory/{productCode}")
+   GetMapping("/inventory-service/api/inventory/{productCode}")
+   ```
