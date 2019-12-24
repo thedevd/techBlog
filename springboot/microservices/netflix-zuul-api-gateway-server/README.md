@@ -1,4 +1,6 @@
 ## Netflix Zuul - An API Gateway
+<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/general-api-gateway-architecture.png"/></p>
+
 * In a typical microservice architecture we have many small microservices with multiple instances running on different host and port. 
 * So in this situation to access a particular instance of the microservice , clients (browsers/mobile) need to know the host and port on which that particular microservice is running, and this is very problematic from client perspective as they can not access the end microservices without knowing their port and host. (and it is very hard for client to remember port and host for each microservice).
 * What we need here is a common entry point to our all microservices that should be able to decide where to route the request. `By using a common entry point we will not only free our clients from knowing the deployment details of all the end microservices but also we can put common aspects like authentication/authorization/monitoring/logging at this level, so all these common aspects will be applied on each request and thus this will reduce significant development effort on the end microservices side.`
