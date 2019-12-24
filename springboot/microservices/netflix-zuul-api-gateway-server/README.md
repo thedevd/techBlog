@@ -1,7 +1,7 @@
 ## Netflix Zuul - An API Gateway
 * In a typical microservice architecture we have many small microservices with multiple instances running on different host and port. 
-* So in this situation to access a particular instance of the microservice , clients (browsers/mobile) need to know the host and port on which that particular microservice is running, and this is very problematic from client perspective as they can not access the end microservices without knowing their port and host. 
-* What we need here is a common entry point to our all microservices that should be able to decide where to route the request. `By using a common entry point we will not only free our clients from knowing the deployment details of all the end microservices but also we can do lot of things like authentication/authorization/logging/tracing at this level which will reduce significant development effort on the end microservices side.`
+* So in this situation to access a particular instance of the microservice , clients (browsers/mobile) need to know the host and port on which that particular microservice is running, and this is very problematic from client perspective as they can not access the end microservices without knowing their port and host. (and it is very hard for client to remember port and host for each microservice).
+* What we need here is a common entry point to our all microservices that should be able to decide where to route the request. `By using a common entry point we will not only free our clients from knowing the deployment details of all the end microservices but also we can put common aspects like authentication/authorization/monitoring/logging at this level, so all these common aspects will be applied on each request and thus this will reduce significant development effort on the end microservices side.`
 * This common entry point is termed as `API Gateway`. Netflix has created `Zuul server` for the same purpose and has open-sourced it and spring cloud community has provided a nice wrapper around it for easy integration with spring boot based microservice styled application. 
 
 **Note-** `Spring also has its own api gateway called Spring Cloud Gateway.` It has non-blocking APIs and supports long-lived connections like WebSockets.
@@ -12,7 +12,7 @@ In this we will discuss on three topics -
 2. Demonstration of end user interacting with microservices through Zuul API gateway.
 3. Configuration of Microservices for microservice-to-microservice communication through Zuul API gateway.
 
-#### 1. Setup
+#### 1. Setup of Netflix-Zuul proxy server
 * As we know the best way of creating spring boot skeleton is to use [Spring intitializer](https://start.spring.io/). So create a maven project there and add these dependencies-
   * Zuul
     ```xml
@@ -54,3 +54,13 @@ In this we will discuss on three topics -
    eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
    ```
 `That's it, we are done with configuring Zuul api gateway proxy server. In the next section we will see how client can now make request to a microservice via Zuul.`
+
+#### 2. Client to microservice communication via Zuul
+<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/rest-calls-without-zuul.png"/></p>
+<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/rest-calls-with-zuul.png"/></p>
+
+* The first image shows the direct interaction of client to end microservices without Zuul, where clients should know the port and host of the microservice they want to connect. The second image shows, we have now Zuul as common entry point means it receives all the requests coming from the clients(browser/mobile) and then delegates the requests to correct internal microservice. So in this clients does not need to know the port and host of the microservice they want to connect, this things is now handled by Zuul proxy server with the help of Eureka-Server having the service registry.
+* Let's test the routing of the client's request through Zuul proxy server which we have configured in first step. Before we do this we are assuming-
+  * Already a [Eureka-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server) is running on port 8761.
+  * Atleast single instance of [product-catalog-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice) is running on port 8092 (.. 8093 and so on)
+  * Atleast single instance of [inventory-service](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) is running on port 8082 (.. 8083).
