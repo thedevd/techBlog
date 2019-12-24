@@ -120,5 +120,8 @@ In this we will discuss on three topics -
    ..
    // update all the mappings to start with application-name of inventory-microservice application.
    //@GetMapping("/api/inventory/{productCode}")
-   GetMapping("/inventory-service/api/inventory/{productCode}")
+   @GetMapping("/inventory-service/api/inventory/{productCode}")
    ```
+   see [InventoryServiceFeignClient.java](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/service/InventoryServiceFeignClient.java).
+* After we configured FeignClient to talk Zuul API gateway, we are good to go to verify the product-catalog-microservice -to- inventory-microservice communication through Zuul. But before we do this, lets implement a ZuulFilter which we will use to log the information of request recieved at Zuul API gateway server.
+  
