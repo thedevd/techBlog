@@ -80,6 +80,7 @@ In this we will discuss on three topics -
     "inventoryServicePort": "8082"
     }
     ```
+    **Behind the scene -** here we made a call to `/api/product/{productCode}` api of `product-catalog-service`through Zuul. First Zuul will check with Eureka if there is any service registered as product-catalog-service in service registry. If it's there, it will get the port and host for the product-catalog-service and append to the URL part to complete the rest API url and make the call. (Also, Zuul is Ribbon aware, so it will automatically load balance the call if there are multiple instance of the backend service running)
   * Similarly inventory-service's api `/api/inventory/{productCode}` can be accessed through Zuul using the GET url- \
     GET http://localhost:8765/inventory-service/api/inventory/p10001
     ```
