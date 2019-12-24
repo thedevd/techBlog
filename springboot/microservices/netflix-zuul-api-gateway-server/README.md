@@ -196,3 +196,5 @@ In this we will discuss on three topics -
     INFO 12044 --- [nio-8765-exec-6] c.t.s.f.ZuulRequestLoggingPreFilter      : Request method: GET, Request Url: http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10001
     ```
     **You can see we have logging information for two request. First line is for the request we sent to product-catalog-service through Zuul API gateway (http://localhost:8765/product-catalog-service/api/product/p10001) and second for the request that product-catalog-service internally sent to inventory-service through Zuul (http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10001). So this prooves that our microservice-to-microservice communication is happending pefectly via Zuul.**
+    
+    <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/microservice-to-microservice-comm-via-zuul.png"/></p>
