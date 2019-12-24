@@ -203,3 +203,25 @@ In this we will discuss on three topics -
     **You can see we have logging information for two request. First line is for the request we sent to product-catalog-service through Zuul API gateway (http://localhost:8765/product-catalog-service/api/product/p10001) and second for the request that product-catalog-service internally sent to inventory-service through Zuul (http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10001). So this prooves that our microservice-to-microservice communication is happending pefectly via Zuul.**
     
     <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/microservice-to-microservice-comm-via-zuul.png"/></p>
+
+
+Similary [order-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/order-microservice) is calling [customer-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/customer-microservice) via Zuul to get the customer details for a particular order (such as customer-name, customer-address, customer-emailid).
+```java
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+//@FeignClient(name = "customer-service", url = "localhost:8062")
+// @FeignClient(name = "customer-service")
+//zuul: tell the Feign client to talk to Zuul API gateway instead of  end microservice.
+@FeignClient(name = "netflix-zuul-api-gateway-server")
+// @RibbonClient(name = "customer-service")
+public interface CustomerServiceFeignClient {
+
+	// zuul: update all the mappings to start with application-name of inventory-microservice application.
+	//@GetMapping("/api/customer/phone/{phoneNo}")
+	@GetMapping("/customer-service/api/customer/phone/{phoneNo}")
+	public CustomerDetailResponse getCustomerDetailsByPhoneNo(@PathVariable("phoneNo") String phoneNo);
+}
+```
