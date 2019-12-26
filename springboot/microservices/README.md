@@ -48,4 +48,4 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Setting up the Netflix-Zuul proxy server.
 * Executing a client request using Zuul. (Client-to-microservice communication via Zuul)
 * Configuring the FeignClient for microservice-to-microservice communication via Zuul.
-* Implementation of simple Pre type ZuulFilter. (For logging request inforation)
+* Implementation of simple Pre type ZuulFilter. (For logging request information)
