@@ -1,3 +1,27 @@
+This project aims to demostrate building an application (ecommerce) in microservice architecture style using SpringBoot and SpringCloud.
+
+# Table of Contents
+**1. General**
+* What is microservice architecture.
+* [Microservice architecture advantages](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#microservice-architecture-advantages)
+* [Challenges in microservice architecture](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#challenges-in-microservice-architecture)
+* [What is Spring Cloud](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#spring-cloud)
+   
+**2. Building Ecommerce application in microservice architecture style**
+   * Architecture
+   * Spring cloud components to build microservice pattern
+     * [Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#configuration-management-spring-cloud-config-server) `(Configuration Management)`
+     * [OpenFeign](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#service-to-service-call-feignclient) `(REST client for service-to-service calling)`
+     * [RibbonClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#load-balancer-ribbon-a-client-side-load-balancer) `(A client side load-balancer)`
+     * [Netflix-Eureka](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#naming-server-for-service-discovery-netflix-eureka) `(Naming server for service Discovery and Registry)`
+     * [Netflix-Zuul](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#api-gateway-netflix-zuul) `(An API Gateway proxy server)`
+   * Backend Microservices
+     * [product-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice)
+     * [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice)
+     * [customer-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/customer-microservice)
+     * [order-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/order-microservice)
+     * [review-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/review-microservice)
+
 ## Microservice architecture advantages
 * Technologies agnostics /independent. 
 * Easy development/Management and independent deployment (Rapid Release cycle) 
