@@ -21,7 +21,7 @@ This project aims to demostrate building an application (ecommerce) in microserv
      * [customer-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/customer-microservice)
      * [order-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/order-microservice)
      * [review-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/review-microservice)
-     * Port(server.port) and application name (spring.application.name) details-
+     * Port and application name details. (server.port and spring.application.name)
      
 ## Microservice architecture advantages
 * Technologies agnostics /independent. 
@@ -63,6 +63,18 @@ Therefor divinding our ecommerce application into these business domain (there c
 * Order
 * Review
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ecomm-highlevel-architecture.png"/></p>
+
+## Port and application name details
+| Application | Application name | port |
+| ----------- | ---------------- | ---- |
+| Spring-Cloud-Config-server | spring-cloud-config-server | 8888 |
+| Neflix-Eureka Server | netflix-eureka-naming-server | 8761 |
+| Netflix-Zuul API Gateway | netflix-zuul-api-gateway-server | 8765 |
+| product-microservice | product-catalog-service | 8092,8093... |
+| inventory-microservice | inventory-service | 8082,8083... |
+| order-microservice | order-service | 8072,8073... |
+| customer-microservice | customer-service | 8062,8063... |
+| review-microservice | review-service | 8052,8053... |
 
 ## [Configuration management: Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
 * Need of configuration manager in microservice architecture.
