@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "review")
@@ -32,7 +32,8 @@ public class Review {
 	private String description;
 
 	@Column(name = "rating", nullable = false)
-	@Length(min = 1, max = 5)
+	@Min(1)
+	@Max(5)
 	private Double rating;
 
 	@Column(name = "review_date")
