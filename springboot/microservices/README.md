@@ -2,7 +2,7 @@ This project aims to demostrate building an application (ecommerce) in microserv
 
 # Table of Contents
 **1. General**
-* What is microservice architecture.
+* [What is microservice architecture](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#architecture).
 * [Microservice architecture advantages](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#microservice-architecture-advantages)
 * [Challenges in microservice architecture](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#challenges-in-microservice-architecture)
 * [What is Spring Cloud](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#spring-cloud)
