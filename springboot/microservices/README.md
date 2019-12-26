@@ -8,7 +8,7 @@ This project aims to demostrate building an application (ecommerce) in microserv
 * [What is Spring Cloud](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#spring-cloud)
    
 **2. Building Ecommerce application in microservice architecture style**
-   * Architecture
+   * [Architecture](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#architecture)
    * Spring cloud components to build microservice pattern
      * [Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#configuration-management-spring-cloud-config-server) `(Configuration Management)`
      * [OpenFeign](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#service-to-service-call-feignclient) `(REST client for service-to-service calling)`
@@ -21,9 +21,6 @@ This project aims to demostrate building an application (ecommerce) in microserv
      * [customer-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/customer-microservice)
      * [order-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/order-microservice)
      * [review-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/review-microservice)
-     
-## Architecture
-<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ecomm-highlevel-architecture.png"/></p>
 
 ## Microservice architecture advantages
 * Technologies agnostics /independent. 
@@ -50,6 +47,21 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Leadership election and cluster state monitoring
 * Distributed tracing (Debugging and testing) -> Zipkin Distributed tracing
 * API gateway (Authentication/Authorization/logging) -> Netflix Zuul API gateway
+
+## Architecture
+Microservice architecture style approach says decompose an application into smaller services where each service is 
+* independent/self-contained means independent release cycle,
+* runs in its own process,
+* handles single bussiness domain,
+* communicate with other services using lightweight mechanism (Mostly HTTP based RESTful APIs).
+
+Therefor divinding our ecommerce application into these business domain (there could be more, But I have covered important ones)-
+* Product
+* Inventory
+* Customer
+* Order
+* Review
+<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/ecomm-highlevel-architecture.png"/></p>
 
 ## [Configuration management: Spring-Cloud-Config-Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
 * Need of configuration manager in microservice architecture.
