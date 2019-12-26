@@ -21,7 +21,7 @@ This project aims to demostrate building an application (ecommerce) in microserv
      * [customer-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/customer-microservice)
      * [order-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/order-microservice)
      * [review-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/review-microservice)
-     * Port and application name details. (server.port and spring.application.name)
+     * [Port and application name details](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#port-and-application-name-details) (`server.port` and `spring.application.name`)
      
 ## Microservice architecture advantages
 * Technologies agnostics /independent. 
