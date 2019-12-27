@@ -205,9 +205,11 @@ Add these dependencies in spring-cloud-config-server and inventory-microservice,
    inventory-service.dummy.property1=dev_dummyvalue1_changes
    inventory-service.dummy.property2=dev_dummyvalue2_changed_too
    ```
-* Now it is time to refresh these changed configuration in each three instance of inventory-microservice. To do this you only need to invoke the `/actuator/bus-refesh` endpoint for one of the instance only, spring cloud bus will take care of refershing the same on remaining instances. So **This way, we don't need to go to individual nodes and trigger configuration update which was needed in case not using spring-cloud-bus.** \
+* Now it is time to refresh these changed configuration in each three instance of inventory-microservice. To do this you only need to invoke the `/actuator/bus-refesh` endpoint for one of the instance only, spring cloud bus will take care of refershing the same on remaining instances. So **This way, we don't need to go to individual nodes and trigger configuration update which was needed in case not using spring-cloud-bus.**
+
   For example- we invoke the `/actuator/bus-refesh` for instance running on 8083 \
-  **POST http://localhost:8082/actualtor/bus-refresh** \
+  **POST http://localhost:8082/actualtor/bus-refresh**
+  
   After invoking bus-refresh endpoint on one of the application,  a messagea message will be sent to RabbitMQ exchange to inform about refresh event. And all subscribed nodes will then update their configuration automatically.
  
 * As a proove, look for this log information in each instance of inventory-service -
