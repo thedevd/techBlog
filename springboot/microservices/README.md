@@ -37,17 +37,17 @@ This project aims to demostrate building an application (ecommerce) in microserv
 
 ## Spring Cloud 
 Spring cloud provides lot of tools which helps developers to `quickly build some common patterns of distributed system`. Some of those patterns are -
-* Configuration management -> Spring Cloud Config Server
-* Service Registration and Discovery  (aka Naming Server) -> eureka  
-* Load balancing -> Ribbon
-* Fault tolerance -> Hystrix
+* Configuration management -> `Spring Cloud Config Server`, `Spring-Cloud-Bus`
+* Service Registration and Discovery  (aka Naming Server) -> `Netflix Eureka`  
+* Load balancing -> `Netflix Ribbon`
+* Fault tolerance -> `Hystrix`
 * Circuit breaker
 * One-time tokens 
 * Distributed sessions
 * Global locks
 * Leadership election and cluster state monitoring
-* Distributed tracing (Debugging and testing) -> Zipkin Distributed tracing
-* API gateway (Authentication/Authorization/logging) -> Netflix Zuul API gateway
+* Distributed tracing (Debugging and testing) -> `Zipkin Distributed tracing server`
+* API gateway (Authentication/Authorization/logging) -> `Netflix Zuul API gateway`
 
 ## Architecture
 Microservice architecture style approach says decompose an application into smaller services where each service is 
