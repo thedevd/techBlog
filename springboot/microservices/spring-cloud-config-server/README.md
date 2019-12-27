@@ -212,7 +212,7 @@ Add these dependencies in spring-cloud-config-server and inventory-microservice,
   
   After invoking bus-refresh endpoint on one of the node,  a message will be sent to RabbitMQ exchange to inform about configuration refresh event. And all subscribed nodes will then update their configuration automatically.
  
-* As a proove, look for this log information in each instance of inventory-service -
+* As a proof, look for this log information in each instance of inventory-service -
   ```
   o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed 
   [config.client.version, inventory-service.dummy.property1, inventory-service.dummy.property2]
