@@ -1,12 +1,12 @@
 ## [Spring Cloud Config Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) (Configuration Manager)
-One of the challange in microservice architecture is managing the configurations for microservices. In typical microservice architecture we usually have number of instances of services running with mutliple environments, what I mean - 
-* lets say we have three microservices [microservice-1, microservice-2 and microserver-3]. Now suppose we have different different configurations specific to environment (dev/qa/prod) for each of the services. So the `problem is How to enable a service to run in multiple environments without modification`.
-* One way of managing these configurations is to keep all environment specific configuration withing microservice itself, but as soon as you scale your applications to run large no of services on multiple environments, it becomes difficult to manage those configurations which are stored in microservice level.
-* Better way to manage them is to store all configurations in a central place which makes managing those external properties/configurations easy for services across all environments. Another advantage of keeping them in centralized repository is that as an application moves through the deployment pipeline from dev to test and then into production, we can easily manage the configuration between those environments and be assured that applications have everything they need to run when they are migrated. So in nutshell we would have these benefits -
+One of the challange in microservice architecture is managing the external configurations for microservices. In typical microservice architecture we usually have number of instances of services running with mutliple environments, what I mean - 
+* lets say we have three microservices [microservice-1, microservice-2 and microserver-3]. Now suppose we have different different external configurations specific to environment (dev/qa/prod) for each of the services. So the `problem is How to enable a service to run in multiple environments without modification`.
+* One way of managing these external configurations is to keep all environment specific external configuration withing microservice itself, but as soon as you scale your applications to run large no of services on multiple environments, it becomes difficult to manage those configurations which are stored in microservice level.
+* Better way to manage them is to store all external configurations in a central place which makes managing those external properties/configurations easy for services across all environments. Another advantage of keeping them in centralized repository is that as an application moves through the deployment pipeline from dev to test and then into production, we can easily manage the configuration between those environments and be assured that applications have everything they need to run when they are migrated. So in nutshell we would have these benefits -
   * A service can be run in multiple environments - dev, test, qa, staging, production - without modification and/or recompilation.
   * Different environments have different instances of the external/3rd party services, so a service can be provided with required configuration data that tells it how to connect to the external/3rd party services based on the environment type. For example, the database network location and credentials.
 
-`Spring-Cloud-Config-Server is the module in the spring cloud which is used to manage the configurations stored in centralized repostitory`
+`Spring-Cloud-Config-Server is the module in the spring cloud which is used to manage the external configurations stored in centralized repostitory`
 
 <p align="center">
 <img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/spring-cloud-config-server.png">
@@ -102,7 +102,6 @@ After we have spring-cloud-config-server created for configuration management, n
 		{
 			"name": "file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties",
 			"source": {
-				"server.port": "8082",
 				"spring.jpa.show-sql": "true",
 				"spring.h2.console.enabled": "false",
 				"inventory-service.dummy.property1": "default_dummyvalue1",
@@ -135,7 +134,6 @@ After we have spring-cloud-config-server created for configuration management, n
 		{
 			"name": "file://C:/Users/Dell/mygithub/ecom-microservices-config-repo/inventory-service.properties",
 			"source": {
-				"server.port": "8082",
 				"spring.jpa.show-sql": "true",
 				"spring.h2.console.enabled": "false",
 				"inventory-service.dummy.property1": "default_dummyvalue1",
@@ -145,3 +143,14 @@ After we have spring-cloud-config-server created for configuration management, n
 	]
     }
     ```
+## Problem with Spring Cloud Config server without Spring Cloud Bus
+* Suppose we have three instances of `inventory-service` running with dev profile, it means each instance are using dev profile's external configurations fetched from centralized git repository through spring-cloud-config-server. And later point of time you want to change some property for dev's profile (i.e. `inventory-service-dev.properties`).
+* So you made changes in the `inventory-service-dev.properties` stored in `centralized git repository` and committed the changes. Now the question is how to reflect this particular change in each three instances of inventory-service.
+* The straight-forward way to reflect any changes done in the external configuration stored in centralized git repo is to take help of **spring-boot-actuator**. There is an endpoint provided by Actuator to refresh the configuration in the application, and that endpoint is - POST `/actuator/refresh`. \
+  **Note- By default this endpoint is restricted for security reason. So for demo I have disabled it and thus allowed Actuator to expose all its endpoints i.e. health,info,beans,env,myendpoints**. And to enable this, add this property in [bootstrap.properties](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/resources/bootstrap.properties) file of inventory-service.
+  ```
+  # management.endpoints.web.exposure.include is related to actuator. * means enable all the endpoints of actuator i.e.
+  # health,info,beans,env,myendpoints
+  management.endpoints.web.exposure.include=*
+  ```
+* There is again a problem of using this approach to refresh configuration in each instance of the inventory-service using the above mentioned endpoint. Now imagine we have 100 of inventory-service instance are running, so it is not at all good practice to hit `/actuator/refresh` endpoint for each instance, this is like an overhead of maintaince activity of forcing individual instance to refersh configuration. **Spring-Cloud-Bus is a way to solve this problem that prevents invoking the same endpoint on each instance of microservice to refersh the configuration**  
