@@ -159,7 +159,7 @@ After we have spring-cloud-config-server created for configuration management, n
 Spring Cloud Bus links nodes of distributed system using a lightweight message broker (AMQP based broker such as RabbitMQ, ActiveMQ). The primary use of Spring Cloud bus is to broadcast configuration changes related to a particular microservice in the application.
 
 Let's try to solve our problem of refreshing configuration in each instance of inventory-service using Spring-Cloud-Bus. In this we are going to use RabbitMQ as AMPQ based message broker. To install RabbitMQ, I recommend use of docker image, this how to download dockerized RabbitMQ image and start it (Before this make sure Docker is installed and running) -
-#### RabbitMQ docker setup -
+#### 1. RabbitMQ docker setup -
 ```
 > docker pull rabbitmq:3-management 
 ```
@@ -168,7 +168,7 @@ Let's try to solve our problem of refreshing configuration in each instance of i
 ```
 Open http://localhost:15672, which will show the management console login screen. The default username/password `guest/guest`. RabbitMQ will also listen on port 5672.
 
-#### Updated config-sever and config-client to configure spring-cloud-bus and subscribe RabbitMQ exchange-
+#### 2. Updated config-sever and config-client to configure spring-cloud-bus and subscribe RabbitMQ exchange-
 Add these dependencies in spring-cloud-config-server and inventory-microservice, Spring Cloud takes care of the rest -
 ```xml
 <dependency>
@@ -188,10 +188,30 @@ Add these dependencies in spring-cloud-config-server and inventory-microservice,
 * The `spring-cloud-bus` dependency will enable the Spring-Cloud-Bus support and provide a `/actuator/bus-refresh` endpoint inside Actuator. (this endpoint is similar to `/actuator/refresh` endpoint but there is a major difference that we will see in next section)
 * The `[spring-boot-starter-amqp`, `spring-cloud-stream-binder-rabbit]` dependencies will allow application to connect and subscribe RabbitMQ (on port 5672 as default) and now application will start listening for configuration refresh events.
 
-#### Test the Spring-Cloud-Bus
+#### 3. Test the Spring-Cloud-Bus
 * First start these applications in following order
   * Start [netflix-eureka-naming-server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
   * Start [spring-cloud-config-server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
-  * Start two instances on [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) on port 8082 and 8083. And also specify the profile as "dev" to request config-server for dev environment configuration which is stored in [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties) file.
+  * Start three instances of [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) on port 8082,8083,8084. And also specify the profile as "dev" to request config-server for dev environment configuration which is stored in [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties) file.
     `Use -Dspring.profiles.active -Dserver.port` to specify profile and port to use. \
     Ex - `-Dserver.port=8083 -Dspring.profiles.active=dev`
+    
+    You can use `/actuator/env` endpoints to look at what configurations each instance is using.
+    
+ * Change the configuration related to dev profile i.e. in the file [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties). Suppose changing these both dummy properties -
+   ```
+   #inventory-service.dummy.property1=dev_dummyvalue1
+   #inventory-service.dummy.property2=dev_dummyvalue2
+   inventory-service.dummy.property1=dev_dummyvalue1_changes
+   inventory-service.dummy.property2=dev_dummyvalue2_changed_too
+   ```
+* Now it is time to refresh these changed configuration in each three instance of inventory-microservice. To do this you only need to invoke the `/actuator/bus-refesh` endpoint for one of the instance only, spring cloud bus will take care of refershing the same on remaining instances. So **This way, we don't need to go to individual nodes and trigger configuration update which was needed in case not using spring-cloud-bus.** \
+  For example- we invoke the `/actuator/bus-refesh` for instance running on 8083 \
+  **POST http://localhost:8082/actualtor/bus-refresh** \
+  After invoking bus-refresh endpoint on one of the application,  a messagea message will be sent to RabbitMQ exchange to inform about refresh event. And all subscribed nodes will then update their configuration automatically.
+ 
+* As a proove, look for this log information in each instance of inventory-service -
+  ```
+  o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed 
+  [config.client.version, inventory-service.dummy.property1, inventory-service.dummy.property2]
+  ```
