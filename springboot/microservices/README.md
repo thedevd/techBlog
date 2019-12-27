@@ -80,6 +80,8 @@ Therefor divinding our ecommerce application into these business domain (there c
 * Need of configuration manager in microservice architecture.
 * Setting up config-server using spring-cloud-config-server
 * Configure a microservice to communicate with config-server.
+* Problem in Configuration refersh without using Spring-Cloud-Bus.
+* How to setup spring-cloud-bus for easy configuration refresh operation.
    
 ## [Service-to-Service call: FeignClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice#use-of-feign-client-to-call-other-microservices)
 * Configure a FeignClient in microservice using Spring-Cloud-OpenFeign.
