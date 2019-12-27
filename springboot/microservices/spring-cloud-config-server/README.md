@@ -210,7 +210,7 @@ Add these dependencies in spring-cloud-config-server and inventory-microservice,
   For example- we invoke the `/actuator/bus-refesh` for instance running on 8083 \
   **POST http://localhost:8082/actualtor/bus-refresh**
   
-  After invoking bus-refresh endpoint on one of the application,  a messagea message will be sent to RabbitMQ exchange to inform about refresh event. And all subscribed nodes will then update their configuration automatically.
+  After invoking bus-refresh endpoint on one of the node,  a message will be sent to RabbitMQ exchange to inform about configuration refresh event. And all subscribed nodes will then update their configuration automatically.
  
 * As a proove, look for this log information in each instance of inventory-service -
   ```
