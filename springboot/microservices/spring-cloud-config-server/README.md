@@ -153,4 +153,45 @@ After we have spring-cloud-config-server created for configuration management, n
   # health,info,beans,env,myendpoints
   management.endpoints.web.exposure.include=*
   ```
-* There is again a problem of using this approach to refresh configuration in each instance of the inventory-service using the above mentioned endpoint. Now imagine we have 100 of inventory-service instance are running, so it is not at all good practice to hit `/actuator/refresh` endpoint for each instance, this is like an overhead of maintaince activity of forcing individual instance to refersh configuration. **Spring-Cloud-Bus is a way to solve this problem that prevents invoking the same endpoint on each instance of microservice to refersh the configuration**  
+* There is again a problem of using the above mentioned Actuator endpoint to refresh configuration. Now imagine we have 100 of inventory-service instance are running, so it is not at all good practice to hit `/actuator/refresh` endpoint for each instance, this is like an overhead of maintaince activity of going to every single instance and reload configuration by accessing actuator endpoint to refersh configuration. **Spring-Cloud-Bus is a way to solve this problem that prevents invoking the same endpoint on each instance of microservice to refersh the configuration.**  
+
+### Spring Cloud Bus
+Spring Cloud Bus links nodes of distributed system using a lightweight message broker (AMQP based broker such as RabbitMQ, ActiveMQ). The primary use of Spring Cloud bus is to broadcast configuration changes related to a particular microservice in the application.
+
+Let's try to solve our problem of refreshing configuration in each instance of inventory-service using Spring-Cloud-Bus. In this we are going to use RabbitMQ as AMPQ based message broker. To install RabbitMQ, I recommend use of docker image, this how to download dockerized RabbitMQ image and start it (Before this make sure Docker is installed and running) -
+#### RabbitMQ docker setup -
+```
+> docker pull rabbitmq:3-management 
+```
+```
+> docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+```
+Open http://localhost:15672, which will show the management console login screen. The default username/password `guest/guest`. RabbitMQ will also listen on port 5672.
+
+#### Updated config-sever and config-client to configure spring-cloud-bus and subscribe RabbitMQ exchange-
+Add these dependencies in spring-cloud-config-server and inventory-microservice, Spring Cloud takes care of the rest -
+```xml
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-bus</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+</dependency>
+```
+* The `spring-cloud-bus` dependency will enable the Spring-Cloud-Bus support and provide a `/actuator/bus-refresh` endpoint inside Actuator. (this endpoint is similar to `/actuator/refresh` endpoint but there is a major difference that we will see in next section)
+* The `[spring-boot-starter-amqp`, `spring-cloud-stream-binder-rabbit]` dependencies will allow application to connect and subscribe RabbitMQ (on port 5672 as default) and now application will start listening for configuration refresh events.
+
+#### Test the Spring-Cloud-Bus
+* First start these applications in following order
+  * Start [netflix-eureka-naming-server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/netflix-eureka-naming-server)
+  * Start [spring-cloud-config-server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/spring-cloud-config-server)
+  * Start two instances on [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice) on port 8082 and 8083. And also specify the profile as "dev" to request config-server for dev environment configuration which is stored in [inventory-service-dev.properties](https://github.com/thedevd/ecom-microservices-config-repo/blob/master/inventory-service-dev.properties) file.
+    `Use -Dspring.profiles.active -Dserver.port` to specify profile and port to use. \
+    Ex - `-Dserver.port=8083 -Dspring.profiles.active=dev`
