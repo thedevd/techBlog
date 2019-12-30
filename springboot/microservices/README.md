@@ -191,23 +191,38 @@ So above, we observed that the tracing information is printed in logs/console bu
   3. Configure the components to export log trace to zipkin server via RabbitMQ.
 
 #### 1. RabbitMQ installation
-We will use docker image to install and run RabbitMQ.
-```
-> docker pull rabbitmq:3-management
-```
-```
-> docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
-```
-Open http://localhost:15672, which will show the management console login screen. The default username/password guest/guest. RabbitMQ will also listen on port 5672.
+* We will use docker image to install and run RabbitMQ.
+  ```
+  > docker pull rabbitmq:3-management
+  ```
+  ```
+  > docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+  ```
+  Open http://localhost:15672, which will show the management console login screen. The default username/password guest/guest. RabbitMQ will also listen on port 5672.
 
 #### 2. Install and setup the zipkin server to consume from RabbitMQ
-We will use docker image to install and run zipkin server. Zipkin uses some persitant storage as backend database, we could use mysql or cassandra. For simplicity we will be using zipkin docker with in-memory storage. (Refer this [url](https://github.com/openzipkin-attic/docker-zipkin) for using zipkin with other storage).
-```
-> docker pull openzipkin/zipkin-slim
-```
-```
-> docker run -d -p 9411:9411 openzipkin/zipkin-slim
-```
-Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard.
+* We will use docker image to install and run zipkin server. Zipkin uses some persitant storage as backend database, we could use mysql or cassandra. 
+* For simplicity we will be using zipkin docker with in-memory storage. (Refer this [url](https://github.com/openzipkin-attic/docker-zipkin) for using zipkin with other storage).
+  ```
+  > docker pull openzipkin/zipkin-slim
+  ```
+  ```
+  > docker run -d -p 9411:9411 openzipkin/zipkin-slim
+  ```
+  Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard.
 
 #### 3. Configure the components to export log trace to zipkin server
+* To export trace to zipkin server over RabbitMQ, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
+* Taking the same scenario here as in Sleuth demo, lets add spring-rabbit and zipkin-client dependency in [netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice] components of our ecommerce sample application.
+  ```xml
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+  </dependency>
+  ```
+  ```xml
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+  </dependency>
+  ```
