@@ -46,7 +46,7 @@ Spring cloud provides lot of tools which helps developers to `quickly build some
 * Distributed sessions
 * Global locks
 * Leadership election and cluster state monitoring
-* Distributed tracing (Debugging and testing) -> `Zipkin Distributed tracing server`
+* Distributed tracing (Debugging and testing) -> `Spring cloud Sleuth and Zipkin Distributed tracing server`
 * API gateway (Authentication/Authorization/logging) -> `Netflix Zuul API gateway`
 
 ## Architecture
@@ -103,3 +103,7 @@ Therefor divinding our ecommerce application into these business domain (there c
 * Executing a client request using Zuul. (Client-to-microservice communication via Zuul)
 * Configuring the FeignClient for microservice-to-microservice communication via Zuul.
 * Implementation of simple Pre type ZuulFilter. (For logging request information)
+
+## Distribute Tracing: Spring Cloud Sleuth with Zipkin Server
+* In Microservice architecture, it is obviously possible that multiple microservices may be involved to serve a particular client's request where one microservice can in turn call other microservice and so on (like chain of calling), and in real world application this chain of calling could be long. We have already this microservice chaining scenario in our ecommerce sample application where `product-catalog-service` in turn calls `inventory-service`.
+* Now the major challange here is if anything goes wrong (exception occured or action is not completed) in this kind of scenario where multiple microservices are involved, then how are you going to debug this. Even if you have logging in each microservice then by looking at the logs of each application, how are you going to correlate those logs across multiple services and decide that they belong to the same user request. So it becomes very difficult to trace a specific user's request and debug the problem in distributed environment, `Spring-Cloud-Sleuth helps us to solve this problem by assiging a unique Id to request and using the same id throught the complete lifecycle of serving the request`. 
