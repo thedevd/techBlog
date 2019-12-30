@@ -212,7 +212,7 @@ So above, we observed that the tracing information is printed in logs/console bu
   Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard.
 
 #### 3. Configure the components to export log trace to zipkin server
-* To export trace to zipkin server over RabbitMQ, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
+* To export trace to zipkin server over RabbitMQ instead HTTP, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
 * Taking the same scenario here as in Sleuth demo, lets add spring-rabbit and zipkin-client dependency in [netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice] components of our ecommerce sample application.
   ```xml
   <dependency>
@@ -225,4 +225,15 @@ So above, we observed that the tracing information is printed in logs/console bu
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-amqp</artifactId>
   </dependency>
+  ```
+* **NOTE: By default, `spring.sleuth.sampler.probability=0.1` which means only 10% of tracing information will be exported to Zipkin. Make it to your desired percentage.**. Value 1 means 100% trace will be exported. So configure this property in properties file of netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice.
+  ```
+  spring.sleuth.sampler.probability=1
+  ```
+  And one more thing about sampler in Sleuth, By default Spring Cloud Sleuth sets all spans to non-exportable. So you want to export that too, we can do this by creating Sampler.ALWAYS Bean in the main class. (in this demo we are not doing this as of now).
+  ```java
+  @Bean
+  public Sampler defaultSampler() {
+	return Sampler.ALWAYS_SAMPLE;
+  }
   ```
