@@ -111,7 +111,62 @@ Therefor divinding our ecommerce application into these business domain (there c
 
   We have already this microservice chaining scenario in our ecommerce sample application where `product-catalog-service` in turn calls `inventory-service`.
 * Now the major challange here is if anything goes wrong (exception occured or action is not completed) in this kind of scenario where multiple microservices are involved, then how are you going to debug this. Even if you have logging in each microservice then by looking at the logs of each application, how are you going to correlate those logs across multiple services and decide that they belong to the same user request. So it becomes very difficult to trace a specific user's request and debug the problem in distributed environment. There is one simple solution to correlate the logs across mutltiple-microservice and that is using a unique id to each user's request and passing the same id to the subsequently requests made by a microservice to call others. Doing this manually could be error prone so  `Spring-Cloud-Sleuth helps us to solve this problem of correlating the logs by assigning a unique Id to request and using the same id throughout the complete lifecycle of serving the request`. 
-* Spring cloud Sleuth integrates effortlessly with logging frameworks like Logback and SLF4J to add unique identifiers that help to trace and diagnose issues using logs. Let's see how Spring-Cloud-Sleuth works. \
-  **Note- To demonstrat setup and working of Sleuth we will be referring to our existing scenario of ecommerce sample application where `product-catalog-service` in turn calls `inventory-service`. Although we have configured microservice-to-microservice communication via Zuul API gaetway, so we will also configure the Zuul to connect Sleuth for tracing of request across multiple components.**
+* Spring cloud Sleuth integrates effortlessly with logging frameworks like Logback and SLF4J to add unique identifiers that help to trace and diagnose issues using logs. Let's see how Spring-Cloud-Sleuth works.
+
+  **Note- To demonstrat setup and working of Sleuth we will be referring to our existing scenario of ecommerce sample application where `product-catalog-service` in turn calls `inventory-service`. Although we have configured client-to-microservice and microservice-to-microservice communication via Zuul API gaetway, so we will also configure the Zuul along with product-catalog-service and inventory-service to connect Sleuth for tracing of request across multiple components.**
 
 ### Sleuth Setup
+* To enable support of Spring-Cloud-Sleuth, add Sleuth dependency in the project (we are adding it to all three components i.e. netflix-zuul-api-gateway, product-catalog-microservice and inventory-micoservice).
+  ```xml
+  <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-starter-sleuth</artifactId>
+  </dependency>
+  ```
+  This way we are actually allowing each component to talk to Sleuth.
+### Test the Sleuth
+* As mentioned, Spring cloud Sleuth integrates effortlessly with logging frameworks like Logback and SLF4J. This means wherever you will log the information, Sleuth will prefix that log with extra information that will identify which log belongs to which request by the help of unique trace Id. So for this purpose we have added some logging in the [Zuul's Filter](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/netflix-zuul-api-gateway-server/src/main/java/com/thedevd/springboot/filters/ZuulRequestLoggingPreFilter.java), [product-catalog-microservice controller](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/product-catalog-microservice/src/main/java/com/thedevd/springboot/controller/ProductCatalogController.java) and [inventory-microservice controller](https://github.com/thedevd/techBlog/blob/master/springboot/microservices/inventory-microservice/src/main/java/com/thedevd/springboot/controller/InventoryItemController.java).
+* Start the each components in this order -
+  * Start netflix-eureka-naming-server (port 8761)
+  * Start netflix-zuul-api-gateway-server (port 8765)
+  * Start inventory-service
+  * Start product-catalog-service
+* Send the request to `product-catalog-service` via Zuul to fetch the details of one of the existing product using its code (p10000) -\
+  GET http://localhost:8765/product-catalog-service/api/product/p10000 \
+  response-
+  ```
+  {
+    "id": 10000,
+    "productCode": "p10000",
+    "productName": "p10000 name",
+    "description": "p10000 description",
+    "availableQuantity": 250,
+    "inventoryServicePort": "8082"
+  }
+  ```
+* Now check the console of each component (Zuul, product-catalog-service and inventory-service) and look the logs closely, you will find something like this -
+  ```
+  Zuul
+  
+  2019-12-30 15:08:00.487  INFO [netflix-zuul-api-gateway-server,fa871f20fafe1e0f,fa871f20fafe1e0f,false] 11056 
+  --- [nio-8765-exec-5] c.t.s.f.ZuulRequestLoggingPreFilter      : 
+  Request method: GET, Request Url: http://localhost:8765/product-catalog-service/api/product/p10000
+  
+  2019-12-30 15:08:00.504  INFO [netflix-zuul-api-gateway-server,fa871f20fafe1e0f,415547afa49d4b66,false] 11056 
+  --- [nio-8765-exec-6] c.t.s.f.ZuulRequestLoggingPreFilter      : 
+  Request method: GET, Request Url: http://RENLTP2N025.mshome.net:8765/inventory-service/api/inventory/p10000
+  ```
+  ```
+  product-catalog-service
+  
+  2019-12-30 15:08:00.523  INFO [product-catalog-service,fa871f20fafe1e0f,9fc951b17ada2968,false] 25476 
+  --- [nio-8092-exec-2] c.t.s.c.ProductCatalogController         : 
+  Each log is prefixed with extra information by Sleuth. product detail requested for productCode: p10000
+  ```
+  ```
+  inventory-service
+  
+  2019-12-30 15:08:00.517  INFO [inventory-service,fa871f20fafe1e0f,6abc0caec3f20e7f,false] 19832 
+  --- [nio-8082-exec-2] c.t.s.c.InventoryItemController          : 
+  Each log is prefixed with extra information by Sleuth.  Is inventoryItem for productCode:p10000 present:true
+  ```
