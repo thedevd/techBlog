@@ -181,23 +181,33 @@ Therefor divinding our ecommerce application into these business domain (there c
   
 **So we saw how to use Sleuth to add tracing information in logs. But there is a little problem of correlating the logs belonging to one particular user request and that is, manually we have to go to console or log file of each and every microservices which are involved in serving the request and then need to correlated thier logs manually using the traceId and spaneID. So correlation becomes a pain when we have large no of components participating in the complete lifecycle of user request. So instead of going and check individual component's log, we can also export log tracing information to a centralized place such as Zipkin so that we would have all the logs at one place which makes it easy to analyze them easily. In addition to that zipkin also provide a way to visualize the log traces through UI.(In next section we will see usage of Sleuth with Zipking server for tracing and analyzing the logs very easily with the help of UI based dashboard provided by zipkin).**
   
-### Zipkin Distributed tracing server \
+### Zipkin Distributed tracing server
 So above, we observed that the tracing information is printed in logs/console but not exported. We can export them to Zipkin server so that we can visualize log traces in Zipkin Server UI Dashboard.
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/sleuth-with-zipkin-log-tracing-server.png"/></p>
 
 * As per the image show above, we will use RabbitMQ as middle layer b/w zipkin and application's components. So all the components will be putting log trace into RabbitMQ and Zipkin will be consuming them from rabbitMQ. So the whole thing can be divided into these steps-
   1. Install and run the RabbitMQ.
   2. Install and setup the zipkin server to consume from RabbitMQ.
-  3. Configure the components to produce log trace into RabbitMQ.
+  3. Configure the components to export log trace to zipkin server via RabbitMQ.
 
-#### RabbitMQ installation \
+#### 1. RabbitMQ installation
 We will use docker image to install and run RabbitMQ.
-```> docker pull rabbitmq:3-management ```
-```> docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management```
+```
+> docker pull rabbitmq:3-management
+```
+```
+> docker run -d --name my-rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+```
 Open http://localhost:15672, which will show the management console login screen. The default username/password guest/guest. RabbitMQ will also listen on port 5672.
 
-#### Install and setup the zipkin server to consume from RabbitMQ \
+#### 2. Install and setup the zipkin server to consume from RabbitMQ
 We will use docker image to install and run zipkin server. Zipkin uses some persitant storage as backend database, we could use mysql or cassandra. For simplicity we will be using zipkin docker with in-memory storage. (Refer this [url](https://github.com/openzipkin-attic/docker-zipkin) for using zipkin with other storage).
-```> docker pull openzipkin/zipkin-slim```
-```> docker run -d -p 9411:9411 openzipkin/zipkin-slim```
+```
+> docker pull openzipkin/zipkin-slim
+```
+```
+> docker run -d -p 9411:9411 openzipkin/zipkin-slim
+```
 Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard.
+
+#### 3. Configure the components to export log trace to zipkin server
