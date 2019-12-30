@@ -182,4 +182,11 @@ Therefor divinding our ecommerce application into these business domain (there c
 **So we saw how to use Sleuth to add tracing information in logs. But there is a little problem of correlating the logs belonging to one particular user request and that is, manually we have to go to console or log file of each and every microservices which are involved in serving the request and then need to correlated thier logs manually using the traceId and spaneID. So correlation becomes a pain when we have large no of components participating in the complete lifecycle of user request. So instead of going and check individual component's log, we can also export log tracing information to a centralized place such as Zipkin so that we would have all the logs at one place which makes it easy to analyze them easily. In addition to that zipkin also provide a way to visualize the log traces through UI.(In next section we will see usage of Sleuth with Zipking server for tracing and analyzing the logs very easily with the help of UI based dashboard provided by zipkin).**
   
 ### Zipkin Distributed tracing server
+So above, we observed that the tracing information is printed in logs/console but not exported. We can export them to Zipkin server so that we can visualize log traces in Zipkin Server UI Dashboard.
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/sleuth-with-zipkin-log-tracing-server.png"/></p>
+
+* As per the image show above, we will use RabbitMQ as middle layer b/w zipkin and end microservices. So all the end microservices will be putting log trace into RabbitMQ and Zipkin will be consuming them from rabbitMQ. So the whole thing can be divided into these steps-
+  1. Install and run the RabbitMQ.
+  2. Install and setup the zipkin server to consume from RabbitMQ.
+  3. Configure the end microservices to produce log trace into RabbitMQ.
+  
