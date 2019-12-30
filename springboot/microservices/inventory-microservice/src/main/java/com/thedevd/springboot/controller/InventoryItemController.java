@@ -3,6 +3,8 @@ package com.thedevd.springboot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import com.thedevd.springboot.repository.InventoryItemRepository;
 
 @RestController
 public class InventoryItemController {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private InventoryItemRepository inventoryItemRepository;
@@ -34,6 +38,10 @@ public class InventoryItemController {
 	@GetMapping("/api/inventory/{productCode}")
 	public ResponseEntity<InventoryItem> getInventoryByProductCode(@PathVariable String productCode) {
 		Optional<InventoryItem> inventoryItem = inventoryItemRepository.findByProductCode(productCode);
+		
+		logger.info("Each log is prefixed with extra information by Sleuth. " 
+						+ " Is inventoryItem for productCode:{} present:{}", productCode, inventoryItem.isPresent());
+
 		if (inventoryItem.isPresent()) {
 			// setting the port to distinguish which instance of service served the request when loadbalancer is used.
 			inventoryItem.get().setPort(environment.getProperty("local.server.port"));
