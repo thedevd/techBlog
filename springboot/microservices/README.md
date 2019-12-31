@@ -213,6 +213,8 @@ So above, we observed that the tracing information is printed in logs/console bu
   Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard. We are passing the rabbitMQ related environment variables so that zipkin can listen on RabbitMQ and recieve the log trace information sent by application's components. 
 
 #### 3. Configure the components to export log trace to zipkin server
+<p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/sleuth-to-zipking-over-rabbitmq.png"/></p>
+
 * To export trace to zipkin server over RabbitMQ instead HTTP, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
 * Taking the same scenario here as in Sleuth demo, lets add spring-rabbit and zipkin-client dependency in [netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice] components of our ecommerce sample application.
   ```xml
