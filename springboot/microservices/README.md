@@ -15,6 +15,7 @@ This project aims to demostrate building an application (ecommerce) in microserv
      * [RibbonClient](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#load-balancer-ribbon-a-client-side-load-balancer) `(A client side load-balancer)`
      * [Netflix-Eureka](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#naming-server-for-service-discovery-netflix-eureka) `(Naming server for service Discovery and Registry)`
      * [Netflix-Zuul](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#api-gateway-netflix-zuul) `(An API Gateway proxy server)`
+     * [Sleuth with Zipkin server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#distribute-tracing-spring-cloud-sleuth-with-zipkin-server) `(Distributed Tracing)`
    * Backend Microservices
      * [product-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/product-catalog-microservice)
      * [inventory-microservice](https://github.com/thedevd/techBlog/tree/master/springboot/microservices/inventory-microservice)
@@ -207,9 +208,9 @@ So above, we observed that the tracing information is printed in logs/console bu
   > docker pull openzipkin/zipkin-slim
   ```
   ```
-  > docker run -d -p 9411:9411 openzipkin/zipkin-slim
+  > docker run -d -p 9411:9411 -e RABBIT_ADDRESSES=localhost:5672 -e RABBIT_USER=guest -e RABBIT_PASSWORD=guest --name openzipkin openzipkin/zipkin-slim
   ```
-  Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard.
+  Once the Zipkin server is started you can go to http://localhost:9411/ to view the Zipkin Server UI Dashboard. We are passing the rabbitMQ related environment variables so that zipkin can listen on RabbitMQ and recieve the log trace information sent by application's components. 
 
 #### 3. Configure the components to export log trace to zipkin server
 * To export trace to zipkin server over RabbitMQ instead HTTP, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
