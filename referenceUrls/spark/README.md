@@ -41,3 +41,6 @@ https://blog.usejournal.com/spark-study-notes-core-concepts-visualized-5256c44e4
 
 * 5 Key Factors to keep in mind while Optimizing Apache Spark in AWS(Part 1) \
 https://medium.com/@brajendragouda/5-key-factors-to-keep-in-mind-while-optimizing-apache-spark-in-aws-part-1-4b113425bdcf
+
+* Good article on Spark application issue - Data Skewness and GC overhead
+https://unraveldata.com/common-failures-slowdowns-part-ii/
