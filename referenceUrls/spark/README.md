@@ -44,3 +44,4 @@ https://medium.com/@brajendragouda/5-key-factors-to-keep-in-mind-while-optimizin
 
 * Good article on Spark application issue - Data Skewness and GC overhead
 https://unraveldata.com/common-failures-slowdowns-part-ii/
+https://blog.clairvoyantsoft.com/optimize-the-skew-in-spark-e523c6ee18ac
