@@ -9,21 +9,21 @@ Lets have a look at both of them separately, then we will conclude the major dif
 ### Session.load()
 * When you call session.load(), this always returns a proxy object. Proxy object means, hibernate will create a fake object and will not hit the database. This fake object will be having only the given primary identifier value. For example - calling `session.load(Author.class, 102)` will create a fake object in memory with id 102 and other properties of this Author object will not be initialized at this point.
   ```java
-  Author authorFetchedUsingLoad = session.load(Author.class, 102);
-  System.out.println(authorFetchedFromLoad.getId());
+  Author authorFetchedUsingLoad = session.load(Author.class, 102); // authorFetchedUsingLoad is proxy object
+  System.out.println(authorFetchedFromLoad.getId()); // this is fetching id from proxy obj not database
   ```
 * Now the question is does load() ever hit the database, the answer is yes. It will only hit the database when we try to retrieve remaining properties of the Author object (name) other than primary key identifier(id).
   ```java
-  Author authorFetchedUsingLoad = session.load(Author.class, 102);
-  System.out.println(authorFetchedFromLoad.getId());
-  System.out.println(authorFetchedFromLoad.getName());
+  Author authorFetchedUsingLoad = session.load(Author.class, 102); // does not hit db
+  System.out.println(authorFetchedFromLoad.getId()); // does not hit db
+  System.out.println(authorFetchedFromLoad.getName()); // hit db
   ```
   In this case calling `authorFetchedFromLoad.getName()` will force hibernate to hit the database and get the name property from the Author where id is 102. And by chance if object does not exists in database then load() will throw `ObjectNotFoundException`
   
 ### Session.get()
 * When you call session.get(), it will immediately hit the database and return the original object. And by chance if object does not exist in database it will simply returns `null`. For example - calling `session.get(Author.class, 101)` will force hibernate to hit the database and fetch the row having the primary identifier value as 101. 
   ```java
-  Author authorFetchedUsingGet = session.get(Author.class, 101);
+  Author authorFetchedUsingGet = session.get(Author.class, 101); // authorFetchedUsingGet is actual object fetched from db
   ```
 
 So from the above discussion we can conclude and say that -
@@ -31,9 +31,9 @@ So from the above discussion we can conclude and say that -
   ```java
   // assume there are author with id 101 and 102 in db
   Author authorFetchedUsingGet = session.load(Author.class, 101); // immediately hit db
-  authorFetchedUsingGet.getId(); // 101
+  authorFetchedUsingGet.getId(); // id from actual object
   
-  Author authorFetchedUsingLoad = session.load(Author.class, 102); // does not hit db, instead returns proxy
+  Author authorFetchedUsingLoad = session.load(Author.class, 102); // does not hit db, instead returns proxy obj
   authorFetchedUsingLoad.getId(); // still does not hit db
   authorFetchedUsingLoad.getName(); // hit the db
   ```
