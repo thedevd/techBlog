@@ -76,7 +76,7 @@ public class GetVsLoadDemo {
 		 * load() will simply return the fake object having only the primary key field. 
 		 * 
 		 * But fetching the other fields instead of primary key field, will cause database to hit. 
-		 * (to see this uncomment the line no 57 where we are trying to get name from the fake object returned by load().
+		 * (to see this uncomment the line no 67 where we are trying to get name field from the fake object returned by load().
 		 * you will see a query is being fired to fetch name field of the requested record -
 		 * 
 		 *    Hibernate: select author0_.id as id1_0_0_, author0_.name as name2_0_0_ from Author author0_ where author0_.id=?
@@ -105,11 +105,11 @@ public class GetVsLoadDemo {
 		Author author103UsingGet = session3.get(Author.class, 103);
 		System.out.println(author103UsingGet == null); // --> true
 		
-		Author author103UsingLoad = session3.load(Author.class, 103);
+		Author author104UsingLoad = session3.load(Author.class, 104);
 		try {
-			// load will throw objectNotFoundException if it tries to get any non-primary
-			// field from database.
-			System.out.println(author103UsingLoad.getName());
+			// load will hit the db if we try to get any non-primary field from database and if object does not exist then
+			// objectNotFoundException is thrown
+			System.out.println(author104UsingLoad.getName());
 		} catch (Exception e) {
 			System.out.println(e); // --> org.hibernate.ObjectNotFoundException: No row with the given identifier
 									// exists: [com.thedevd.hibernateexamples.getorload.Author#103]
