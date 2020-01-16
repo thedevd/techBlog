@@ -28,6 +28,25 @@ Lets have a look at both of them separately, then we will conclude the major dif
 
 So from the above discussion we can conclude and say that -
 * get() always hit the database where as load() only hit the database when try to get non-primary identifiers of the record.
+  ```java
+  // assume there are author with id 101 and 102 in db
+  Author authorFetchedUsingGet = session.load(Author.class, 101); // immediately hit db
+  authorFetchedUsingGet.getId(); // 101
+  
+  Author authorFetchedUsingLoad = session.load(Author.class, 102); // does not hit db, instead returns proxy
+  authorFetchedUsingLoad.getId(); // still does not hit db
+  authorFetchedUsingLoad.getName(); // hit the db
+  ```
 * If object exists get() returns the original object by hitting the database where as even if object exists or not load() always return the proxy object having only the value of primary identifier.
 * If object does not exist, get() will return null, where as load() always returns proxy object.
 * When using get(), accessing all the fields on the non-existent object will throw NullPointerException where as accessing only non-primary field on the non-existent object will throw `ObjectNotFoundException`. So when you are not sure about existence of object, use get() because in this case you have abililty to check immediately for null object before doing further operation but it is not possible using load() as load() always return proxyObject and you come to know about its non-existence when try to fetch other non-primary fields. (so if you want to stick only with load() make sure you always handle the ObjectNotFoundException in the code).
+  ```java
+  // assume there are no author with id 103 amd 104 in the db
+  Author author103UsingGet = session.get(Author.class, 103); // object is null
+  author103UsingGet.getId(); // NullPointerException as can not call any operation on null
+  author103UsingGet.getName(); // NullPointerException as can not call any operation on null
+  
+  Author author104FetchedUsingLoad = session.get(Author.class, 104); // object is proxy object
+  author104UsingLoad.getId(); // no NullPointerException. this will give 104, as proxy object has only give primary id value.
+  author104UsingLoad.getName(); // this will thrown ObjectNotFoundException because calling non-primary field will hit db.
+  ```
