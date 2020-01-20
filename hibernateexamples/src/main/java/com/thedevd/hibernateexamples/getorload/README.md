@@ -30,7 +30,7 @@ So from the above discussion we can conclude and say that -
 * get() always hit the database where as load() only hit the database when try to get non-primary identifiers of the record.
   ```java
   // assume there are author with id 101 and 102 in db
-  Author authorFetchedUsingGet = session.load(Author.class, 101); // immediately hit db
+  Author authorFetchedUsingGet = session.get(Author.class, 101); // immediately hit db
   authorFetchedUsingGet.getId(); // id from actual object
   
   Author authorFetchedUsingLoad = session.load(Author.class, 102); // does not hit db, instead returns proxy obj
