@@ -273,9 +273,24 @@ So till this point we have configured sleuth in each components of our demonstra
 
 * Select the particular request traceid, then you will see overall flow of the request.
   <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/zipkin-test/zipkin-ui-trace-details.png"/></p>
+  
   Looking at the image we can say that -
   * Request to product-catalog service goes via netflix-zuul-api-gateway. `(1)`
   * netflix-zuul-api-gateway then forwards the request to product-catalog-service. `(2)`
   * To fetch inventory-detail of the product, the product-catalog-service makes a call to inventory-service via netflix-zuul-api-gateway. `(3)`
   * Finally netflix-zuul-api-gatway forwards the request to inventory-service. `(4)`.
+  
+  The complete response is then returned to the client.
+  
+* Now let's test negative behavior. We would shutdown the inventory-service and then try to fetch the product details. (Obviously the request will not be completed because when product-catalog-service will go and try to call inventory-service via netflix-zuul-api-gateway, the product-catalog-service will get a Internal-Server-Error response as inventory-service is down. This whole flow can be tracked easily to find out where exactly issue occured. \
+
+  * So shutdown inventory-service for demo purpose and hit the restendpoint to get same product details i.e. http://localhost:8765/product-catalog-service/api/product/p10000. The output would be of `500 Internal Server Error`. Now lets open the zipkin ui and trace that request to know where it failed.
+    <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/zipkin-test/zipkin-ui-request-failed-trace.png"/></p>
+  * Select the trace, and you will see overall flow -
+    <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/zipkin-test/zipkin-ui-request-failed-trace-details.png"/></p>
+    
+    Looking at the image, we can say that the request got failed from inventory-service. `So you can now imaging how much helpful distributed tracing is going to be when you want debug a request which is being served by large no of microservices. So instead of going in each microservice's log, you are given a centalized place where you can go and trace the overall flow of the request.`
+    
+    
+  
   
