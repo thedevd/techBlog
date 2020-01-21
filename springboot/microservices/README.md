@@ -216,7 +216,7 @@ So above, we observed that the tracing information is printed in logs/console bu
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/sleuth-to-zipking-over-rabbitmq.png"/></p>
 
 * To export trace to zipkin server over RabbitMQ instead HTTP, add the `zipkin client` and `spring rabbit` dependency in the application's component. (If you use spring-kafka, and set `spring.zipkin.sender.type: kafka`, your app will send traces to a Kafka broker). 
-* Taking the same scenario here as in Sleuth demo, lets add spring-rabbit and zipkin-client dependency in [netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice] components of our ecommerce sample application.
+* Taking the same scenario here as in Sleuth demo, lets add spring-rabbit and zipkin-client dependency in `[netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice]` components of our ecommerce sample application.
   ```xml
   <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -240,3 +240,32 @@ So above, we observed that the tracing information is printed in logs/console bu
 	return Sampler.ALWAYS_SAMPLE;
   }
   ```
+
+### Test the Sleuth with zipkin server
+So till this point we have configured sleuth in each components of our demonstration scenario i.e. `[netflix-zuul-api-gateway-server, product-catalog-microservice and inventory-microservice]`, and also configured these component to export the sleuth generated log trace information to zipkin server over RabbitMQ. Now lets see this in action to know how Sleuth with zipkin help us to debug a client request and see how many microservices are taking participation to serve the request.
+
+* Start these components in following order -
+  * Start netflix-eureka-naming-server (port 8761)
+  * Start netflix-zuul-api-gateway-server (port 8765)
+  * Start inventory-service
+  * Start product-catalog-service
+
+* Send GET request to product-catalog-service through zuul-api-gateway and fetch details of a existing product with id say p10001 `(You can use any third party restclient to hit a particular HTTP rest api. I use Postman)` \
+  url - http://localhost:8765/product-catalog-service/api/product/p10000 \
+  output - you should get output like this
+  ```
+  {
+    "id": 10000,
+    "productCode": "p10000",
+    "productName": "p10000 name",
+    "description": "p10000 description",
+    "availableQuantity": 250,
+    "inventoryServicePort": "8082"
+  }
+  ```
+  
+* Now open the zipkin UI using the url - http://localhost:9411/zipkin/. On the UI,select the serviceName as selection criteria for your trace lookup, then You will see list of service names which are exporting log trace information to zipkin server -
+  <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/zipkin-test/zipkin-ui-servicenames.png"/></p>
+
+* Select the serviceName of netflix-zuul-api-gateway-server, because we have sent request to product-catalog-service via zuul (Although all the requests will be routed via gateway-api in microservice based architecture). And search for trace, you will list of trace information for each request sent to zuul-api-gateway. 
+  <p align="cetner"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/zipkin-test/zipkin-ui-request-traces.png"/></p>
