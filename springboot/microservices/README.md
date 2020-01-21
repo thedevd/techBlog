@@ -105,7 +105,7 @@ Therefor divinding our ecommerce application into these business domain (there c
 * Configuring the FeignClient for microservice-to-microservice communication via Zuul.
 * Implementation of simple Pre type ZuulFilter. (For logging request information)
 
-## Distribute Tracing: Spring Cloud Sleuth with Zipkin Server
+## [Distribute Tracing: Spring Cloud Sleuth with Zipkin Server](https://github.com/thedevd/techBlog/tree/master/springboot/microservices#distribute-tracing-spring-cloud-sleuth-with-zipkin-server)
 * In Microservice architecture, it is obviously possible that multiple microservices may be involved to serve a particular client's request where one microservice can in turn call other microservice and so on (like chain of calling), and in real world application this chain of calling could be long. 
 
 <p align="center"><img src="https://github.com/thedevd/imageurls/blob/master/sprintboot/microservice-call-chaining.png"/></p>
