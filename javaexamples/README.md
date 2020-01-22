@@ -45,7 +45,7 @@ The java.util.concurrent package contains several classes that help set of threa
  2. **Find max or min from collection of object** - [Java8FindingMaxMin.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/Java8FindingMaxMin.java)
  3. **Find max/min/second max/max salary by deptName of employee Problem** - [EmployeeSalaryProblem.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/EmployeeSalaryProblem.java)
  
- ## [Design Patters using Java](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns)
+ ## [Design Patterns using Java](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns)
  1. [Creational](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational)
      * Factory Pattern - [FactoryPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/FactoryPattern.java), [FactoryPatternExp2.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/FactoryPatternExp2.java)
      * Abstract Factory Pattern - [AbstractFactoryPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/AbstractFactoryPattern.java)
