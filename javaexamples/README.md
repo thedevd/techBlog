@@ -61,3 +61,4 @@ The java.util.concurrent package contains several classes that help set of threa
  1. Maximum absolute difference in array - [MaxAbsoluteDifferenceInArray.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/MaxAbsoluteDifferenceInArray.java)
  2. Reverse single linked list - [ReverseSingleLinkedList.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/ReverseSingleLinkedList.java)
  3. Print Odd and Even using two threads (Synchronization problem) - [PrintOddEvenUsingTwoThreads.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/PrintOddEvenUsingTwoThreads.java)
+ 4. Anagram Problem - [FindAnagrams.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/FindAnagrams.java)
