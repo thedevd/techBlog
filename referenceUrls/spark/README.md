@@ -1,3 +1,6 @@
+* Setup Apache Spark standalone cluster \
+https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
+
 * Apache Spark Partitioning \
 https://dzone.com/articles/an-intro-to-apache-spark-partitioning-what-you-nee
 https://www.edureka.co/blog/demystifying-partitioning-in-spark
