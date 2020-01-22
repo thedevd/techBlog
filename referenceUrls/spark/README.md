@@ -1,4 +1,5 @@
 * Setup Apache Spark standalone cluster \
+https://data-flair.training/forums/topic/in-how-many-ways-can-we-run-spark-over-hadoop/ \
 https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
 
 * Apache Spark Partitioning \
@@ -21,7 +22,7 @@ https://sonra.io/2017/11/27/advanced-spark-structured-streaming-aggregations-joi
 * Accessing Cassandra from Spark in Java \
 https://www.datastax.com/dev/blog/accessing-cassandra-from-spark-in-java
 
-* A very good example for Spark Structured streaming \ 
+* A very good example for Spark Structured streaming \
 http://vishnuviswanath.com/spark_structured_streaming.html
 
 * spark-structured-streaming very nice collecction \
