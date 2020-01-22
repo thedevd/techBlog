@@ -45,6 +45,18 @@ The java.util.concurrent package contains several classes that help set of threa
  2. **Find max or min from collection of object** - [Java8FindingMaxMin.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/Java8FindingMaxMin.java)
  3. **Find max/min/second max/max salary by deptName of employee Problem** - [EmployeeSalaryProblem.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/streams/EmployeeSalaryProblem.java)
  
+ ## [Design Patters using Java](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns)
+ 1. [Creational](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational)
+   * Factory Pattern - [FactoryPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/FactoryPattern.java), [FactoryPatternExp2.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/FactoryPatternExp2.java)
+   * Abstract Factory Pattern - [AbstractFactoryPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/AbstractFactoryPattern.java)
+   * Builder Pattern - [BuilderPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/BuilderPattern.java)
+   * Prototype Pattern - [PrototypePattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/PrototypePattern.java)
+   * Singleton Pattern - [SingletonPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/creational/SingletonPattern.java)
+2. [Structural](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/structural)
+  * Adaptor pattern - [AdaptorPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/structural/AdaptorPattern.java)
+  * Brigde Pattern - [BridgePattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/structural/BridgePattern.java)
+  * Decorator Pattern - [DecoratorPattern.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/designpatterns/structural/DecoratorPattern.java)
+ 
  ## [Coding problems](https://github.com/thedevd/techBlog/tree/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms)
  1. Maximum absolute difference in array - [MaxAbsoluteDifferenceInArray.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/MaxAbsoluteDifferenceInArray.java)
  2. Reverse single linked list - [ReverseSingleLinkedList.java](https://github.com/thedevd/techBlog/blob/master/javaexamples/src/main/java/com/thedevd/javaexamples/algorithms/ReverseSingleLinkedList.java)
