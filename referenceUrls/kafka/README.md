@@ -18,5 +18,8 @@ https://github.com/thedevd/opencodez-samples/tree/master/kafka-demo/src/main/jav
 * KStream Exactly Once semantics \
 https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/
 
-* Message ordering in kafka
+* Message ordering in kafka \
 https://www.cloudkarafka.com/blog/2018-08-21-faq-apache-kafka-strict-ordering.html
+
+* A very good explaination on Kafka Consumer APIs and its configurations like auto.offset.reset and more \
+https://www.oreilly.com/library/view/kafka-the-definitive/9781491936153/ch04.html#callout_kafka_consumers__reading_data_from_kafka_CO2-2
