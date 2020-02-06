@@ -30,3 +30,6 @@ http://www.baeldung.com/cassandra-with-java
 
 * Primary key GenerationType STRATEGY in Hibernate (AUTO, IDENTITY, SEQUENCE, TABLE) \
 https://thoughts-on-java.org/jpa-generate-primary-keys/
+
+* UPSERT query in mysql (INSERT IGNORE, REPLACE INTO, INSERT INTO ... ON DUPLICATE KEY UPDATE ..) \
+https://www.techbeamers.com/mysql-upsert/
