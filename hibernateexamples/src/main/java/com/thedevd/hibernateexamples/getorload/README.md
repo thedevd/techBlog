@@ -5,6 +5,7 @@ This is frequently asked interview question of hibernate.
 * Both accepts two parameters `<class>, id` the first parameter tell which table record it will fetch and second is the primary identifier value which is used to uniquely identify a row in table. So you can call them using `session.get(<class>, id)` or `session.load(<class>,id)`
 
 Lets have a look at both of them separately, then we will conclude the major difference b/w them.
+<p align="center"><img src="https://github.com/thedevd/techBlog/blob/master/hibernateexamples/src/main/java/com/thedevd/hibernateexamples/getorload/getVsload.png"/></p>
 
 ### Session.load()
 * When you call session.load(), this always returns a proxy object. Proxy object means, hibernate will create a fake object and will not hit the database. This fake object will be having only the given primary identifier value. For example - calling `session.load(Author.class, 102)` will create a fake object in memory with id 102 and other properties of this Author object will not be initialized at this point.
@@ -51,4 +52,4 @@ So from the above discussion we can conclude and say that -
   author104UsingLoad.getName(); // this will thrown ObjectNotFoundException because calling non-primary field will hit db.
   ```
 
-<p align="center"><img src="https://github.com/thedevd/techBlog/blob/master/hibernateexamples/src/main/java/com/thedevd/hibernateexamples/getorload/getVsload.png"/></p>
+
