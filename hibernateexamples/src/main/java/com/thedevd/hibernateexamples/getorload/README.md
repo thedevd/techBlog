@@ -50,3 +50,5 @@ So from the above discussion we can conclude and say that -
   author104UsingLoad.getId(); // no NullPointerException. this will give 104, as proxy object has only give primary id value.
   author104UsingLoad.getName(); // this will thrown ObjectNotFoundException because calling non-primary field will hit db.
   ```
+
+<p align="center"><img src="https://github.com/thedevd/techBlog/blob/master/hibernateexamples/src/main/java/com/thedevd/hibernateexamples/getorload/getVsload.png"/></p>
