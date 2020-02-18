@@ -15,7 +15,7 @@
   @OneToMany(cascade=CascadeType.REMOVE, fetch = FetchType.LAZY)
   ```
  
-* JPA/Hibernate provides `CascadeType` enum which can allow us to cascade specific operation, means if we want to cascade only save operation but not remove operation. Then we need to clearly specify it using below code. 
+* JPA/Hibernate provides `CascadeType` enum which can allow us to cascade specific operation, means if we want to cascade only save operation but not remove operation. Then we need to clearly specify it in cascade configuration option of relationship annotation, see below where we are cascading save operation to book entities. 
   ```java
   @Entity
   class Author {
@@ -31,3 +31,27 @@
    // getters and setters..
   }
   ```
+  
+* The cascade configuration option of relationship annotation also accepts an array of CascadeTypes, means if we want to cascade both save and remove operations in One-to-Many relationship, then we can use something like this -
+  ```java
+  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+  private List<Book> book = new ArrayList<>();
+  ```
+  
+### JPA CascadeType
+The `javax.persistence.CascadeType` enum is used to represent JPA specific CascadeType. In this enum, 6 CascadeTypes are defined-
+1. **ALL** - The value cascade=ALL is equivalent to cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH}.
+2. **PERSIST**
+3. **MERGE**
+4. **REMOVE**
+5. **REFRESH**
+6. **DETACH**
+
+### Hibernate CascadeType
+Apart from above mentioned CascadeTypes, Hibernate provides 3 additional cascadeTypes. To use hibernate specific CascadeType, we need to use `org.hibernate.annotations.CascadeType` enum.
+1. **REPLICATE**
+2. **SAVE_UPDATE**
+3. **LOCK** \
+
+`Hibernate has an deprecated cascade type - DELETE_ORPHAN. In place of this use @OneToOne(orphanRemoval=true) or @OneToMany(orphanRemoval=true)`
+
