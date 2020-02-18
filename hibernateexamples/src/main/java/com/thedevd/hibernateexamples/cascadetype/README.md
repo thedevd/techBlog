@@ -12,7 +12,7 @@
 
   `CascadeType` is the way of achieving the same in JPA/Hibernate.
   ```java
-  @OneToMany(cascade=CascadeType.REMOVE, fetch = FetchType.LAZY)
+  @OneToMany(cascade=CascadeType.REMOVE)
   ```
  
 * JPA/Hibernate provides `CascadeType` enum which can allow us to cascade specific operation, means if we want to cascade only save operation but not remove operation. Then we need to clearly specify it in cascade configuration option of relationship annotation, see below where we are cascading save operation to book entities. 
@@ -25,7 +25,7 @@
 
 	  private String name;
 
-	  @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	  @OneToMany(cascade = CascadeType.PERSIST, mappedBy="author")
 	  private List<Book> book = new ArrayList<>();
  
    // getters and setters..
@@ -55,4 +55,6 @@ Apart from above mentioned CascadeTypes, Hibernate provides 3 additional cascade
 
 `Hibernate has an deprecated cascade type - DELETE_ORPHAN. In place of this use @OneToOne(orphanRemoval=true) or @OneToMany(orphanRemoval=true)`
 
-To understand all these CascadeType, follow this very good article - https://www.baeldung.com/jpa-cascade-types
+In this repository I have only explained the cascading the PERSIST operation - see this - [CascadeTypeDemo.java](https://github.com/thedevd/techBlog/blob/master/hibernateexamples/src/main/java/com/thedevd/hibernateexamples/cascadetype/CascadeTypeDemo.java) 
+
+To understand all these CascadeType with examples, follow this very good article - https://www.baeldung.com/jpa-cascade-types
