@@ -43,7 +43,7 @@ The `javax.persistence.CascadeType` enum is used to represent JPA specific Casca
 1. **ALL** - The value cascade=ALL is equivalent to cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH}.
 2. **PERSIST**
 3. **MERGE**
-4. **REMOVE**
+4. **REMOVE** - Avoid using REMOVE cascadeType for ManyToMany relationship.
 5. **REFRESH**
 6. **DETACH**
 
