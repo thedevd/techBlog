@@ -55,3 +55,4 @@ Apart from above mentioned CascadeTypes, Hibernate provides 3 additional cascade
 
 `Hibernate has an deprecated cascade type - DELETE_ORPHAN. In place of this use @OneToOne(orphanRemoval=true) or @OneToMany(orphanRemoval=true)`
 
+To understand all these CascadeType, follow this very good article - https://www.baeldung.com/jpa-cascade-types
