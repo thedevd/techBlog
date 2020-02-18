@@ -49,9 +49,9 @@ The `javax.persistence.CascadeType` enum is used to represent JPA specific Casca
 
 ### Hibernate CascadeType
 Apart from above mentioned CascadeTypes, Hibernate provides 3 additional cascadeTypes. To use hibernate specific CascadeType, we need to use `org.hibernate.annotations.CascadeType` enum.
-1. **REPLICATE**
-2. **SAVE_UPDATE**
-3. **LOCK** \
+1. **REPLICATE** - when we replicate the main entity, then its associated entities also get replicated.
+2. **SAVE_UPDATE** - This cascadeType is used to cascade hibernate specific save operations such as - save(), update() and saveOrUpdate().
+3. **LOCK** - CascadeType.LOCK re-attaches the entity and its associated child entity with the persistent context again.
 
 `Hibernate has an deprecated cascade type - DELETE_ORPHAN. In place of this use @OneToOne(orphanRemoval=true) or @OneToMany(orphanRemoval=true)`
 
