@@ -16,7 +16,7 @@ class Author {
 
 	private String name;
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "author")
 	private List<Book> book = new ArrayList<>();
 
 	public Integer getId() {

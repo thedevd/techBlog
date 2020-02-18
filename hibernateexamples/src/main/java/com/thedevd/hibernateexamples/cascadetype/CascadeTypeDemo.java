@@ -42,9 +42,9 @@ public class CascadeTypeDemo {
 		session1.persist(author101); // using persist() as CascadeType is set to PERSIST which is javax.persistent specific
 		
 		// If not using CascadeType=PERSIST, need to persist all the books of author individually.
-		//session1.save(book1);
-		//session1.save(book2);
-		//session1.save(book3);
+		//session1.persist(book1);
+		//session1.persist(book2);
+		//session1.persist(book3);
 		
 		
 		SessionFactoryUtil.commitAndCloseSession(session1);

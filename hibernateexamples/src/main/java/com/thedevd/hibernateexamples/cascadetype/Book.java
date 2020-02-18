@@ -1,7 +1,9 @@
 package com.thedevd.hibernateexamples.cascadetype;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 class Book {
@@ -10,6 +12,9 @@ class Book {
 	private Integer id;
 	
 	private String name;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Author author;
 
 	public Integer getId() {
 		return id;
@@ -26,7 +31,13 @@ class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 	
 }
