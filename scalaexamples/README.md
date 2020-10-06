@@ -27,9 +27,10 @@
 7. PartialFunction (isDefinedAt(), apply(), case, andThen, orElse) - [PartialFunctionsInScala.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/functions/PartialFunctionsInScala.scala)
 
 ## [Collections in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections)
-1. Array vs ArrayBuffer - [ArrayBufferVsArray.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ArrayBufferVsArray.scala)
-2. List vs ListBuffer - [ListBufferVsList.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListBufferVsList.scala)
-3. Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
+* Array vs ArrayBuffer - [ArrayBufferVsArray.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ArrayBufferVsArray.scala)
+* List vs ListBuffer - [ListBufferVsList.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListBufferVsList.scala)
+* Filter list for specific type (collect method) - [ListFilterByType.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListFilterByType.scala)
+* Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
 
 ## [Concurrency in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency)
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
