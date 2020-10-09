@@ -1,6 +1,7 @@
 ## [Scala Basics](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics)
 * Case Class - [CaseClasses.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CaseClasses.scala)
 * Companion Object - [CompanionObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CompanionObject.scala)
+* case object vs case class - [CaseClassVsCaseObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CaseClassVsCaseObject.scala)
 * Auxiliary Constructor (Constructor overloading) - [AuxiliaryConstructor.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/AuxiliaryConstructor.scala)
 * apply() method (Scala Injectors) - [ScalaApplyMethod.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaApplyMethod.scala)
 * unapply() and unapplySeq() methods (Scala Extractors) - [ScalaExtractors.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaExtractors.scala)
