@@ -1,0 +1,2 @@
+* **HAProxy (Load balancing)** \
+https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts
