@@ -11,6 +11,7 @@
    * MultipleInhetitance using Traits - [ScalaTraitsInhertanceAmbiguity.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraitsInhertanceAmbiguity.scala)
    * Sealed Trait - [ScalaSealedTrait.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaSealedTrait.scala)
 * String-Interpolation - [ScalaStringInterpolation.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaStringInterpolation.scala)
+* String-Comparision (why == recommended over equals in scala) - [StringComparison.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/StringComparison.scala)
 * For-comprehension loop - [ScalaForComprehesion.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaForComprehesion.scala)
 * For-comprehension vs Map - [ScalaForComprehensionVsMap.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaForComprehensionVsMap.scala)
 * Fold in scala - [ScalaFold.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaFold.scala)
