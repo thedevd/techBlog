@@ -28,8 +28,8 @@ package scalaexamples.basics.traits
  *    trait Bike extends Vehicle
  *
  * AND WE WANT TO ENSURE TWO THINGS HERE (I CAN SAY WE HAVE TWO PROBLEMS HERE) -
- * 1. Enforce that Diet is only applicable to Person, meaning if any call extending Diet should also extend Person.
- *    In other word indirectly we want to enforce same thing in Compile time
+ * 1. Enforce that Diet is only applicable to Person, meaning if any class extending Diet should also extend Person.
+ *    In other word, indirectly we want to enforce same thing at Compile time i.e.
  *      trait Vegetarian extends Diet with Person { }
  *
  *    So If any class only extends Diet without Person, then compiler should report it.
