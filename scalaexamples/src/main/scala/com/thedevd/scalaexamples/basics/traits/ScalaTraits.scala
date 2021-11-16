@@ -5,7 +5,8 @@ package com.thedevd.scalaexamples.basics.traits
  * have abstract methods along with concrete methods. Traits can also have field members.
  * 
  * Traits can not be instantiated and so you can not have traits with constructor parameters like this
- * trait invalidTrate(var1:String, var2:Int) { } ------- this is invalid
+ * trait invalidTrate(var1:String, var2:Int) { } ------- this is invalid 
+ * Note- But from scala 3 parameterized traits are possible.
  *
  */
 object ScalaTraits {
