@@ -36,6 +36,7 @@
 * List vs ListBuffer - [ListBufferVsList.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListBufferVsList.scala)
 * Filter list for specific type (collect method) - [ListFilterByType.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListFilterByType.scala)
 * Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
+* Comparing sequences with different order of elements - [SequenceComparison.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/SequenceComparison.scala)
 
 ## [Concurrency in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency)
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
