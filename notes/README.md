@@ -1,2 +1,1 @@
-**Introduction to Serverless Computing** \n
-https://github.com/thedevd/techBlog/tree/master/notes/Serverless-Computing
+* **[Introduction to Serverless Computing](https://github.com/thedevd/techBlog/tree/master/notes/Serverless-Computing)**
