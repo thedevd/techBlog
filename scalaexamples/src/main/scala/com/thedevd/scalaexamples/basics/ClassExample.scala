@@ -49,8 +49,10 @@ object ClassExample {
     println(s"person4.age ${person4.age}") // 18
     println(s"person5.age ${person5.age}") // 16
 
-    val person6: PersonWithClassBody = new PersonWithClassBody("Atul", 70, "trans") // called auxilary constructor
+    val person6: PersonWithClassBody = new PersonWithClassBody("Atul", 70, "female") // called auxilary constructor
     println(s"person6.gender ${person6.gender}")
+    person6.greet() // Atul says hello
+    person6.greet("Ravi") // Atul says hi to Ravi
 
   }
 
@@ -73,6 +75,11 @@ object ClassExample {
 
     // method
     def getGender(): String = gender // --> We can have class methods inside body
+
+    // method overloading possible - compiler checks only the method arguments, NOT Return type
+    def greet(name: String): Unit = println(s"${this.name} says hi to $name")
+    def greet(): Unit = println(s"${this.name} says hello")
+    // def greet(): String = s"${this.name} says hello"
 
     // ---> Auxilary constructor, TO BE NOTED, first statement in any auxilary constructor must be a main constructor
     // or any other existing auxilary constructor, and this is one of the downside of using auxilary constructor which
