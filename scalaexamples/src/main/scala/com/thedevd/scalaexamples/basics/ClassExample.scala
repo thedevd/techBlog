@@ -4,7 +4,7 @@ package main.scala.com.thedevd.scalaexamples.basics
  * Class in Scala is just like other languages which acts as blueprint and then we can create mutliple objects
  * using that blueprint. Lets see some of the important key points about a class in scala -
  *
- * 1. Like other languages class keyword is used to create class and then new keyword is used
+ * 1. Like other languages class keyword is used to create class and then new keyword is used to create objects -
  *    class Person
  *    val person1 = new Person
  * 2. Scala class can have class parameters like -
