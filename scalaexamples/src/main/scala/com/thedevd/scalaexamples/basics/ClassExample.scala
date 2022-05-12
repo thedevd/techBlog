@@ -30,6 +30,15 @@ package main.scala.com.thedevd.scalaexamples.basics
  *    val person1 = new Person("Adult")
  *    val person2 = new Person("Teenager", 15)
  *
+ * 5. Method overloading can be possible by using same method name but different arguments signature. (TO BE NOTED THAT
+ *    method return type is not considered)
+ *    class Person(name: String, age: Int) = {
+ *      def greet(name: String): Unit = println(s"${this.name} says hi to $name")
+ *      def greet(): String = s"$name says hello"
+ *      def greet(): Int = 1000 // --> This is not allowed al-thought return type is int here
+ *    }
+ *
+ *
  */
 
 object ClassExample {
