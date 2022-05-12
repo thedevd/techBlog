@@ -1,7 +1,7 @@
 package main.scala.com.thedevd.scalaexamples.basics
 
 /*
- * Class in Scala is just like other languages which acts as blueprint and then we can create mutliple objects
+ * Class in Scala is just like other languages which acts as blueprint and then we can create multiple objects
  * using that blueprint. Lets see some of the important key points about a class in scala -
  *
  * 1. Like other languages class keyword is used to create class and then new keyword is used to create objects -
@@ -25,7 +25,7 @@ package main.scala.com.thedevd.scalaexamples.basics
  *    class Person(name: String, age: Int) --> this line itself is constructor that is why you are able to create objects
  *    using new keyword
  *
- * 3. Scala class can have parameters with default value
+ * 4. Scala class can have parameters with default value
  *    class Person(name: String, age: Int = 18)
  *    val person1 = new Person("Adult")
  *    val person2 = new Person("Teenager", 15)
@@ -79,7 +79,7 @@ object ClassExample {
     // method overloading possible - compiler checks only the method arguments, NOT Return type
     def greet(name: String): Unit = println(s"${this.name} says hi to $name")
     def greet(): Unit = println(s"${this.name} says hello")
-    // def greet(): String = s"${this.name} says hello"
+    // def greet(): String = s"${this.name} says hello" ---> This is now allowed because greet() is already defined above, so no matter return type is different here.
 
     // ---> Auxilary constructor, TO BE NOTED, first statement in any auxilary constructor must be a main constructor
     // or any other existing auxilary constructor, and this is one of the downside of using auxilary constructor which
