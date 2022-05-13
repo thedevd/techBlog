@@ -1,5 +1,6 @@
 ## [Scala Basics](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics)
 * Class Example - [ClassExample.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ClassExample.scala)
+* Method calling notations (ALL OPERATORS ARE ACTUALLY METHODS) (Infix/Prefix/Postfix) - [MethodCallingNotations.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/MethodCallingNotations.scala)
 * Case Class - [CaseClasses.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CaseClasses.scala)
 * Companion Object - [CompanionObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CompanionObject.scala)
 * case object vs case class - [CaseClassVsCaseObject.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/CaseClassVsCaseObject.scala)
