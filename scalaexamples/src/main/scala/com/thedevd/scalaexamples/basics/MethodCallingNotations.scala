@@ -1,14 +1,14 @@
 package main.scala.com.thedevd.scalaexamples.basics
 
 /*
- * 1. Infix notation =>
+ * 1. Infix notation => (Works only with method accepting one argument)
  *      - Seq(1,2,3) equals Seq(1,2,3) ===> equivalent to  ===> Seq(1,2,3).equals(Seq(1,2,3))
  *      - 1 + 2 ===> equivalent to ===> 1.+(2)
  *        (TO BE NOTED all operators in Scala are actually methods because in scala every thing is object including 1 or 2 here, so 1 is basically Int)
- * 2. Prefix notation =>
+ * 2. Prefix notation => (Only allowed for + - ! ~)
  *      - val x = -1 ===> equivalent to ===> 1.unary_!
  *        (TO BE NOTED that unary_ prefix only works with operators - + ~ !
- * 3. Postfix notation =>
+ * 3. Postfix notation => (Works only for methods with no argument)
  *      - Seq(1,2,3) isEmpty
  *        (TO BE NOTED that this notation is only available with the scala.language.postfixOps import - which is discouraged to use
  *
