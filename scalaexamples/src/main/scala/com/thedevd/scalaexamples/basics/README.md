@@ -1,1 +1,1 @@
-* Method notations takeaways <img src="https://github.com/thedevd/imageurls/blob/master/scala/scala-method-notations-infix-prefix-postfix.jpeg"/>
+* [Method notations takeaways](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/MethodCallingNotations.scala) <img src="https://github.com/thedevd/imageurls/blob/master/scala/scala-method-notations-infix-prefix-postfix.jpeg"/>
