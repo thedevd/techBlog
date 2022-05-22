@@ -39,6 +39,9 @@
 * Filter list for specific type (collect method) - [ListFilterByType.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListFilterByType.scala)
 * Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
 * Comparing sequences with different order of elements - [SequenceComparison.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/SequenceComparison.scala)
+* [Generics](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics)
+  * Creating custom collection without Generics (to showcase need of Generic) - [MyListWithoutGeneric.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics/MyListWithoutGeneric.scala)
+  * Scala type parameters relationship aka Scala Variances (Covariant, ContraVariant, Invariant) - [ScalaVariances.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics/ScalaVariances.scala)
 
 ## [Concurrency in scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency)
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
