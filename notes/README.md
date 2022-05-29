@@ -4,3 +4,4 @@
 * **[Design workflows in microservices - Orchestration Vs Choreography](https://github.com/thedevd/techBlog/tree/master/notes/Design-Workflows-In-Microservice-Orchestration-Vs-Choreography)**
 * **[Canary Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Canary-Deployment-Pattern)**
 * **[Blue Green Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Blue-Green-Deployment-Pattern)**
+* **[Why Caching cannot improve Mark and Sweep GC](https://github.com/thedevd/techBlog/tree/master/notes/Mark-And-Sweep-GC-With-Caching)**
