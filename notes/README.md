@@ -8,6 +8,8 @@
   * **Deployment pattern**
     * [Canary Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Canary-Deployment-Pattern)
     * [Blue Green Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Blue-Green-Deployment-Pattern)
+* **Database Engineering**
+  * [Implementing Vertical Sharding](https://github.com/thedevd/techBlog/tree/master/notes/Db-Vertical-Sharding)
 * **Learning from outage incident**
   * [GitHub outage due to Alter table command](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Alter-Table)
   * [GitHub outage when int type column reached max limit - 2147483647](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Int-Column-Max-Hit)
