@@ -8,6 +8,7 @@
   * **Deployment pattern**
     * [Canary Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Canary-Deployment-Pattern)
     * [Blue Green Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Blue-Green-Deployment-Pattern)
+    * [Rolling Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Rolling-Deployment-Pattern)
 * **Database Engineering**
   * [Implementing Vertical Sharding](https://github.com/thedevd/techBlog/tree/master/notes/Db-Vertical-Sharding)
 * **Learning from outage incident**
