@@ -14,5 +14,6 @@
 * **Learning from outage incident**
   * [GitHub outage due to Alter table command](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Alter-Table)
   * [GitHub outage when int type column reached max limit - 2147483647](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Int-Column-Max-Hit)
+  * [GitHub outage - Repository creation failed due to Data migration](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Data-Migration)
 * **Cloud**
   * [Introduction to Serverless Computing](https://github.com/thedevd/techBlog/tree/master/notes/Serverless-Computing)
