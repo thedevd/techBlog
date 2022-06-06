@@ -15,5 +15,6 @@
   * [GitHub outage due to Alter table command](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Alter-Table)
   * [GitHub outage when int type column reached max limit - 2147483647](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Int-Column-Max-Hit)
   * [GitHub outage - Repository creation failed due to Data migration](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Data-Migration)
+  * [Github outage - Reversing an index lead to full table scan](https://github.com/thedevd/techBlog/tree/master/notes/GitHub-Outage-Reversing-An-Index)
 * **Cloud**
   * [Introduction to Serverless Computing](https://github.com/thedevd/techBlog/tree/master/notes/Serverless-Computing)
