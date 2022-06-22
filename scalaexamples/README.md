@@ -15,7 +15,7 @@
    * MultipleInhetitance using Traits - [ScalaTraitsInhertanceAmbiguity.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaTraitsInhertanceAmbiguity.scala)
    * Sealed Trait - [ScalaSealedTrait.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/ScalaSealedTrait.scala)
    * self type - [SelfTypes.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/traits/SelfTypes.scala)
-* Anonymous Class - [AnonymousClass.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/AnonymousClass.scala)
+* Anonymous Class (looks like you are instantiating abstract/trait but it is not - [AnonymousClass.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/AnonymousClass.scala)
 * String-Interpolation - [ScalaStringInterpolation.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaStringInterpolation.scala)
 * String-Comparision (why == recommended over equals in scala) - [StringComparison.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/StringComparison.scala)
 * For-comprehension loop - [ScalaForComprehesion.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/basics/ScalaForComprehesion.scala)
