@@ -4,7 +4,7 @@
   * [Why Caching cannot improve Mark and Sweep GC](https://github.com/thedevd/techBlog/tree/master/notes/Mark-And-Sweep-GC-With-Caching)
   * **Database pattern in microservice architecture**
     * [Sharing a common database](https://github.com/thedevd/techBlog/tree/master/notes/Should-Microservices-Share-Common-Database)
-    * One database per microservice
+    * [One database per microservice](https://github.com/thedevd/techBlog/tree/master/notes/Database-Per-Microservice-Pattern)
   * **Deployment pattern**
     * [Canary Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Canary-Deployment-Pattern)
     * [Blue Green Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Blue-Green-Deployment-Pattern)
