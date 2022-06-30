@@ -18,5 +18,6 @@
   * [GitHub outage - Repository creation failed due to Data migration](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Data-Migration)
   * [Github outage - Reversing an index lead to full table scan](https://github.com/thedevd/techBlog/tree/master/notes/GitHub-Outage-Reversing-An-Index)
   * [Github outage - Master failover failed during maintainance](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Due-To-Master-Failover-Failed)
+  * [Github outage - How databases are managed - ProxySql + Master failover + Orcheastrator Anti-flipping pattern](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-ProxySql-How-Databases-Are-Managed-In-Production)
 * **Cloud**
   * [Introduction to Serverless Computing](https://github.com/thedevd/techBlog/tree/master/notes/Serverless-Computing)
