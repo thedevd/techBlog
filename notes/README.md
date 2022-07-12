@@ -1,6 +1,7 @@
 * **System design / Microservices**
   * [Synchronous and Asychronous communication in Microservice Architecture](https://github.com/thedevd/techBlog/tree/master/notes/Sync-Asycn-Microservice-Communication)
   * [Design workflows in microservices - Orchestration Vs Choreography](https://github.com/thedevd/techBlog/tree/master/notes/Design-Workflows-In-Microservice-Orchestration-Vs-Choreography)
+  * [BFF (Backend-For-Frontend) pattern in Microservice](https://github.com/thedevd/techBlog/tree/master/notes/Backend-For-Frontend-Pattern-In-Microservice) -  supporting multiple types of clients like Desktop, Mobile apps using same backend api response
   * [Why Caching cannot improve Mark and Sweep GC](https://github.com/thedevd/techBlog/tree/master/notes/Mark-And-Sweep-GC-With-Caching)
   * **Database pattern in microservice architecture**
     * [Sharing a common database](https://github.com/thedevd/techBlog/tree/master/notes/Should-Microservices-Share-Common-Database)
