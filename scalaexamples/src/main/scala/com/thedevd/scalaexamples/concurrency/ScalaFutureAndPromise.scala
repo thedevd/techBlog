@@ -8,28 +8,26 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.control.NonFatal
 
 /*
- * Future is just a read-only placeholder to store a value that may be available after some point later.
- * So Future is just a way to work with the value that it will compute and handle to failure in case of any exception.
+ * Future is just a read-only placeholder that contains computation to produce a value that may be available after some point later.
  *
- * There is some other part which works internally that write the value in Future, and this is done by Promise. So
+ * There is another part which works internally that hands over the data to the Future to complete its asynchronous task, and this is done by Promise. So
  *  we can say -
- *     Future --> represents a value which may or may not currently available.
- *     Promise --> represents the computation that will produce value (or completes future) in some time
- *                 and return it in the form of Future object.
+ *     Future --> is computation centric that represents computation which at the end gives a value which is goig be available after some point later.
+ *     Promise --> is data centric that hands over data to Future to complete its computation and return it in the form of Success or Failure object.
  *
- *                 Promise internally completes the future in either of two ways-
- *                 1. completing the future with a value by calling success method (promise.success). This is called
- *                 completing the promise.
- *                 2. or complete the future with an exception by calling failure method (promise.failure). This is called
- *                 failing the promise.
+ *                 Promise internally completes the future OR hands data to future in either of two ways-
+ *                 1. completing the future with a value by calling success method (promise.success). 
+ *                    This is called completing the promise.
+ *                 2. or complete the future with an exception by calling failure method (promise.failure). 
+ *                    This is called failing the promise.
  *
  *
  * In very very general language-
- * ## A Future is just an abstraction layer over Promise. and it is readonly object that represents a value which may become available at some point.
- * A Future object either holds a result of a computation or an exception in the case that the computation failed.
+ * ## A Future is just an abstraction layer over Promise. and it is readonly object that is used to do some computation asynchronously.
+ * A Future object either holds a result of a computation or an exception in the case when the computation failed.
  * Future is immutable, you can only read from it.
  *
- * Promise is responsible to produce the value at some time. It is like promise is promising the end user to give
+ * Promise is responsible to produce the value at some time. It is like a promise which is promising to the end user to give
  * something which it does not have right now but it will be soon.
  *
  */
