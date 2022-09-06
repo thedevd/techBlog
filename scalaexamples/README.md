@@ -48,5 +48,14 @@
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
 2. Future and Promise - [ScalaFutureAndPromise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFutureAndPromise.scala)
 
+## [Akka Framework](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka)
+1. Akka Actor (Covers foundation to work with Actor model which is a new way to think towards making concurrent and distributed system)
+2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
+3. Akka Streams (Covers how to create fast data stream application in just 10-20 lines of code)
+4. Akka HTTP (Covers creating RESTful APIs and microservices)
+5. Akka Clustering and Remoting (Covers concept of remoting and clustering to make truly distributed systems based on actors which can communicate on the same JVM, on multiple VMS, on the same machine or across the planet.)
+6. Akka Serialization (Covers how akka serialization can play important role in performance)
+7. Akka Scheduler (Covers Classic scheduler, Quartz Scheduler which can be used to schedule a task periodically) 
+
 ## [Coding problems using Scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems)
 1. Fraction of 100 problems - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
