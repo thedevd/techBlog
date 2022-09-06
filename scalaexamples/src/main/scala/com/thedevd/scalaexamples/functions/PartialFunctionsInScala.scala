@@ -31,7 +31,19 @@ package com.thedevd.scalaexamples.functions
  * Note- PartialFunction is basically a trait which has two unimplemented methods isDefinedAt() and apply().
  * So when implementing it using new, you need to provide those implementations.
  *
- * Calling partialFunction on the input it does not supposed to work, will throw exception.
+ * Calling partialFunction on the input it does not supposed to work, will throw MatchError.
+ *
+ * Lifting
+ * -----------
+ * PartialFunction can be converted to a full function by applying .lift which transform it to return Option[T]
+ * it means in case where PartialFunction was returning MatchError, it will return None.
+ * Example -
+ *    val squareRootPf = (number: Double) => number match {
+ *      case x if x > 0 => Math.sqrt(x)
+ *    }
+ *
+ *    val fullFunction: (Double) => Option[Double] = squareRootPf.lift
+ *    val applyOnNegative = fullFunction(-4) ----> this will return None
  */
 object PartialFunctionsInScala {
   
@@ -81,7 +93,14 @@ object PartialFunctionsInScala {
     println(squareRootPFUsingCase.isDefinedAt(2)) // --> true
     println(squareRootPFUsingCase.isDefinedAt(-4)) // --> false
     
-    
+    /*
+     *#############################################
+     * Lifting partialFunction using .lift
+     */
+    val liftedSquareRootPFUsingCase: Function1[Double, Option[Double]] = squareRootPFUsingCase.lift // Double => Option[Double]
+    println("liftedSquareRootPFUsingCase(4): " + liftedSquareRootPFUsingCase(4)) // --> Some(2.0)
+    println("liftedSquareRootPFUsingCase(-4): " + liftedSquareRootPFUsingCase(-4)) // --> None
+
     /*
      * #######################################################
      * Chaining of partial Functions using andThen, orElse
