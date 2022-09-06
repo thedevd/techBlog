@@ -51,3 +51,6 @@ https://stackoverflow.com/questions/31319358/jsonmanagedreference-vs-jsonbackref
 * Best practice of Exception Handling in Java \
 https://stackify.com/best-practices-exceptions-java/ \
 https://dzone.com/articles/java-top-5-exception-handling
+
+* Concurrency vs Parallelism \
+https://www.youtube.com/watch?v=FChZP09Ba4E
