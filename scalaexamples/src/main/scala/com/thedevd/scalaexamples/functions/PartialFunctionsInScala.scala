@@ -10,9 +10,9 @@ package com.thedevd.scalaexamples.functions
  * rather it can return the output for a certain range of input's value. 
  * for example -function that returns the Square root of the input number will not work if the input number is negative.
  * 
- * PartialFunction API is used to define partial functions in scala, where you can use these ways to define them -
- *  - isDefinedAt() and apply() - issDefinedAt() defines the condition and apply() performs the operation if condition is satisfied. 
- *  - case statement
+ * PartialFunction API is used to define partial functions in scala, where you can use any of these ways to define them -
+ *  - isDefinedAt() and apply() - isDefinedAt() defines the condition and apply() performs the operation if condition is satisfied.
+ *  - case statement (RECOMMENDED)
  *  
  * Partial Functions can also be chained together using 
  *    - andThen
@@ -20,11 +20,18 @@ package com.thedevd.scalaexamples.functions
  *  
  *  Simple example using case- 
  *     val squareRoot: PartialFunction[Double, Double] = { // [Double, Double] means taking Double type input and returning Double
- *           case x if x >= 0 => Math.sqrt(x)
+ *           case x if x > 0 => Math.sqrt(x)
  *     }
+ *
+ *    it can also be written simply using anonymous type -
+ *    val squareRootPf = (number: Double) => number match {
+ *      case x if x > 0 => Math.sqrt(x)
+ *    }
  *     
  * Note- PartialFunction is basically a trait which has two unimplemented methods isDefinedAt() and apply().
- * So when implementing it using new, you need to provide those implementations
+ * So when implementing it using new, you need to provide those implementations.
+ *
+ * Calling partialFunction on the input it does not supposed to work, will throw exception.
  */
 object PartialFunctionsInScala {
   
@@ -62,6 +69,10 @@ object PartialFunctionsInScala {
     val squareRootPFUsingCase :  PartialFunction[Double, Double] = {
       case number if (number > 0) => Math.sqrt(number)
     }
+    /* val squareRootPFUsingCase = (x: Double) => x match {
+     *    case number if number>0 => Math.sqrt(number)
+     * }
+     */
     
     println(squareRootPFUsingCase(4))
     // println(squareRootPFUsingCase(-4)) // Exception in thread "main" scala.MatchError: -4.0 (of class java.lang.Double)
