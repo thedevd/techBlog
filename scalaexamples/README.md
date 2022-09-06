@@ -48,5 +48,14 @@
 1. Future (asynchrous operation) - [ScalaFuture.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFuture.scala)
 2. Future and Promise - [ScalaFutureAndPromise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFutureAndPromise.scala)
 
+## [Akka Framework](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka)
+1. Akka Actor
+2. Akka Persistence
+3. Akka Streams
+4. Akka HTTP
+5. Akka Clustering and Remoting
+6. Akka Serialization
+7. Akka Scheduler (Classic scheduler, Quartz Scheduler)
+
 ## [Coding problems using Scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems)
 1. Fraction of 100 problems - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
