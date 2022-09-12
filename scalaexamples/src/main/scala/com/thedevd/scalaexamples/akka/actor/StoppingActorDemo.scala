@@ -32,7 +32,7 @@ import akka.actor.{ Actor, ActorRef, ActorSystem, Kill, PoisonPill, Props }
  *  actorSystem.stop(parentActor)
  *
  *
- * Way #2 - Stopping Actor GRACEFULLY
+ * Way #2/#3 - Stopping Actor GRACEFULLY
  * --------------------------------------
  * WHEN TO USE -
  * This way is mostly adopted one, where actor does not stop itself immediately, rather it completes processing of all available msgs
