@@ -49,7 +49,7 @@
 2. Future and Promise - [ScalaFutureAndPromise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/concurrency/ScalaFutureAndPromise.scala)
 
 ## [Akka Framework](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka)
-1. [Akka Actor](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor) (Covers foundation to work with Actor model which is a new way to think towards making concurrent and distributed system)
+1. [Akka Actor](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor) - (Covers foundation to work with Actor model which is a new way to think towards making concurrent and distributed system)
    * Java Thread Model vs Akka Actor Model - [JavaThreadModelVsActorModel.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/JavaThreadModelVsActorModel.scala)
    * 3 ways Stopping an Actor - [StoppingActorDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/StoppingActorDemo.scala)
 2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
