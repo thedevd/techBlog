@@ -3,11 +3,11 @@ package main.scala.com.thedevd.scalaexamples.akka.actor
 import akka.actor.{ Actor, ActorRef, ActorSystem, Kill, PoisonPill, Props }
 
 /**
- * There are situation where we might need to stop an actor (May be need to stop processing message that were received
- * by that actor or may be we want to reinitialize the actor).
+ * There are situations where we might need to stop an actor (May be need to stop further processing of the message by the actor 
+ * or may be we want to reinitialize the actor by stopping and starting it again).
  *
- * In Akka there are 3 ways to stop an actor, which kind a confuse to beginners what why the hell we have these 3 ways.
- * Here I am going to explain them with proper example which way does what and which to choose when.
+ * In Akka there are 3 ways to stop an actor, which kind a confuse to beginners that why the hell we have these 3 ways.
+ * Here I am going to explain them with proper example i.e. which way does what and which to choose when.
  *
  * Way #1 - Stopping Actor FORCEFULLY
  * --------------------------------------
@@ -32,7 +32,7 @@ import akka.actor.{ Actor, ActorRef, ActorSystem, Kill, PoisonPill, Props }
  *  actorSystem.stop(parentActor)
  *
  *
- * Way #2 - Stopping Actor GRACEFULLY
+ * Way #2/#3 - Stopping Actor GRACEFULLY
  * --------------------------------------
  * WHEN TO USE -
  * This way is mostly adopted one, where actor does not stop itself immediately, rather it completes processing of all available msgs
@@ -113,9 +113,8 @@ object StoppingActorDemo extends App {
   parentActor ! ("stop demo", "MyChild-2")
   parentActor ! ("stop demo", "MyChild-3")
 
+  // using stop() method on actorSystem to stop actor forcefully
   actorSystem.stop(parentActor)
-  //parentActor ! Kill
-  //parentActor ! PoisonPill
 
   Thread.sleep(3000)
 
@@ -125,8 +124,9 @@ object StoppingActorDemo extends App {
   parentActor2 ! ("Kill demo", "MyChild-2")
   parentActor2 ! ("Kill demo", "MyChild-3")
 
+  // sending Kill message to actor to stop it gracefully
   parentActor2 ! Kill
-  parentActor2 ! ("Kill demo", "MyChild-4")
+  parentActor2 ! ("Kill demo", "MyChild-4") // This msg will go to dead letter queue as actor stopped already
 
   Thread.sleep(3000)
 
@@ -136,8 +136,9 @@ object StoppingActorDemo extends App {
   parentActor3 ! ("PoisonPill demo", "MyChild-2")
   parentActor3 ! ("PoisonPill demo", "MyChild-3")
 
+  // sending PoisonPill message to actor to stop it gracefully
   parentActor3 ! PoisonPill
-  parentActor3 ! ("PoisonPill demo", "MyChild-4")
+  parentActor3 ! ("PoisonPill demo", "MyChild-4") // This msg will go to dead letter queue as actor stopped already
 
   Thread.sleep(3000)
   actorSystem.terminate()
@@ -160,9 +161,9 @@ object StoppingActorDemo extends App {
    * [ERROR] [09/12/2022 15:13:54.143] [StoppingActorDemo-akka.actor.internal-dispatcher-3] [akka://StoppingActorDemo/user/ParentActor-2] Kill (akka.actor.ActorKilledException: Kill)
    * In child-actor Child-MyChild-1, Message received from parent-actor: Kill demo
    * In child-actor Child-MyChild-2, Message received from parent-actor: Kill demo
+   * In child-actor Child-MyChild-3, Message received from parent-actor: Kill demo
    * Calling postStop() on child-actor: Child-MyChild-1
    * Calling postStop() on child-actor: Child-MyChild-2
-   * In child-actor Child-MyChild-3, Message received from parent-actor: Kill demo
    * Calling postStop() on child-actor: Child-MyChild-3
    * Calling postStop() on parent-actor
    * [INFO] [akkaDeadLetter][09/12/2022 15:13:54.645] [StoppingActorDemo-akka.actor.default-dispatcher-7] [akka://StoppingActorDemo/user/ParentActor-2] Message [scala.Tuple2] to Actor[akka://StoppingActorDemo/user/ParentActor-2#915139138] was not delivered. [3] dead letters encountered. If this is not an expected behavior then Actor[akka://StoppingActorDemo/user/ParentActor-2#915139138] may have terminated unexpectedly. This logging can be turned off or adjusted with configuration settings 'akka.log-dead-letters' and 'akka.log-dead-letters-during-shutdown'.
