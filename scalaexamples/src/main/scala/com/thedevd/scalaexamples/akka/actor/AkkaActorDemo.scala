@@ -67,8 +67,8 @@ package main.scala.com.thedevd.scalaexamples.akka.actor
  * Guarantees akka system provides ->
  * ------------------------------------
  * 1. Thread safe guarantees i.e
- *    - Only one thread allowed to operates on an actor at any time. This means actors are single threaded,
- *    where we do not need to worry about locks and inconsistencies in actor state.
+ *    - Only one thread allowed to operates on an actor at any time (This solves race condition).
+ *    This means actors are single threaded, where we do not need to worry about LOCKS and inconsistencies in actor state.
  *
  * 2. Message delivery guarantees
  *     - At most once delivery (So no duplicates)
@@ -77,6 +77,10 @@ package main.scala.com.thedevd.scalaexamples.akka.actor
  * If Devendra send Ravi message - A followed by B then we can assure that
  *    - Ravi will never receive duplicates of A or B.
  *    - Ravi will always receive A before B (Possibly with some others msgs in between)
+ *
+ * 3. Message processing atomicity guarantee
+ *    -  Processing of a message is atomic, means it is not possible that thread operating on actor
+ *       leaves during message processing.
  *
  *
  * How Akka actor works
