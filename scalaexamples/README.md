@@ -53,6 +53,7 @@
    * Java Thread Model vs Akka Actor Model - [JavaThreadModelVsActorModel.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/JavaThreadModelVsActorModel.scala)
    * Akka Actor basics demo - [AkkaActorDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorDemo.scala)
    * Akka Actor messages and message handlers - [AkkaActorMessageHandler.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorMessageHandler.scala)
+   * Akka Actor's context usage (context.sefl, context.sender()) - [AkkaActorContext.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorContext.scala)
    * 3 ways Stopping an Actor - [StoppingActorDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/StoppingActorDemo.scala)
 2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
 3. Akka Streams (Covers how to create fast data stream application in just 10-20 lines of code)
