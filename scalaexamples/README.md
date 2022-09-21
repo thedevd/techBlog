@@ -57,6 +57,7 @@
    * Akka Actor forward vs tell (!) method - [AkkaActorForwardVsTell.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorForwardVsTell.scala)
    * 3 ways Stopping an Actor - [StoppingActorDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/StoppingActorDemo.scala)
    * Changing actor's message handler using context.become() - [AkkaActorChangingHandler.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorChangingHandler.scala)
+   * Counter exercise using actor - [CounterActorExercise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/CounterActorExercise.scala)
 2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
 3. Akka Streams (Covers how to create fast data stream application in just 10-20 lines of code)
 4. Akka HTTP (Covers creating RESTful APIs and microservices)
