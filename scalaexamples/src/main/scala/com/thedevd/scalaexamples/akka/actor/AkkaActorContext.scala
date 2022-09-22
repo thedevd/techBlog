@@ -13,7 +13,8 @@ package main.scala.com.thedevd.scalaexamples.akka.actor
  *    - own actor Reference (context.self),
  *    - sender actor reference (context.sender),
  *    - actor path (context.self.path.name, context.sender.path.name),
- *    - actor selection using path (context.actorSelection(path: String)) and
+ *    - actor selection using path (context.actorSelection(path: String)),
+ *    - create child actor (context.actorOf())
  *    - lot of information.
  *
  * 3. context is only valid within the Actor itself, so do not close over it and publish it to other threads!

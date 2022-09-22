@@ -104,7 +104,7 @@ object AkkaActorForwardVsTell extends App {
   class Actor1 extends Actor {
     override def receive: Receive = {
       case stringMsg: String =>
-        val actor2: ActorRef = context.system.actorOf(Props[Actor2], "actor-2")
+        val actor2: ActorRef = context.actorOf(Props[Actor2], "actor-2")
         actor2 ! stringMsg
     }
   }
@@ -112,7 +112,7 @@ object AkkaActorForwardVsTell extends App {
   class Actor2 extends Actor {
     override def receive: Receive = {
       case stringMsg: String =>
-        val actor3: ActorRef = context.system.actorOf(Props[Actor3], "actor-3")
+        val actor3: ActorRef = context.actorOf(Props[Actor3], "actor-3")
         actor3 ! stringMsg
     }
   }
@@ -141,7 +141,7 @@ object AkkaActorForwardVsTell extends App {
   class ActorA extends Actor {
     override def receive: Receive = {
       case stringMsg: String =>
-        val actorB: ActorRef = context.system.actorOf(Props[ActorB], "actor-B")
+        val actorB: ActorRef = context.actorOf(Props[ActorB], "actor-B")
         actorB ! stringMsg
     }
   }
@@ -149,7 +149,7 @@ object AkkaActorForwardVsTell extends App {
   class ActorB extends Actor {
     override def receive: Receive = {
       case stringMsg: String =>
-        val actorC: ActorRef = context.system.actorOf(Props[ActorC], "actor-C")
+        val actorC: ActorRef = context.actorOf(Props[ActorC], "actor-C")
         actorC forward stringMsg // ActorB responsibility is forward the msg to Actor C, not tell
         // similar to calling - actorC.tell(stringMsg, context.sender())
         // Here context.sender() is nothing but ActorA reference
