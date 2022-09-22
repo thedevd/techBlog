@@ -45,6 +45,8 @@ import akka.actor.{ Actor, ActorRef, ActorSystem, Props }
  *  in common. So here /user is 'user guardian actor'. Just remember that all the actors that we create explicitly
  *  comes under '/user guardian actor'.
  *
+ *  RECOMMEND to read next - AkkaActorHierarchy.scala
+ *
  */
 object AkkaChildActorDemo extends App {
 
