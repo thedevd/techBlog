@@ -66,6 +66,7 @@
    * Breaking Actor's full encapsulation principle (this reference) - [BreakingActorEncapsulation.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/BreakingActorEncapsulation.scala)
    * Exercise of Word-Counting using Master-Workers style - [MasterWorkersWordCountExercise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/MasterWorkersWordCountExercise.scala)
    * ActorLogging trait - logging inside actor - [AkkaActorLoggingDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorLoggingDemo.scala)
+   * Akka Configuration (Ways to configure an SBT application) - [AkkaConfigurationDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaConfigurationDemo.scala)
 2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
 3. Akka Streams (Covers how to create fast data stream application in just 10-20 lines of code)
 4. Akka HTTP (Covers creating RESTful APIs and microservices)
