@@ -3,6 +3,30 @@ package main.scala.com.thedevd.scalaexamples.akka.actor
 import akka.actor.{ Actor, ActorLogging, ActorRef, ActorSystem, Props }
 import com.typesafe.config.{ Config, ConfigFactory }
 
+/**
+ * Akka reads its configuration from 'akka' parent configuration. This parent 'akka' configuration can be provided
+ * in many ways to Akka framework, which we have discussed here. This exercise is more towards understanding
+ * ways to define SBT application configuration.
+ *
+ * As mentioned Akka framework's configuration is all defined under 'akka' namespace, for example -
+ *    akka {
+ *      loglevel = DEBUG
+ *    }
+ *
+ *    // This is HOCON syntax, you will see the same in almost all AKKA libraries.
+ *
+ * So lets see how many ways we can configure akka framework or more generally an SBT application -
+ * 1. Using Inline style
+ * 2. Using default configuration defined in each AKKA framework
+ * 3. Using default resources/application.conf file
+ * 4. Using different conf file store in different location of resoruces folder
+ * 5. Instead of HOCON systax, we can also use different format such as .json, .properties
+ *
+ * How to load configuration explicitly -
+ * ConfigFactory's load() method is used.
+ *    com.typesafe.config.ConfigFactory.load(resourceBaseName: String)
+ *
+ */
 object AkkaConfigurationDemo extends App {
 
   class MyActor extends Actor with ActorLogging {
