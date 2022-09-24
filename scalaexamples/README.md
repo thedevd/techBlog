@@ -64,6 +64,7 @@
    * Akka actor's context.actorOf Vs context.system.actorOf (Which way to use create child actor) - [ContextSystemActorVsContextActorOf.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/ContextSystemActorVsContextActorOf.scala)
    * Akka actor selection using actorSelection(path: String) method - [AkkaActorSelectionDemo.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/AkkaActorSelectionDemo.scala)
    * Breaking Actor's full encapsulation principle (this reference) - [BreakingActorEncapsulation.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/BreakingActorEncapsulation.scala)
+   * Exercise of Word-Counting using Master-Workers style - [MasterWorkersWordCountExercise.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/akka/actor/MasterWorkersWordCountExercise.scala)
 2. Akka Persistence (Covers event sourcing a way to persist events in storage and replay them to recover state from any failure)
 3. Akka Streams (Covers how to create fast data stream application in just 10-20 lines of code)
 4. Akka HTTP (Covers creating RESTful APIs and microservices)
