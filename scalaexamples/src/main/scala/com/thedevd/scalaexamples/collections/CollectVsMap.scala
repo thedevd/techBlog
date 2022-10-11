@@ -2,9 +2,9 @@ package main.scala.com.thedevd.scalaexamples.collections
 import scala.util.Try
 
 /**
- * We can replace filter + map operation by collect method, because collect supports pattern matching with if condition.
+ * We can replace filter + map/flatMap operation by collect method, because collect supports pattern matching with if condition.
  *
- * In the example below where we have a list of elements where some can be numbers and some can not be.
+ * In the example #1 below where we have a list of elements where some can be numbers and some can not be.
  * So one simpler way which comes in our mind is, first filter the list with elements that can be casted to Int,
  * and then apply map to transform them into Int using .toString.toInt.
  *      .filter(x => Try(x.toString.toInt).isSuccess).map(_.toString.toInt)
