@@ -11,6 +11,7 @@
     * [Blue Green Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Blue-Green-Deployment-Pattern)
     * [Rolling Deployment Pattern](https://github.com/thedevd/techBlog/tree/master/notes/Rolling-Deployment-Pattern)
 * **Database Engineering**
+  * [Database sharding and paritioning concept](https://github.com/thedevd/techBlog/tree/master/notes/Db-Sharding-And-Partitioning)
   * [Implementing Vertical Sharding](https://github.com/thedevd/techBlog/tree/master/notes/Db-Vertical-Sharding)
 * **Learning from outage incident**
   * [GitHub outage due to Alter table command](https://github.com/thedevd/techBlog/tree/master/notes/Github-Outage-Alter-Table)
