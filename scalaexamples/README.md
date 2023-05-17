@@ -40,6 +40,7 @@
 * Filter list for specific type (collect method) - [ListFilterByType.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/ListFilterByType.scala)
 * Usage of fill() method of List - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
 * Comparing sequences with different order of elements - [SequenceComparison.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/SequenceComparison.scala)
+* collect vs map/flatMap - [CollectVsMap.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/CollectVsMap.scala)
 * [Generics](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics)
   * Creating custom collection without Generics (to showcase need of Generic) - [MyListWithoutGeneric.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics/MyListWithoutGeneric.scala)
   * Scala type parameters relationship aka Scala Variances (Covariant, ContraVariant, Invariant) - [ScalaVariances.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/collections/generics/ScalaVariances.scala)
@@ -73,6 +74,9 @@
 5. Akka Clustering and Remoting (Covers concept of remoting and clustering to make truly distributed systems based on actors which can communicate on the same JVM, on multiple VMS, on the same machine or across the planet.)
 6. Akka Serialization (Covers how akka serialization can play important role in performance)
 7. Akka Scheduler (Covers Classic scheduler, Quartz Scheduler which can be used to schedule a task periodically) 
+
+## [Random but very useful](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/randomuseful)
+* Flatting Seq[Try[T] - [FlatteningSeqTry.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/randomuseful/FlatteningSeqTry.scala) 
 
 ## [Coding problems using Scala](https://github.com/thedevd/techBlog/tree/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems)
 1. Fraction of 100 problems - [FractionOf100Problem.scala](https://github.com/thedevd/techBlog/blob/master/scalaexamples/src/main/scala/com/thedevd/scalaexamples/codingproblems/FractionOf100Problem.scala)
