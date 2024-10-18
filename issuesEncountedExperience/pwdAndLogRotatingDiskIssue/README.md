@@ -94,3 +94,6 @@ And for 1 day we Monitored disk space utilization and confirmed that the gradual
   - For this we increased the log file manually to force log rotation for more than 3 times (as backupCount was 3)
   - and Checked when log rotation is deleting the older file to make room for next rotated file, the file is deleted without having opened forever in the system
 
+## Conclusion:
+In conclusion, the disk space increase and log rotation issue in the customer environment were successfully resolved. The root cause was identified as a special character in the password causing a database connection error and a bug in the log rotation code. By URL-encoding the password and updating the log rotation code, the problems were mitigated, leading to stable disk space utilization and proper log rotation.
+
